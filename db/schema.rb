@@ -11,6 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160403161620) do
+
+  create_table "pv_sites", force: :cascade do |t|
+    t.string   "label"
+    t.string   "location"
+    t.integer  "max_production"
+    t.integer  "direction"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "pv_sites", ["user_id"], name: "index_pv_sites_on_user_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "access_token"
+    t.string   "email"
+    t.boolean  "admin"
+    t.string   "provider"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
 end

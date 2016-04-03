@@ -1,0 +1,11 @@
+admin:
+  uid: admin
+  admin: true
+  provider: local
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+
+alice:
+  uid: alice
+  admin: false
+  provider: local
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>

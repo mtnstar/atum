@@ -38,9 +38,14 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (7.0.0)
+    bcrypt (3.1.11)
     builder (3.2.2)
     byebug (8.2.2)
+    coderay (1.1.1)
     concurrent-ruby (1.0.1)
     erubis (2.7.0)
     ffi (1.9.10)
@@ -61,9 +66,17 @@ GEM
     mime-types-data (3.2016.0221)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    mysql2 (0.4.3)
     nio4r (1.2.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-doc (0.8.0)
+      pry (~> 0.9)
+      yard (~> 0.8)
     puma (3.2.0)
     rack (2.0.0.alpha)
       json
@@ -99,6 +112,9 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    seed-fu (1.2.3)
+      rails (>= 2.1)
+    slop (3.6.0)
     spring (1.6.4)
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
@@ -118,19 +134,23 @@ GEM
     websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    yard (0.8.7.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
+  bcrypt (~> 3.1.7)
   byebug
   listen (~> 3.0.5)
+  mysql2
+  pry
+  pry-doc
   puma
   rails (>= 5.0.0.beta3, < 5.1)
+  seed-fu
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   tzinfo-data
-
-BUNDLED WITH
-   1.11.2
