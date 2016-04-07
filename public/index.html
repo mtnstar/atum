@@ -1,0 +1,271 @@
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <title>Atum API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="layout.css" />
+  </head>
+
+  <body>
+    <div id="container">
+      <header>
+        <h1>Atum API</h1>
+      </header>
+      <article>
+        <h2>Index</h2>
+        <ul>
+          <li>
+            <a href="#locations">GET /locations</a>
+            <ul>
+              <li><a href="#locations url">Resource URL</a></li>
+              <li><a href="#locations parameters">Parameters</a></li>
+              <li><a href="#locations example">Example</a></li>
+              <li><a href="#locations response">JSON Response</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#pv_sites">GET /pv_sites</a>
+            <ul>
+              <li><a href="#pv_sites url">Resource URL</a></li>
+              <li><a href="#pv_sites parameters">Parameters</a></li>
+              <li><a href="#pv_sites example">Example</a></li>
+              <li><a href="#pv_sites response">JSON Response</a></li>
+              <li><a href="#pv_sites response attributes">Response attributes</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#pv_site">POST /pv_site</a>
+            <ul>
+              <li><a href="#pv_site url">Resource URL</a></li>
+              <li><a href="#pv_site parameters">Parameters</a></li>
+              <li><a href="#pv_site example">Example</a></li>
+              <li><a href="#pv_site request">JSON Response</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr></hr>
+
+        <h2 id="locations">GET /locations</h2>
+        <p>Returns the first ten matching locations for the given parameters.</p>
+        <h3 id="locations url">Resource URL<h3>
+        <pre>http://your_domain/locations</pre>
+
+        <h3 id="locations parameters">Parameters</h3>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Required</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>query</code></td>
+              <td>true</td>
+              <td>Specifies the location to search for</td>
+              <td>query=bern</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3 id="locations example">Example</h3>
+        <pre>GET http://your_domain/locations?query=bern</pre>
+        <h3 id="locations response">JSON response</h3>
+        <pre>
+{
+  query: "bern",
+  count: 43,
+  locations: [
+    {
+      name: "Bern",
+      country: "Switzerland",
+      region: "Canton of Bern",
+      lat: 46.948101,
+      lon: 7.44744,
+      asl: ​549,
+      timezone: "Europe/Zurich"
+    }
+  ]
+}
+        </pre>
+
+        <hr></hr>
+
+        <h2 id="pv_sites">GET /pv_sites</h2>
+        <p>Returns the pv_sites for the given parameters.</p>
+        <h3 id="pv_sites url">Resource URL<h3>
+        <pre>http://your_domain/pv_sites</pre>
+
+        <h3 id="pv_sites parameters">Parameters</h3>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Required</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>api_key</code></td>
+              <td>true</td>
+              <td>Your API key to access the data</td>
+              <td>api_key=m2kj3nd93a</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3 id="pv_sites example">Example</h3>
+        <pre>GET http://your_domain/pv_sites?api_key=m2kj3nd93a</pre>
+        <h3 id="pv_sites response">JSON response</h3>
+        <pre>
+{
+  count: 12,
+  pv_sites: [
+    {
+      name: "Roof east PV",
+      max_profit: 52,
+      location: "Bern",
+      orienation: 14,
+      days : [
+        {
+          date: "2016-04-05"
+          sunshine_time:   [0, 0, 0, 0, 0, 0, 0, 0, 32,   54,   35,   32,   32,   33,   35,   32,   25,   24,   21,   34,   2,  0, 0, 0],
+          profit_per_hour: [0, 0, 0, 0, 0, 0, 0, 0, 1104, 2300, 2123, 2235, 2453, 2287, 2390, 2004, 1642, 1434, 1204, 800, 70, 0, 0, 0],
+          tot_profit: 22.046
+        },
+        {
+          date: "2016-04-05"
+          sunshine_time:   [0, 0, 0, 0, 0, 0, 0, 0, 25,  34,   35,   32,   31,   35,   33,   32,   28,   22,   20,   36,   16,  0, 0, 0],
+          profit_per_hour: [0, 0, 0, 0, 0, 0, 0, 0, 802, 1200, 2323, 1935, 2053, 2487, 2390, 2004, 1742, 1234, 1184, 1031, 340, 0, 0, 0],
+          tot_profit: 20.725
+        },
+        ....
+      ]
+    }
+  ]
+}
+        </pre>
+
+        <h3 id="pv_sites response attributes">Response attributes</h3>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>max_profit</code></td>
+              <td>The maximal profit of the PV in KW/h</td>
+            </tr>
+            <tr>
+              <td><code>orienation</code></td>
+              <td>The orientation of the PV in degree</td>
+            </tr>
+            <tr>
+              <td><code>sunshine_time</code></td>
+              <td>Minutes per houre where the sun is shining. It begins at 0AM and ends at 11PM, Each field is one hour.</td>
+            </tr>
+            <tr>
+              <td><code>profit_per_hour</code></td>
+              <td>Profit per hour in Watt/h, each field matches to a field form sunshine_time.</td>
+            </tr>
+            <tr>
+              <td><code>tot_profit</code></td>
+              <td>Total profit of one day in KW/h</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <hr></hr>
+
+        <h2 id="pv_site">POST /pv_site</h2>
+        <p>Creates a new pv_site with the given parameters.</p>
+        <h3 id="pv_site url">Resource URL<h3>
+        <pre>http://your_domain/pv_site</pre>
+
+        <h3 id="pv_site parameters">Parameters</h3>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Required</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>api_key</code></td>
+              <td>true</td>
+              <td>Your API key to access the data</td>
+              <td>api_key=m2kj3nd93a</td>
+            </tr>
+            <tr>
+              <td><code>label</code></td>
+              <td>true</td>
+              <td>The name of the PV</td>
+              <td>label=Roof east PV</td>
+            </tr>
+            <tr>
+              <td><code>max_profit</code></td>
+              <td>true</td>
+              <td>Tha maximal profit of the PV which ever achieved in KW/h</td>
+              <td>max_profit=48</td>
+            </tr>
+            <tr>
+              <td><code>orientation</code></td>
+              <td>true</td>
+              <td>The orientation of the PV in degrees</td>
+              <td>orientation=22</td>
+            </tr>
+            <tr>
+              <td><code>lat</code></td>
+              <td>true</td>
+              <td>The latitude of the PV location</td>
+              <td>lat=46.948101</td>
+            </tr>
+            <tr>
+              <td><code>lon</code></td>
+              <td>true</td>
+              <td>The longitude of the PV location</td>
+              <td>lon=7.44744</td>
+            </tr>
+            <tr>
+              <td><code>asl</code></td>
+              <td>false</td>
+              <td>The above mean sea leve of the PV location</td>
+              <td>asl=549</td>
+            </tr>
+            <tr>
+              <td><code>timezone</code></td>
+              <td>true</td>
+              <td>The timezone where the PV is located</td>
+              <td>timezone=Europe/Zurich</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3 id="pv_site example">Example</h3>
+        <pre>POST http://your_domain/pv_site?api_key=m2kj3nd93a&label=Roof east PV&max_profit=48&orientation=22&lat=46.948101&lon=7.44744&asl=549&timezone=Europe/Zurich</pre>
+        <h3 id="pv_site request">JSON request</h3>
+        <pre>
+{
+    api_key: "m2kj3nd93a",
+    label: "Roof east PV",
+    max_profit: 48,
+    orienation: 22,
+    lat: 46.948101,
+    lon: 7.44744,
+    asl: 549,
+    timezone: "Europe/Zurich"
+}
+        </pre>
+      </article>
+    </div>
+  </body>
+</html>

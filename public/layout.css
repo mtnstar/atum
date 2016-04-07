@@ -1,0 +1,48 @@
+body{
+	color:#383a3d;
+}
+
+header{
+	padding-bottom:20px;
+	margin-bottom:20px;
+	border-bottom:1px solid #ccc;
+	position:relative;
+}
+
+#container{
+	width:600px;
+	margin: auto;
+	padding-bottom:100px;
+}
+
+h1{
+	margin:40px 0 5px 0;
+	font-size:8em;
+	line-height:1;
+	color: #7AC946;
+}
+a:hover{
+	color: #257A0D;
+}
+h2{
+	margin:40px 0 20px 0;
+}
+h2 small{
+	line-height:1;
+}
+ol{
+	margin-top:20px;
+}
+li{
+	color:#383a3d;
+}
+.description code{
+	background: #ececec;
+}
+a{
+  color: #5AA926;
+}
+code{
+	color: #156A0D;
+	background-color: rgba(100, 179, 48, 0.1);
+}
