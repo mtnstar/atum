@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403161620) do
+ActiveRecord::Schema.define(version: 20160408102421) do
+
+  create_table "locations", force: :cascade do |t|
+    t.string  "name",     null: false
+    t.string  "country",  null: false
+    t.string  "region",   null: false
+    t.integer "lat",      null: false
+    t.integer "lon",      null: false
+    t.integer "asl",      null: false
+    t.string  "timezone", null: false
+  end
 
   create_table "pv_sites", force: :cascade do |t|
     t.string   "label"
