@@ -1,4 +1,4 @@
-require 'net/http'
+  require 'net/http'
 
 class MeteoBlueClient
 
@@ -8,6 +8,27 @@ class MeteoBlueClient
       json_result.collect do |l|
         params_to_location(l)
       end
+    end
+
+    def create_location(params)
+      params_to_location(params).save
+    end
+
+    def create_pv_site(params)
+      require "pry";binding.pry
+      params_to_pv_site(params).save
+    end
+
+    private
+
+    def params_to_pv_site(pv)
+      location_id = Location.find_by(lat: pv['lat'], lon: pv['lon']).id
+      PvSite.new(
+        location_id: location_id,
+        label: pv['label'],
+        max_production: pv['max_production'],
+        direction: pv['direction']
+      )
     end
 
     def params_to_location(l)
@@ -21,14 +42,6 @@ class MeteoBlueClient
         timezone: l['timezone']
       )
     end
-
-    def create_location(params)
-      params_to_location(params).save
-    end
-
-# app.post('http://localhost/api/locations?name=test&country=test&lat=21&lon=12&region=test&asl=123&timezone=utc')
-
-    private
 
     def meteo_blue_locations(query)
       uri = URI('https://www.meteoblue.com/en/server/search/query3?query=' + query)

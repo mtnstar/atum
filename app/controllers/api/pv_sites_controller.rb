@@ -1,7 +1,7 @@
-class PvSitesController < ApplicationController
+class Api::PvSitesController < ApplicationController
   before_action :set_pv_site, only: [:show, :update, :destroy]
 
-  # GET /pv_sites
+  # GET /api/pv_sites
   def index
     @pv_sites = PvSite.all
 
@@ -15,13 +15,7 @@ class PvSitesController < ApplicationController
 
   # POST /pv_sites
   def create
-    @pv_site = PvSite.new(pv_site_params)
-
-    if @pv_site.save
-      render json: @pv_site, status: :created, location: @pv_site
-    else
-      render json: @pv_site.errors, status: :unprocessable_entity
-    end
+    meteo_client.create_pv_site(params)
   end
 
   # PATCH/PUT /pv_sites/1

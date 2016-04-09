@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160408144942) do
   create_table "locations", force: :cascade do |t|
     t.string  "name",     null: false
     t.string  "country",  null: false
-    t.string  "region",   null: false
+    t.string  "region"
     t.integer "lat",      null: false
     t.integer "lon",      null: false
     t.integer "asl",      null: false
@@ -24,16 +24,13 @@ ActiveRecord::Schema.define(version: 20160408144942) do
   end
 
   create_table "pv_sites", force: :cascade do |t|
+    t.integer  "location_id"
     t.string   "label"
-    t.string   "location"
     t.integer  "max_production"
     t.integer  "direction"
-    t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
-
-  add_index "pv_sites", ["user_id"], name: "index_pv_sites_on_user_id"
 
   create_table "sunshine_times", force: :cascade do |t|
     t.integer "location_id",      null: false
