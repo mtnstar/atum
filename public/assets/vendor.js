@@ -69684,6 +69684,76 @@ define("ember/load-initializers",
 );
 })();
 
+;/*!
+ * typeahead.js 0.11.1
+ * https://github.com/twitter/typeahead.js
+ * Copyright 2013-2015 Twitter, Inc. and other contributors; Licensed MIT
+ */
+
+!function(a,b){"function"==typeof define&&define.amd?define("typeahead.js",["jquery"],function(a){return b(a)}):"object"==typeof exports?module.exports=b(require("jquery")):b(jQuery)}(this,function(a){var b=function(){"use strict";return{isMsie:function(){return/(msie|trident)/i.test(navigator.userAgent)?navigator.userAgent.match(/(msie |rv:)(\d+(.\d+)?)/i)[2]:!1},isBlankString:function(a){return!a||/^\s*$/.test(a)},escapeRegExChars:function(a){return a.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g,"\\$&")},isString:function(a){return"string"==typeof a},isNumber:function(a){return"number"==typeof a},isArray:a.isArray,isFunction:a.isFunction,isObject:a.isPlainObject,isUndefined:function(a){return"undefined"==typeof a},isElement:function(a){return!(!a||1!==a.nodeType)},isJQuery:function(b){return b instanceof a},toStr:function(a){return b.isUndefined(a)||null===a?"":a+""},bind:a.proxy,each:function(b,c){function d(a,b){return c(b,a)}a.each(b,d)},map:a.map,filter:a.grep,every:function(b,c){var d=!0;return b?(a.each(b,function(a,e){return(d=c.call(null,e,a,b))?void 0:!1}),!!d):d},some:function(b,c){var d=!1;return b?(a.each(b,function(a,e){return(d=c.call(null,e,a,b))?!1:void 0}),!!d):d},mixin:a.extend,identity:function(a){return a},clone:function(b){return a.extend(!0,{},b)},getIdGenerator:function(){var a=0;return function(){return a++}},templatify:function(b){function c(){return String(b)}return a.isFunction(b)?b:c},defer:function(a){setTimeout(a,0)},debounce:function(a,b,c){var d,e;return function(){var f,g,h=this,i=arguments;return f=function(){d=null,c||(e=a.apply(h,i))},g=c&&!d,clearTimeout(d),d=setTimeout(f,b),g&&(e=a.apply(h,i)),e}},throttle:function(a,b){var c,d,e,f,g,h;return g=0,h=function(){g=new Date,e=null,f=a.apply(c,d)},function(){var i=new Date,j=b-(i-g);return c=this,d=arguments,0>=j?(clearTimeout(e),e=null,g=i,f=a.apply(c,d)):e||(e=setTimeout(h,j)),f}},stringify:function(a){return b.isString(a)?a:JSON.stringify(a)},noop:function(){}}}(),c=function(){"use strict";function a(a){var g,h;return h=b.mixin({},f,a),g={css:e(),classes:h,html:c(h),selectors:d(h)},{css:g.css,html:g.html,classes:g.classes,selectors:g.selectors,mixin:function(a){b.mixin(a,g)}}}function c(a){return{wrapper:'<span class="'+a.wrapper+'"></span>',menu:'<div class="'+a.menu+'"></div>'}}function d(a){var c={};return b.each(a,function(a,b){c[b]="."+a}),c}function e(){var a={wrapper:{position:"relative",display:"inline-block"},hint:{position:"absolute",top:"0",left:"0",borderColor:"transparent",boxShadow:"none",opacity:"1"},input:{position:"relative",verticalAlign:"top",backgroundColor:"transparent"},inputWithNoHint:{position:"relative",verticalAlign:"top"},menu:{position:"absolute",top:"100%",left:"0",zIndex:"100",display:"none"},ltr:{left:"0",right:"auto"},rtl:{left:"auto",right:" 0"}};return b.isMsie()&&b.mixin(a.input,{backgroundImage:"url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"}),a}var f={wrapper:"twitter-typeahead",input:"tt-input",hint:"tt-hint",menu:"tt-menu",dataset:"tt-dataset",suggestion:"tt-suggestion",selectable:"tt-selectable",empty:"tt-empty",open:"tt-open",cursor:"tt-cursor",highlight:"tt-highlight"};return a}(),d=function(){"use strict";function c(b){b&&b.el||a.error("EventBus initialized without el"),this.$el=a(b.el)}var d,e;return d="typeahead:",e={render:"rendered",cursorchange:"cursorchanged",select:"selected",autocomplete:"autocompleted"},b.mixin(c.prototype,{_trigger:function(b,c){var e;return e=a.Event(d+b),(c=c||[]).unshift(e),this.$el.trigger.apply(this.$el,c),e},before:function(a){var b,c;return b=[].slice.call(arguments,1),c=this._trigger("before"+a,b),c.isDefaultPrevented()},trigger:function(a){var b;this._trigger(a,[].slice.call(arguments,1)),(b=e[a])&&this._trigger(b,[].slice.call(arguments,1))}}),c}(),e=function(){"use strict";function a(a,b,c,d){var e;if(!c)return this;for(b=b.split(i),c=d?h(c,d):c,this._callbacks=this._callbacks||{};e=b.shift();)this._callbacks[e]=this._callbacks[e]||{sync:[],async:[]},this._callbacks[e][a].push(c);return this}function b(b,c,d){return a.call(this,"async",b,c,d)}function c(b,c,d){return a.call(this,"sync",b,c,d)}function d(a){var b;if(!this._callbacks)return this;for(a=a.split(i);b=a.shift();)delete this._callbacks[b];return this}function e(a){var b,c,d,e,g;if(!this._callbacks)return this;for(a=a.split(i),d=[].slice.call(arguments,1);(b=a.shift())&&(c=this._callbacks[b]);)e=f(c.sync,this,[b].concat(d)),g=f(c.async,this,[b].concat(d)),e()&&j(g);return this}function f(a,b,c){function d(){for(var d,e=0,f=a.length;!d&&f>e;e+=1)d=a[e].apply(b,c)===!1;return!d}return d}function g(){var a;return a=window.setImmediate?function(a){setImmediate(function(){a()})}:function(a){setTimeout(function(){a()},0)}}function h(a,b){return a.bind?a.bind(b):function(){a.apply(b,[].slice.call(arguments,0))}}var i=/\s+/,j=g();return{onSync:c,onAsync:b,off:d,trigger:e}}(),f=function(a){"use strict";function c(a,c,d){for(var e,f=[],g=0,h=a.length;h>g;g++)f.push(b.escapeRegExChars(a[g]));return e=d?"\\b("+f.join("|")+")\\b":"("+f.join("|")+")",c?new RegExp(e):new RegExp(e,"i")}var d={node:null,pattern:null,tagName:"strong",className:null,wordsOnly:!1,caseSensitive:!1};return function(e){function f(b){var c,d,f;return(c=h.exec(b.data))&&(f=a.createElement(e.tagName),e.className&&(f.className=e.className),d=b.splitText(c.index),d.splitText(c[0].length),f.appendChild(d.cloneNode(!0)),b.parentNode.replaceChild(f,d)),!!c}function g(a,b){for(var c,d=3,e=0;e<a.childNodes.length;e++)c=a.childNodes[e],c.nodeType===d?e+=b(c)?1:0:g(c,b)}var h;e=b.mixin({},d,e),e.node&&e.pattern&&(e.pattern=b.isArray(e.pattern)?e.pattern:[e.pattern],h=c(e.pattern,e.caseSensitive,e.wordsOnly),g(e.node,f))}}(window.document),g=function(){"use strict";function c(c,e){c=c||{},c.input||a.error("input is missing"),e.mixin(this),this.$hint=a(c.hint),this.$input=a(c.input),this.query=this.$input.val(),this.queryWhenFocused=this.hasFocus()?this.query:null,this.$overflowHelper=d(this.$input),this._checkLanguageDirection(),0===this.$hint.length&&(this.setHint=this.getHint=this.clearHint=this.clearHintIfInvalid=b.noop)}function d(b){return a('<pre aria-hidden="true"></pre>').css({position:"absolute",visibility:"hidden",whiteSpace:"pre",fontFamily:b.css("font-family"),fontSize:b.css("font-size"),fontStyle:b.css("font-style"),fontVariant:b.css("font-variant"),fontWeight:b.css("font-weight"),wordSpacing:b.css("word-spacing"),letterSpacing:b.css("letter-spacing"),textIndent:b.css("text-indent"),textRendering:b.css("text-rendering"),textTransform:b.css("text-transform")}).insertAfter(b)}function f(a,b){return c.normalizeQuery(a)===c.normalizeQuery(b)}function g(a){return a.altKey||a.ctrlKey||a.metaKey||a.shiftKey}var h;return h={9:"tab",27:"esc",37:"left",39:"right",13:"enter",38:"up",40:"down"},c.normalizeQuery=function(a){return b.toStr(a).replace(/^\s*/g,"").replace(/\s{2,}/g," ")},b.mixin(c.prototype,e,{_onBlur:function(){this.resetInputValue(),this.trigger("blurred")},_onFocus:function(){this.queryWhenFocused=this.query,this.trigger("focused")},_onKeydown:function(a){var b=h[a.which||a.keyCode];this._managePreventDefault(b,a),b&&this._shouldTrigger(b,a)&&this.trigger(b+"Keyed",a)},_onInput:function(){this._setQuery(this.getInputValue()),this.clearHintIfInvalid(),this._checkLanguageDirection()},_managePreventDefault:function(a,b){var c;switch(a){case"up":case"down":c=!g(b);break;default:c=!1}c&&b.preventDefault()},_shouldTrigger:function(a,b){var c;switch(a){case"tab":c=!g(b);break;default:c=!0}return c},_checkLanguageDirection:function(){var a=(this.$input.css("direction")||"ltr").toLowerCase();this.dir!==a&&(this.dir=a,this.$hint.attr("dir",a),this.trigger("langDirChanged",a))},_setQuery:function(a,b){var c,d;c=f(a,this.query),d=c?this.query.length!==a.length:!1,this.query=a,b||c?!b&&d&&this.trigger("whitespaceChanged",this.query):this.trigger("queryChanged",this.query)},bind:function(){var a,c,d,e,f=this;return a=b.bind(this._onBlur,this),c=b.bind(this._onFocus,this),d=b.bind(this._onKeydown,this),e=b.bind(this._onInput,this),this.$input.on("blur.tt",a).on("focus.tt",c).on("keydown.tt",d),!b.isMsie()||b.isMsie()>9?this.$input.on("input.tt",e):this.$input.on("keydown.tt keypress.tt cut.tt paste.tt",function(a){h[a.which||a.keyCode]||b.defer(b.bind(f._onInput,f,a))}),this},focus:function(){this.$input.focus()},blur:function(){this.$input.blur()},getLangDir:function(){return this.dir},getQuery:function(){return this.query||""},setQuery:function(a,b){this.setInputValue(a),this._setQuery(a,b)},hasQueryChangedSinceLastFocus:function(){return this.query!==this.queryWhenFocused},getInputValue:function(){return this.$input.val()},setInputValue:function(a){this.$input.val(a),this.clearHintIfInvalid(),this._checkLanguageDirection()},resetInputValue:function(){this.setInputValue(this.query)},getHint:function(){return this.$hint.val()},setHint:function(a){this.$hint.val(a)},clearHint:function(){this.setHint("")},clearHintIfInvalid:function(){var a,b,c,d;a=this.getInputValue(),b=this.getHint(),c=a!==b&&0===b.indexOf(a),d=""!==a&&c&&!this.hasOverflow(),!d&&this.clearHint()},hasFocus:function(){return this.$input.is(":focus")},hasOverflow:function(){var a=this.$input.width()-2;return this.$overflowHelper.text(this.getInputValue()),this.$overflowHelper.width()>=a},isCursorAtEnd:function(){var a,c,d;return a=this.$input.val().length,c=this.$input[0].selectionStart,b.isNumber(c)?c===a:document.selection?(d=document.selection.createRange(),d.moveStart("character",-a),a===d.text.length):!0},destroy:function(){this.$hint.off(".tt"),this.$input.off(".tt"),this.$overflowHelper.remove(),this.$hint=this.$input=this.$overflowHelper=a("<div>")}}),c}(),h=function(){"use strict";function c(c,e){c=c||{},c.templates=c.templates||{},c.templates.notFound=c.templates.notFound||c.templates.empty,c.source||a.error("missing source"),c.node||a.error("missing node"),c.name&&!h(c.name)&&a.error("invalid dataset name: "+c.name),e.mixin(this),this.highlight=!!c.highlight,this.name=c.name||j(),this.limit=c.limit||5,this.displayFn=d(c.display||c.displayKey),this.templates=g(c.templates,this.displayFn),this.source=c.source.__ttAdapter?c.source.__ttAdapter():c.source,this.async=b.isUndefined(c.async)?this.source.length>2:!!c.async,this._resetLastSuggestion(),this.$el=a(c.node).addClass(this.classes.dataset).addClass(this.classes.dataset+"-"+this.name)}function d(a){function c(b){return b[a]}return a=a||b.stringify,b.isFunction(a)?a:c}function g(c,d){function e(b){return a("<div>").text(d(b))}return{notFound:c.notFound&&b.templatify(c.notFound),pending:c.pending&&b.templatify(c.pending),header:c.header&&b.templatify(c.header),footer:c.footer&&b.templatify(c.footer),suggestion:c.suggestion||e}}function h(a){return/^[_a-zA-Z0-9-]+$/.test(a)}var i,j;return i={val:"tt-selectable-display",obj:"tt-selectable-object"},j=b.getIdGenerator(),c.extractData=function(b){var c=a(b);return c.data(i.obj)?{val:c.data(i.val)||"",obj:c.data(i.obj)||null}:null},b.mixin(c.prototype,e,{_overwrite:function(a,b){b=b||[],b.length?this._renderSuggestions(a,b):this.async&&this.templates.pending?this._renderPending(a):!this.async&&this.templates.notFound?this._renderNotFound(a):this._empty(),this.trigger("rendered",this.name,b,!1)},_append:function(a,b){b=b||[],b.length&&this.$lastSuggestion.length?this._appendSuggestions(a,b):b.length?this._renderSuggestions(a,b):!this.$lastSuggestion.length&&this.templates.notFound&&this._renderNotFound(a),this.trigger("rendered",this.name,b,!0)},_renderSuggestions:function(a,b){var c;c=this._getSuggestionsFragment(a,b),this.$lastSuggestion=c.children().last(),this.$el.html(c).prepend(this._getHeader(a,b)).append(this._getFooter(a,b))},_appendSuggestions:function(a,b){var c,d;c=this._getSuggestionsFragment(a,b),d=c.children().last(),this.$lastSuggestion.after(c),this.$lastSuggestion=d},_renderPending:function(a){var b=this.templates.pending;this._resetLastSuggestion(),b&&this.$el.html(b({query:a,dataset:this.name}))},_renderNotFound:function(a){var b=this.templates.notFound;this._resetLastSuggestion(),b&&this.$el.html(b({query:a,dataset:this.name}))},_empty:function(){this.$el.empty(),this._resetLastSuggestion()},_getSuggestionsFragment:function(c,d){var e,g=this;return e=document.createDocumentFragment(),b.each(d,function(b){var d,f;f=g._injectQuery(c,b),d=a(g.templates.suggestion(f)).data(i.obj,b).data(i.val,g.displayFn(b)).addClass(g.classes.suggestion+" "+g.classes.selectable),e.appendChild(d[0])}),this.highlight&&f({className:this.classes.highlight,node:e,pattern:c}),a(e)},_getFooter:function(a,b){return this.templates.footer?this.templates.footer({query:a,suggestions:b,dataset:this.name}):null},_getHeader:function(a,b){return this.templates.header?this.templates.header({query:a,suggestions:b,dataset:this.name}):null},_resetLastSuggestion:function(){this.$lastSuggestion=a()},_injectQuery:function(a,c){return b.isObject(c)?b.mixin({_query:a},c):c},update:function(b){function c(a){g||(g=!0,a=(a||[]).slice(0,e.limit),h=a.length,e._overwrite(b,a),h<e.limit&&e.async&&e.trigger("asyncRequested",b))}function d(c){c=c||[],!f&&h<e.limit&&(e.cancel=a.noop,h+=c.length,e._append(b,c.slice(0,e.limit-h)),e.async&&e.trigger("asyncReceived",b))}var e=this,f=!1,g=!1,h=0;this.cancel(),this.cancel=function(){f=!0,e.cancel=a.noop,e.async&&e.trigger("asyncCanceled",b)},this.source(b,c,d),!g&&c([])},cancel:a.noop,clear:function(){this._empty(),this.cancel(),this.trigger("cleared")},isEmpty:function(){return this.$el.is(":empty")},destroy:function(){this.$el=a("<div>")}}),c}(),i=function(){"use strict";function c(c,d){function e(b){var c=f.$node.find(b.node).first();return b.node=c.length?c:a("<div>").appendTo(f.$node),new h(b,d)}var f=this;c=c||{},c.node||a.error("node is required"),d.mixin(this),this.$node=a(c.node),this.query=null,this.datasets=b.map(c.datasets,e)}return b.mixin(c.prototype,e,{_onSelectableClick:function(b){this.trigger("selectableClicked",a(b.currentTarget))},_onRendered:function(a,b,c,d){this.$node.toggleClass(this.classes.empty,this._allDatasetsEmpty()),this.trigger("datasetRendered",b,c,d)},_onCleared:function(){this.$node.toggleClass(this.classes.empty,this._allDatasetsEmpty()),this.trigger("datasetCleared")},_propagate:function(){this.trigger.apply(this,arguments)},_allDatasetsEmpty:function(){function a(a){return a.isEmpty()}return b.every(this.datasets,a)},_getSelectables:function(){return this.$node.find(this.selectors.selectable)},_removeCursor:function(){var a=this.getActiveSelectable();a&&a.removeClass(this.classes.cursor)},_ensureVisible:function(a){var b,c,d,e;b=a.position().top,c=b+a.outerHeight(!0),d=this.$node.scrollTop(),e=this.$node.height()+parseInt(this.$node.css("paddingTop"),10)+parseInt(this.$node.css("paddingBottom"),10),0>b?this.$node.scrollTop(d+b):c>e&&this.$node.scrollTop(d+(c-e))},bind:function(){var a,c=this;return a=b.bind(this._onSelectableClick,this),this.$node.on("click.tt",this.selectors.selectable,a),b.each(this.datasets,function(a){a.onSync("asyncRequested",c._propagate,c).onSync("asyncCanceled",c._propagate,c).onSync("asyncReceived",c._propagate,c).onSync("rendered",c._onRendered,c).onSync("cleared",c._onCleared,c)}),this},isOpen:function(){return this.$node.hasClass(this.classes.open)},open:function(){this.$node.addClass(this.classes.open)},close:function(){this.$node.removeClass(this.classes.open),this._removeCursor()},setLanguageDirection:function(a){this.$node.attr("dir",a)},selectableRelativeToCursor:function(a){var b,c,d,e;return c=this.getActiveSelectable(),b=this._getSelectables(),d=c?b.index(c):-1,e=d+a,e=(e+1)%(b.length+1)-1,e=-1>e?b.length-1:e,-1===e?null:b.eq(e)},setCursor:function(a){this._removeCursor(),(a=a&&a.first())&&(a.addClass(this.classes.cursor),this._ensureVisible(a))},getSelectableData:function(a){return a&&a.length?h.extractData(a):null},getActiveSelectable:function(){var a=this._getSelectables().filter(this.selectors.cursor).first();return a.length?a:null},getTopSelectable:function(){var a=this._getSelectables().first();return a.length?a:null},update:function(a){function c(b){b.update(a)}var d=a!==this.query;return d&&(this.query=a,b.each(this.datasets,c)),d},empty:function(){function a(a){a.clear()}b.each(this.datasets,a),this.query=null,this.$node.addClass(this.classes.empty)},destroy:function(){function c(a){a.destroy()}this.$node.off(".tt"),this.$node=a("<div>"),b.each(this.datasets,c)}}),c}(),j=function(){"use strict";function a(){i.apply(this,[].slice.call(arguments,0))}var c=i.prototype;return b.mixin(a.prototype,i.prototype,{open:function(){return!this._allDatasetsEmpty()&&this._show(),c.open.apply(this,[].slice.call(arguments,0))},close:function(){return this._hide(),c.close.apply(this,[].slice.call(arguments,0))},_onRendered:function(){return this._allDatasetsEmpty()?this._hide():this.isOpen()&&this._show(),c._onRendered.apply(this,[].slice.call(arguments,0))},_onCleared:function(){return this._allDatasetsEmpty()?this._hide():this.isOpen()&&this._show(),c._onCleared.apply(this,[].slice.call(arguments,0))},setLanguageDirection:function(a){return this.$node.css("ltr"===a?this.css.ltr:this.css.rtl),c.setLanguageDirection.apply(this,[].slice.call(arguments,0))},_hide:function(){this.$node.hide()},_show:function(){this.$node.css("display","block")}}),a}(),k=function(){"use strict";function c(c,e){var f,g,h,i,j,k,l,m,n,o,p;c=c||{},c.input||a.error("missing input"),c.menu||a.error("missing menu"),c.eventBus||a.error("missing event bus"),e.mixin(this),this.eventBus=c.eventBus,this.minLength=b.isNumber(c.minLength)?c.minLength:1,this.input=c.input,this.menu=c.menu,this.enabled=!0,this.active=!1,this.input.hasFocus()&&this.activate(),this.dir=this.input.getLangDir(),this._hacks(),this.menu.bind().onSync("selectableClicked",this._onSelectableClicked,this).onSync("asyncRequested",this._onAsyncRequested,this).onSync("asyncCanceled",this._onAsyncCanceled,this).onSync("asyncReceived",this._onAsyncReceived,this).onSync("datasetRendered",this._onDatasetRendered,this).onSync("datasetCleared",this._onDatasetCleared,this),f=d(this,"activate","open","_onFocused"),g=d(this,"deactivate","_onBlurred"),h=d(this,"isActive","isOpen","_onEnterKeyed"),i=d(this,"isActive","isOpen","_onTabKeyed"),j=d(this,"isActive","_onEscKeyed"),k=d(this,"isActive","open","_onUpKeyed"),l=d(this,"isActive","open","_onDownKeyed"),m=d(this,"isActive","isOpen","_onLeftKeyed"),n=d(this,"isActive","isOpen","_onRightKeyed"),o=d(this,"_openIfActive","_onQueryChanged"),p=d(this,"_openIfActive","_onWhitespaceChanged"),this.input.bind().onSync("focused",f,this).onSync("blurred",g,this).onSync("enterKeyed",h,this).onSync("tabKeyed",i,this).onSync("escKeyed",j,this).onSync("upKeyed",k,this).onSync("downKeyed",l,this).onSync("leftKeyed",m,this).onSync("rightKeyed",n,this).onSync("queryChanged",o,this).onSync("whitespaceChanged",p,this).onSync("langDirChanged",this._onLangDirChanged,this)}function d(a){var c=[].slice.call(arguments,1);return function(){var d=[].slice.call(arguments);b.each(c,function(b){return a[b].apply(a,d)})}}return b.mixin(c.prototype,{_hacks:function(){var c,d;c=this.input.$input||a("<div>"),d=this.menu.$node||a("<div>"),c.on("blur.tt",function(a){var e,f,g;e=document.activeElement,f=d.is(e),g=d.has(e).length>0,b.isMsie()&&(f||g)&&(a.preventDefault(),a.stopImmediatePropagation(),b.defer(function(){c.focus()}))}),d.on("mousedown.tt",function(a){a.preventDefault()})},_onSelectableClicked:function(a,b){this.select(b)},_onDatasetCleared:function(){this._updateHint()},_onDatasetRendered:function(a,b,c,d){this._updateHint(),this.eventBus.trigger("render",c,d,b)},_onAsyncRequested:function(a,b,c){this.eventBus.trigger("asyncrequest",c,b)},_onAsyncCanceled:function(a,b,c){this.eventBus.trigger("asynccancel",c,b)},_onAsyncReceived:function(a,b,c){this.eventBus.trigger("asyncreceive",c,b)},_onFocused:function(){this._minLengthMet()&&this.menu.update(this.input.getQuery())},_onBlurred:function(){this.input.hasQueryChangedSinceLastFocus()&&this.eventBus.trigger("change",this.input.getQuery())},_onEnterKeyed:function(a,b){var c;(c=this.menu.getActiveSelectable())&&this.select(c)&&b.preventDefault()},_onTabKeyed:function(a,b){var c;(c=this.menu.getActiveSelectable())?this.select(c)&&b.preventDefault():(c=this.menu.getTopSelectable())&&this.autocomplete(c)&&b.preventDefault()},_onEscKeyed:function(){this.close()},_onUpKeyed:function(){this.moveCursor(-1)},_onDownKeyed:function(){this.moveCursor(1)},_onLeftKeyed:function(){"rtl"===this.dir&&this.input.isCursorAtEnd()&&this.autocomplete(this.menu.getTopSelectable())},_onRightKeyed:function(){"ltr"===this.dir&&this.input.isCursorAtEnd()&&this.autocomplete(this.menu.getTopSelectable())},_onQueryChanged:function(a,b){this._minLengthMet(b)?this.menu.update(b):this.menu.empty()},_onWhitespaceChanged:function(){this._updateHint()},_onLangDirChanged:function(a,b){this.dir!==b&&(this.dir=b,this.menu.setLanguageDirection(b))},_openIfActive:function(){this.isActive()&&this.open()},_minLengthMet:function(a){return a=b.isString(a)?a:this.input.getQuery()||"",a.length>=this.minLength},_updateHint:function(){var a,c,d,e,f,h,i;a=this.menu.getTopSelectable(),c=this.menu.getSelectableData(a),d=this.input.getInputValue(),!c||b.isBlankString(d)||this.input.hasOverflow()?this.input.clearHint():(e=g.normalizeQuery(d),f=b.escapeRegExChars(e),h=new RegExp("^(?:"+f+")(.+$)","i"),i=h.exec(c.val),i&&this.input.setHint(d+i[1]))},isEnabled:function(){return this.enabled},enable:function(){this.enabled=!0},disable:function(){this.enabled=!1},isActive:function(){return this.active},activate:function(){return this.isActive()?!0:!this.isEnabled()||this.eventBus.before("active")?!1:(this.active=!0,this.eventBus.trigger("active"),!0)},deactivate:function(){return this.isActive()?this.eventBus.before("idle")?!1:(this.active=!1,this.close(),this.eventBus.trigger("idle"),!0):!0},isOpen:function(){return this.menu.isOpen()},open:function(){return this.isOpen()||this.eventBus.before("open")||(this.menu.open(),this._updateHint(),this.eventBus.trigger("open")),this.isOpen()},close:function(){return this.isOpen()&&!this.eventBus.before("close")&&(this.menu.close(),this.input.clearHint(),this.input.resetInputValue(),this.eventBus.trigger("close")),!this.isOpen()},setVal:function(a){this.input.setQuery(b.toStr(a))},getVal:function(){return this.input.getQuery()},select:function(a){var b=this.menu.getSelectableData(a);return b&&!this.eventBus.before("select",b.obj)?(this.input.setQuery(b.val,!0),this.eventBus.trigger("select",b.obj),this.close(),!0):!1},autocomplete:function(a){var b,c,d;return b=this.input.getQuery(),c=this.menu.getSelectableData(a),d=c&&b!==c.val,d&&!this.eventBus.before("autocomplete",c.obj)?(this.input.setQuery(c.val),this.eventBus.trigger("autocomplete",c.obj),!0):!1},moveCursor:function(a){var b,c,d,e,f;return b=this.input.getQuery(),c=this.menu.selectableRelativeToCursor(a),d=this.menu.getSelectableData(c),e=d?d.obj:null,f=this._minLengthMet()&&this.menu.update(b),f||this.eventBus.before("cursorchange",e)?!1:(this.menu.setCursor(c),d?this.input.setInputValue(d.val):(this.input.resetInputValue(),this._updateHint()),this.eventBus.trigger("cursorchange",e),!0)},destroy:function(){this.input.destroy(),this.menu.destroy()}}),c}();!function(){"use strict";function e(b,c){b.each(function(){var b,d=a(this);(b=d.data(p.typeahead))&&c(b,d)})}function f(a,b){return a.clone().addClass(b.classes.hint).removeData().css(b.css.hint).css(l(a)).prop("readonly",!0).removeAttr("id name placeholder required").attr({autocomplete:"off",spellcheck:"false",tabindex:-1})}function h(a,b){a.data(p.attrs,{dir:a.attr("dir"),autocomplete:a.attr("autocomplete"),spellcheck:a.attr("spellcheck"),style:a.attr("style")}),a.addClass(b.classes.input).attr({autocomplete:"off",spellcheck:!1});try{!a.attr("dir")&&a.attr("dir","auto")}catch(c){}return a}function l(a){return{backgroundAttachment:a.css("background-attachment"),backgroundClip:a.css("background-clip"),backgroundColor:a.css("background-color"),backgroundImage:a.css("background-image"),backgroundOrigin:a.css("background-origin"),backgroundPosition:a.css("background-position"),backgroundRepeat:a.css("background-repeat"),backgroundSize:a.css("background-size")}}function m(a){var c,d;c=a.data(p.www),d=a.parent().filter(c.selectors.wrapper),b.each(a.data(p.attrs),function(c,d){b.isUndefined(c)?a.removeAttr(d):a.attr(d,c)}),a.removeData(p.typeahead).removeData(p.www).removeData(p.attr).removeClass(c.classes.input),d.length&&(a.detach().insertAfter(d),d.remove())}function n(c){var d,e;return d=b.isJQuery(c)||b.isElement(c),e=d?a(c).first():[],e.length?e:null}var o,p,q;o=a.fn.typeahead,p={www:"tt-www",attrs:"tt-attrs",typeahead:"tt-typeahead"},q={initialize:function(e,l){function m(){var c,m,q,r,s,t,u,v,w,x,y;b.each(l,function(a){a.highlight=!!e.highlight}),c=a(this),m=a(o.html.wrapper),q=n(e.hint),r=n(e.menu),s=e.hint!==!1&&!q,t=e.menu!==!1&&!r,s&&(q=f(c,o)),t&&(r=a(o.html.menu).css(o.css.menu)),q&&q.val(""),c=h(c,o),(s||t)&&(m.css(o.css.wrapper),c.css(s?o.css.input:o.css.inputWithNoHint),c.wrap(m).parent().prepend(s?q:null).append(t?r:null)),y=t?j:i,u=new d({el:c}),v=new g({hint:q,input:c},o),w=new y({node:r,datasets:l},o),x=new k({input:v,menu:w,eventBus:u,minLength:e.minLength},o),c.data(p.www,o),c.data(p.typeahead,x)}var o;return l=b.isArray(l)?l:[].slice.call(arguments,1),e=e||{},o=c(e.classNames),this.each(m)},isEnabled:function(){var a;return e(this.first(),function(b){a=b.isEnabled()}),a},enable:function(){return e(this,function(a){a.enable()}),this},disable:function(){return e(this,function(a){a.disable()}),this},isActive:function(){var a;return e(this.first(),function(b){a=b.isActive()}),a},activate:function(){return e(this,function(a){a.activate()}),this},deactivate:function(){return e(this,function(a){a.deactivate()}),this},isOpen:function(){var a;return e(this.first(),function(b){a=b.isOpen()}),a},open:function(){return e(this,function(a){a.open()}),this},close:function(){return e(this,function(a){a.close()}),this},select:function(b){var c=!1,d=a(b);return e(this.first(),function(a){c=a.select(d)}),c},autocomplete:function(b){var c=!1,d=a(b);return e(this.first(),function(a){c=a.autocomplete(d)}),c},moveCursor:function(a){var b=!1;return e(this.first(),function(c){b=c.moveCursor(a)}),b},val:function(a){var b;return arguments.length?(e(this,function(b){b.setVal(a)}),this):(e(this.first(),function(a){b=a.getVal()}),b)},destroy:function(){return e(this,function(a,b){m(b),a.destroy()}),this}},a.fn.typeahead=function(a){return q[a]?q[a].apply(this,[].slice.call(arguments,1)):q.initialize.apply(this,arguments)},a.fn.typeahead.noConflict=function(){return a.fn.typeahead=o,this}}()});
+;/**
+ * Patched to replace setTimeout with Ember.run.later
+ */
+
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.6
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    Ember.run.later(this, callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
 ;define("ic-ajax",
   ["ember","exports"],
   function(__dependency1__, __exports__) {
@@ -86651,7 +86721,4401 @@ define("ember/load-initializers",
 }).call(this);
 
 
-;define('ember-cli-app-version/components/app-version', ['exports', 'ember', 'ember-cli-app-version/templates/app-version'], function (exports, Ember, layout) {
+;define('ember-aupac-typeahead/components/aupac-ember-data-typeahead', ['exports', 'ember', 'ember-aupac-typeahead/components/aupac-typeahead', 'ember-aupac-typeahead/templates/components/aupac-ember-data-typeahead/suggestion'], function (exports, Ember, AupacTypeahead, suggestionTemplate) {
+
+  'use strict';
+
+  var isNone = Ember['default'].isNone;
+  var inject = Ember['default'].inject;
+  var computed = Ember['default'].computed;
+  var observer = Ember['default'].observer;
+
+  exports['default'] = AupacTypeahead['default'].extend({
+
+    modelClass: null, //@public
+    displayKey: 'displayName', //@public
+    params: {}, //@public
+    async: true, //@public
+    queryKey: 'q', //@public
+
+    // @Override
+    suggestionTemplate: suggestionTemplate['default'],
+
+    //private
+    store: inject.service('store'),
+
+    /**
+     * @Override
+     */
+    display: computed(function () {
+      var _this2 = this;
+
+      return function (model) {
+        return model.get(_this2.get('displayKey'));
+      };
+    }),
+
+    /**
+     * @Override
+     */
+    setValue: function setValue(selection) {
+      var _this3 = this;
+
+      selection = this.transformSelection(selection);
+      if (typeof selection === 'string') {
+        this.get('_typeahead').typeahead('val', selection);
+      } else {
+        (function () {
+          var displayKey = _this3.get('displayKey');
+          var modelClass = _this3.get('modelClass');
+          if (selection && selection.get('id')) {
+            var item = _this3.get('store').peekRecord(modelClass, selection.get('id'));
+            if (isNone(item)) {
+              _this3.get('store').findRecord(modelClass, selection.get('id')).then(function (model) {
+                _this3.get('_typeahead').typeahead('val', model.get(displayKey));
+              });
+            } else {
+              _this3.get('_typeahead').typeahead('val', item.get(displayKey));
+            }
+          } else {
+            _this3.get('_typeahead').typeahead('val', '');
+          }
+        })();
+      }
+    },
+
+    /**
+     * @Override
+     */
+    init: function init() {
+      this._super.apply(this, arguments);
+
+      if (isNone(this.get('modelClass'))) {
+        throw new Error('modelClass must be supplied to aupac-typeahead');
+      }
+    },
+
+    /**
+     * @Override
+     */
+    source: computed(function () {
+      var _this = this;
+      return function (query, syncResults, asyncResults) {
+        var q = {};
+        q[_this.get('queryKey')] = query;
+        var queryObj = Ember['default'].$.extend(true, {}, q, _this.get('params'));
+
+        _this.get('store').query(_this.get('modelClass'), queryObj).then(function (models) {
+          var emberDataModels = [];
+          models.get('content').forEach(function (model, i) {
+            emberDataModels[i] = model.getRecord();
+          });
+          asyncResults(emberDataModels);
+        });
+      };
+    }),
+
+    /**
+     * @Override
+     */
+    selectionUpdated: observer('selection.id', '_typeahead', function () {
+      var selection = this.get('selection');
+      if (isNone(selection)) {
+        this.setValue(null);
+      } else {
+        this.setValue(selection);
+      }
+    })
+
+  });
+
+});
+define('ember-aupac-typeahead/components/aupac-typeahead', ['exports', 'ember', 'ember-aupac-typeahead/templates/components/aupac-typeahead/footer', 'ember-aupac-typeahead/templates/components/aupac-typeahead/header', 'ember-aupac-typeahead/templates/components/aupac-typeahead/not-found', 'ember-aupac-typeahead/templates/components/aupac-typeahead/pending', 'ember-aupac-typeahead/templates/components/aupac-typeahead/suggestion'], function (exports, Ember, footerTemplate, headerTemplate, notFoundTemplate, pendingTemplate, suggestionTemplate) {
+
+  'use strict';
+
+  var observer = Ember['default'].observer;
+  var isNone = Ember['default'].isNone;
+  var run = Ember['default'].run;
+  var debug = Ember['default'].debug;
+  var Component = Ember['default'].Component;
+
+  var Key = {
+    BACKSPACE: 8,
+    DELETE: 46,
+    ENTER: 13
+  };
+
+  exports['default'] = Component.extend({
+    //input tag attributes
+    tagName: 'input',
+    classNames: ['aupac-typeahead'],
+    attributeBindings: ['disabled', 'placeholder', 'name'],
+    disabled: false, //@public
+    placeholder: 'Search', //@public
+    name: '', //@public
+
+    //Actions
+    action: Ember['default'].K, //@public
+    selection: null, //@public
+    source: Ember['default'].K, //@public
+
+    //typeahead.js Customizations
+    highlight: true, //@public
+    hint: true, //@public
+    minLength: 2, //@public
+    typeaheadClassNames: {}, //@public
+    autoFocus: false, //@public
+    limit: 15, //@public
+    async: false, //@public
+    datasetName: '', //@public
+    allowFreeInput: false, //@public
+
+    //HtmlBars Templates
+    suggestionTemplate: suggestionTemplate['default'], //@public
+    notFoundTemplate: notFoundTemplate['default'], //@public
+    pendingTemplate: pendingTemplate['default'], //@public
+    headerTemplate: headerTemplate['default'], //@public
+    footerTemplate: footerTemplate['default'], //@public
+
+    //Private
+    _typeahead: null,
+
+    /**
+     * @public
+     * @param selection - the item selected by the user
+     * @returns {*}
+     */
+    display: function display(selection) {
+      return selection;
+    },
+
+    /**
+     * @public
+     * @param selection the item selected by the user
+     */
+    transformSelection: function transformSelection(selection) {
+      return selection;
+    },
+
+    /**
+     * @public
+     * @param selection the item selected by the user
+     */
+    setValue: function setValue(selection) {
+      selection = this.transformSelection(selection);
+      if (selection) {
+        this.get('_typeahead').typeahead('val', selection);
+      } else {
+        this.get('_typeahead').typeahead('val', '');
+      }
+    },
+
+    didInsertElement: function didInsertElement() {
+      this._super.apply(this, arguments);
+      this.initializeTypeahead();
+      if (this.get('autoFocus') === true) {
+        this.get('_typeahead').focus();
+      }
+      this.addObserver('disabled', this.disabledStateChanged);
+    },
+
+    disabledStateChanged: function disabledStateChanged() {
+      //Toggling the disabled attribute on the controller does not update the hint, need to do this manually.
+      this.$().parent().find('input.tt-hint').prop('disabled', this.get('disabled'));
+    },
+
+    initializeTypeahead: function initializeTypeahead() {
+      var _this = this;
+
+      var self = this;
+      //Setup the typeahead
+      var t = this.$().typeahead({
+        highlight: this.get('highlight'),
+        hint: this.get('hint'),
+        minLength: this.get('minLength'),
+        classNames: this.get('typeaheadClassNames')
+      }, {
+        component: this,
+        name: this.get('datasetName') || 'default',
+        display: this.get('display'),
+        async: this.get('async'),
+        limit: this.get('limit'),
+        source: this.get('source'),
+        templates: {
+          suggestion: function suggestion(model) {
+            var item = Component.create({
+              model: model,
+              layout: self.get('suggestionTemplate')
+            }).createElement();
+            return item.element;
+          },
+          notFound: function notFound(query) {
+            var item = Component.create({
+              query: query,
+              layout: self.get('notFoundTemplate')
+            }).createElement();
+            return item.element;
+          },
+          pending: function pending(query) {
+            var item = Component.create({
+              query: query,
+              layout: self.get('pendingTemplate')
+            }).createElement();
+            return item.element;
+          },
+          header: function header(query, suggestions) {
+            var item = Component.create({
+              query: query,
+              suggestions: suggestions,
+              layout: self.get('headerTemplate')
+            }).createElement();
+            return item.element;
+          },
+          footer: function footer(query, suggestions) {
+            var item = Component.create({
+              query: query,
+              suggestions: suggestions,
+              layout: self.get('footerTemplate')
+            }).createElement();
+            return item.element;
+          }
+        }
+      });
+      this.set('_typeahead', t);
+
+      // Set selected object
+      t.on('typeahead:autocompleted', run.bind(this, function (jqEvent, suggestionObject /*, nameOfDatasetSuggestionBelongsTo*/) {
+        _this.set('selection', suggestionObject);
+        _this.sendAction('action', suggestionObject);
+      }));
+
+      t.on('typeahead:selected', run.bind(this, function (jqEvent, suggestionObject /*, nameOfDatasetSuggestionBelongsTo*/) {
+        _this.set('selection', suggestionObject);
+        _this.sendAction('action', suggestionObject);
+      }));
+
+      t.on('keyup', run.bind(this, function (jqEvent) {
+        //Handle the case whereby the user presses the delete or backspace key, in either case
+        //the selection is no longer valid.
+        if (jqEvent.which === Key.BACKSPACE || jqEvent.which === Key.DELETE) {
+          debug("Removing model");
+          var value = _this.get('_typeahead').typeahead('val'); //cache value
+          _this.set('selection', null);
+          _this.sendAction('action', null);
+          _this.setValue(value); //restore the text, thus allowing the user to make corrections
+        } else if (jqEvent.which === Key.ENTER) {
+            t.trigger("focusout");
+          }
+      }));
+
+      t.on('focusout', run.bind(this, function () /*jqEvent*/{
+        //the user has now left the control, update display with current binding or reset to blank
+        var model = _this.get('selection');
+        if (_this.get('allowFreeInput')) {
+          var value = _this.get('_typeahead').typeahead('val');
+          _this.set('selection', value);
+          _this.sendAction('action', value);
+        } else if (model) {
+          _this.setValue(model);
+        } else {
+          _this.setValue(null);
+        }
+      }));
+    },
+
+    selectionUpdated: observer('selection', '_typeahead', function () {
+      var selection = this.get('selection');
+      if (isNone(selection)) {
+        this.setValue(null);
+      } else {
+        this.setValue(selection);
+      }
+    }),
+
+    willDestroyElement: function willDestroyElement() {
+      this._super.apply(this, arguments);
+      var t = this.get('_typeahead');
+
+      //Remove custom event handlers before destroying
+      t.off('typeahead:autocompleted');
+      t.off('typeahead:selected');
+      t.off('keyup');
+      t.off('focusout');
+
+      //While this wasn't set explicitly here, heap traces indicate a hanging handler
+      t.off('keydown');
+
+      t.typeahead('destroy');
+
+      //Dereference the element
+      this.set('_typeahead', null);
+    }
+
+  });
+
+});
+define('ember-aupac-typeahead/templates/components/aupac-ember-data-typeahead/suggestion', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 61
+          }
+        },
+        "moduleName": "modules/ember-aupac-typeahead/templates/components/aupac-ember-data-typeahead/suggestion.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","typeahead-suggestion");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]),0,0);
+        return morphs;
+      },
+      statements: [
+        ["content","model.displayName",["loc",[null,[1,34],[1,55]]]]
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
+
+});
+define('ember-aupac-typeahead/templates/components/aupac-typeahead/footer', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 36
+          }
+        },
+        "moduleName": "modules/ember-aupac-typeahead/templates/components/aupac-typeahead/footer.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","typeahead-footer");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() { return []; },
+      statements: [
+
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
+
+});
+define('ember-aupac-typeahead/templates/components/aupac-typeahead/header', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 36
+          }
+        },
+        "moduleName": "modules/ember-aupac-typeahead/templates/components/aupac-typeahead/header.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","typeahead-header");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() { return []; },
+      statements: [
+
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
+
+});
+define('ember-aupac-typeahead/templates/components/aupac-typeahead/not-found', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 56
+          }
+        },
+        "moduleName": "modules/ember-aupac-typeahead/templates/components/aupac-typeahead/not-found.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","typeahead-not-found");
+        var el2 = dom.createTextNode("No results found.");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() { return []; },
+      statements: [
+
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
+
+});
+define('ember-aupac-typeahead/templates/components/aupac-typeahead/pending', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 47
+          }
+        },
+        "moduleName": "modules/ember-aupac-typeahead/templates/components/aupac-typeahead/pending.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","typeahead-pending");
+        var el2 = dom.createTextNode("Loading...");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes() { return []; },
+      statements: [
+
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
+
+});
+define('ember-aupac-typeahead/templates/components/aupac-typeahead/suggestion', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 49
+          }
+        },
+        "moduleName": "modules/ember-aupac-typeahead/templates/components/aupac-typeahead/suggestion.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","typeahead-suggestion");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]),0,0);
+        return morphs;
+      },
+      statements: [
+        ["content","model",["loc",[null,[1,34],[1,43]]]]
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
+
+});
+define('ember-aupac-typeahead', ['ember-aupac-typeahead/index', 'ember', 'exports'], function(__index__, __Ember__, __exports__) {
+  'use strict';
+  var keys = Object.keys || __Ember__['default'].keys;
+  var forEach = Array.prototype.forEach && function(array, cb) {
+    array.forEach(cb);
+  } || __Ember__['default'].EnumerableUtils.forEach;
+
+  forEach(keys(__index__), (function(key) {
+    __exports__[key] = __index__[key];
+  }));
+});
+
+define('ember-bootstrap/components/bs-accordion-item', ['exports', 'ember', 'ember-bootstrap/mixins/type-class', 'ember-bootstrap/mixins/sub-component'], function (exports, Ember, TypeClass, SubComponent) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+
+  /**
+   A collapsible/expandable item within an accordion
+
+   See {{#crossLink "Components.Accordion"}}{{/crossLink}} for examples.
+
+
+   @class AccordionItem
+   @namespace Components
+   @extends Ember.Component
+   @uses Mixins.TypeClass
+   @uses Mixins.SubComponent
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend(TypeClass['default'], SubComponent['default'], {
+    classNames: ['panel'],
+
+    /**
+     * @property classTypePrefix
+     * @type String
+     * @default 'panel'
+     * @protected
+     */
+    classTypePrefix: 'panel',
+
+    /**
+     * The title of the accordion item, displayed as a .panel-title element
+     *
+     * @property title
+     * @type string
+     * @public
+     */
+    title: null,
+
+    /**
+     * The value of the accordion item, which is used as the value of the `selected` property of the parent {{#crossLink "Components.Accordion"}}{{/crossLink}} component
+     *
+     * @property value
+     * @public
+     */
+    value: computed.oneWay('elementId'),
+
+    selected: computed.alias('parentView.selected'),
+
+    collapsed: computed('value', 'selected', function () {
+      return this.get('value') !== this.get('selected');
+    }),
+    active: computed.not('collapsed'),
+
+    action: 'selected',
+
+    actions: {
+      toggleActive: function toggleActive() {
+        var value = this.get('value');
+        var previous = this.get('selected');
+        var active = this.get('active');
+        if (!active) {
+          this.set('selected', value);
+          this.sendAction('action', value, previous);
+        } else {
+          this.set('selected', null);
+          this.sendAction('action', null, previous);
+        }
+      }
+    }
+
+  });
+
+});
+define('ember-bootstrap/components/bs-accordion', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Component.extend({
+    classNames: ['panel-group'],
+    ariaRole: 'tablist',
+
+    /**
+     * The value of the currently selected accordion item
+     *
+     * @property selected
+     * @public
+     */
+    selected: null,
+
+    actions: {
+      selected: function selected(currentValue, previousValue) {
+        this.sendAction('action', currentValue, previousValue);
+      }
+    }
+
+  });
+
+});
+define('ember-bootstrap/components/bs-alert', ['exports', 'ember', 'ember-bootstrap/mixins/type-class'], function (exports, Ember, TypeClass) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+  var observer = Ember['default'].observer;
+
+  /**
+   Implements Bootstrap alerts, see http://getbootstrap.com/components/#alerts
+
+   By default it is a user dismissible alert with a fade out animation, both of which can be disabled. Be sure to set the
+   `type` property for proper styling.
+
+   ```hbs
+   {{#bs-alert type="success"}}
+   <strong>Well done!</strong> You successfully read this important alert message.
+   {{/bs-alert}}
+   ```
+
+   @class Alert
+   @namespace Components
+   @extends Ember.Component
+   @uses Mixins.TypeClass
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend(TypeClass['default'], {
+    classNameBindings: ['alert', 'fade', 'in'],
+
+    /**
+     * A dismissible alert will have a close button in the upper right corner, that the user can click to dismiss
+     * the alert.
+     *
+     * @property dismissible
+     * @type boolean
+     * @default true
+     * @public
+     */
+    dismissible: true,
+
+    /**
+     * If true the alert is completely hidden. Will be set when the fade animation has finished.
+     *
+     * @property dismissed
+     * @type boolean
+     * @default false
+     * @readonly
+     * @protected
+     */
+    dismissed: computed.oneWay('notVisible'),
+
+    /**
+     * This property controls if the alert should be visible. If false it might still be in the DOM until the fade animation
+     * has completed.
+     *
+     * @property visible
+     * @type boolean
+     * @default true
+     * @public
+     */
+    visible: true,
+    notVisible: computed.not('visible'),
+
+    /**
+     * Set to false to disable the fade out animation when hiding the alert.
+     *
+     * @property fade
+     * @type boolean
+     * @default true
+     * @public
+     */
+    fade: true,
+
+    /**
+     * Computed property to set the alert class to the component div. Will be false when dismissed to have the component
+     * div (which cannot be removed form DOM by the component itself) without any markup.
+     *
+     * @property alert
+     * @type boolean
+     * @private
+     */
+    alert: computed.not('dismissed'),
+    'in': computed.and('visible', 'fade'),
+
+    /**
+     * @property classTypePrefix
+     * @type String
+     * @default 'alert'
+     * @protected
+     */
+    classTypePrefix: 'alert',
+
+    /**
+     * The duration of the fade out animation
+     *
+     * @property fadeDuration
+     * @type integer
+     * @default 150
+     * @public
+     */
+    fadeDuration: 150,
+
+    /**
+     * The action to be sent after the alert has been dismissed (including the CSS transition).
+     *
+     * @property dismissedAction
+     * @type string
+     * @default null
+     * @public
+     */
+    dismissedAction: null,
+
+    actions: {
+      dismiss: function dismiss() {
+        this.set('visible', false);
+      }
+    },
+
+    _onVisibleChange: observer('visible', function () {
+      if (this.get('visible')) {
+        this.show();
+      } else {
+        this.hide();
+      }
+    }),
+
+    /**
+     * Call to make the alert visible again after it has been hidden
+     *
+     * @method show
+     * @private
+     */
+    show: function show() {
+      this.setProperties({
+        dismissed: false
+      });
+    },
+
+    /**
+     * Call to hide the alert. If the `fade` property is true, this will fade out the alert before being finally
+     * dismissed.
+     *
+     * @method hide
+     * @private
+     */
+    hide: function hide() {
+      if (this.get('fade')) {
+        Ember['default'].run.later(this, function () {
+          if (!this.get('isDestroyed')) {
+            this.set('dismissed', true);
+            this.sendAction('dismissedAction');
+          }
+        }, this.get('fadeDuration'));
+      } else {
+        this.setProperties({
+          dismissed: true
+        });
+        this.sendAction('dismissedAction');
+      }
+    }
+  });
+
+});
+define('ember-bootstrap/components/bs-button-group', ['exports', 'ember', 'ember-bootstrap/mixins/size-class', 'ember-bootstrap/mixins/component-parent'], function (exports, Ember, SizeClass, ComponentParent) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+  var observer = Ember['default'].observer;
+
+  /**
+   Bootstrap-style button group, that visually groups buttons, and optionally adds radio/checkbox like behaviour.
+   See http://getbootstrap.com/components/#btn-groups
+
+   Use as a block level component with any number of {{#crossLink "Components.Button"}}{{/crossLink}} components as children:
+
+   ```handlebars
+   {{#bs-button-group}}
+   {{#bs-button}}1{{/bs-button}}
+   {{#bs-button}}2{{/bs-button}}
+   {{#bs-button}}3{{/bs-button}}
+   {{/bs-button-group}}
+   ```
+
+   ### Radio-like behaviour
+
+   Use the `type` property set to "radio" to make the child buttons toggle like radio buttons, i.e. only one button can be active.
+   Set the `value` property of the buttons to something meaningful. The `value` property of the button group will then reflect
+   the value of the active button:
+
+   ```handlebars
+   {{#bs-button-group value=buttonGroupValue type="radio"}}
+   {{#bs-button value=1}}1{{/bs-button}}
+   {{#bs-button value=2}}2{{/bs-button}}
+   {{#bs-button value=3}}3{{/bs-button}}
+   {{/bs-button-group}}
+
+   You selected: {{buttonGroupValue}}!
+   ```
+
+   ### Checkbox-like behaviour
+
+   Set `type` to "checkbox" to make any number of child buttons selectable. The `value` property will be an array
+   of all the values of the active buttons:
+
+   ```handlebars
+   {{#bs-button-group value=buttonGroupValue type="checkbox"}}
+   {{#bs-button value=1}}1{{/bs-button}}
+   {{#bs-button value=2}}2{{/bs-button}}
+   {{#bs-button value=3}}3{{/bs-button}}
+   {{/bs-button-group}}
+
+   You selected:
+   <ul>
+   {{#each value in buttonGroupValue}}
+   <li>{{value}}</li>
+   {{/each}}
+   </ul>
+   ```
+
+   @class ButtonGroup
+   @namespace Components
+   @extends Ember.Component
+   @uses Mixins.SizeClass
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend(ComponentParent['default'], SizeClass['default'], {
+    /**
+     * @type string
+     * @property ariaRole
+     * @default 'group'
+     * @protected
+     */
+    ariaRole: 'group',
+
+    /**
+     * @property classNames
+     * @type array
+     * @default ['btn-group']
+     * @protected
+     */
+    classNames: ['btn-group'],
+
+    /**
+     * @property classNameBindings
+     * @type array
+     * @protected
+     */
+    classNameBindings: ['vertical:btn-group-vertical', 'justified:btn-group-justified'],
+
+    /**
+     * @property classTypePrefix
+     * @type String
+     * @default 'btn-group'
+     * @protected
+     */
+    classTypePrefix: 'btn-group',
+
+    /**
+     * Set to true for a vertically stacked button group, see http://getbootstrap.com/components/#btn-groups-vertical
+     *
+     * @property vertical
+     * @type boolean
+     * @default false
+     * @public
+     */
+    vertical: false,
+
+    /**
+     * Set to true for the buttons to stretch at equal sizes to span the entire width of its parent.
+     *
+     * *Important*: You have to wrap every button component in a `div class="btn-group">`:
+     *
+     * ```handlebars
+     * <div class="btn-group" role="group">
+     * {{#bs-button}}My Button{{/bs-button}}
+     * </div>
+     * ```
+     *
+     * See http://getbootstrap.com/components/#btn-groups-justified
+     *
+     * @property justified
+     * @type boolean
+     * @default false
+     * @public
+     */
+    justified: false,
+
+    /**
+     * The type of the button group specifies how child buttons behave and how the `value` property will be computed:
+     *
+     * ### null
+     * If `type` is not set (null), the button group will add no functionality besides Bootstrap styling
+     *
+     * ### radio
+     * if `type` is set to "radio", the buttons will behave like radio buttons:
+     * * the buttons will toggle (`toggle` property of the child buttons will be set to true)
+     * * only one button may be active
+     * * the `value` property of the button group will reflect the `value` property of the active button
+     *
+     * ### checkbox
+     * if `type` is set to "checkbox", the buttons will behave like checkboxes:
+     * * the buttons will toggle (`toggle` property of the child buttons will be set to true)
+     * * any number of buttons may be active
+     * * the `value` property of the button group will be an array containing the `value` properties of all active buttons
+     *
+     * @property type
+     * @type string
+     * @default null
+     * @public
+     */
+    type: null,
+
+    /**
+     * The value of the button group, computed by its child buttons.
+     * See the {{#crossLink "Button-Group/type:attribute"}}`type` property{{/crossLink}} for how the value property is constructed.
+     *
+     * When you set the value, the corresponding buttons will be activated:
+     * * use a single value for a radio button group to activate the button with the same value
+     * * use an array of values for a checkbox button group to activate all the buttons with values contained in the array
+     *
+     * @property value
+     * @type array|any
+     * @public
+     */
+    value: undefined,
+
+    _syncValueToActiveButtons: observer('value', 'children.@each.value', '_inDOM', function () {
+      if (!this._inDOM) {
+        return;
+      }
+      var value = this.get('value');
+      var values = Ember['default'].A(!Ember['default'].isArray(value) ? [value] : value);
+      this.get('children').forEach(function (button) {
+        button.set('active', values.contains(button.get('value')));
+      });
+    }),
+
+    /**
+     * Child buttons that are active (pressed)
+     * @property activeChildren
+     * @type array
+     * @protected
+     */
+    activeChildren: computed.filterBy('children', 'active', true),
+
+    lastActiveChildren: null,
+    newActiveChildren: computed.setDiff('activeChildren', 'lastActiveChildren'),
+    _observeButtons: observer('activeChildren.[]', 'type', function () {
+      var type = this.get('type');
+
+      if (!this._inDOM || type !== 'radio' && type !== 'checkbox') {
+        return;
+      }
+
+      Ember['default'].run.scheduleOnce('actions', this, function () {
+        // the button that just became active
+        var value = undefined;
+
+        switch (type) {
+          case 'radio':
+            var newActive = Ember['default'].A(this.get('newActiveChildren')).objectAt(0);
+            if (newActive) {
+              value = newActive.get('value');
+            } else {
+              var lastActive = this.get('lastActiveChildren.firstObject');
+              if (lastActive) {
+                lastActive.set('active', true);
+              }
+            }
+            break;
+          case 'checkbox':
+            value = this.get('activeChildren').mapBy('value');
+            break;
+        }
+        if (value) {
+          this.set('value', value);
+        }
+        // remember activeChildren, used as a replacement for a before observer as they will be deprecated in the future...
+        this.set('lastActiveChildren', Ember['default'].A(this.get('activeChildren').slice()));
+      });
+    }),
+
+    _observeType: observer('type', 'children.[]', function () {
+      if (this.get('type') === 'radio' || this.get('type') === 'checkbox') {
+        // set all child buttons to toggle
+        this.get('children').forEach(function (button) {
+          button.set('toggle', true);
+        });
+      }
+    }),
+
+    init: function init() {
+      this._super();
+      this.set('lastActiveChildren', Ember['default'].A());
+    },
+
+    _inDOM: false,
+
+    didInsertElement: function didInsertElement() {
+      this.set('_inDOM', true);
+      this.get('activeChildren');
+    }
+  });
+
+});
+define('ember-bootstrap/components/bs-button', ['exports', 'ember', 'ember-bootstrap/mixins/type-class', 'ember-bootstrap/mixins/size-class', 'ember-bootstrap/mixins/component-child'], function (exports, Ember, TypeClass, SizeClass, ComponentChild) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+  var observer = Ember['default'].observer;
+
+  /**
+   Implements a HTML button element, with support for all [Bootstrap button CSS styles](http://getbootstrap.com/css/#buttons)
+   as well as advanced functionality such as button states.
+
+   ### Basic Usage
+
+   ```hbs
+   \{{#bs-button type="primary" icon="glyphicon glyphicon-download"}}
+   Downloads
+   \{{/bs-button}}
+   ```
+
+   ### Actions
+
+   Set the action property of the component to send an action to your controller. The following parameters will be sent:
+   * value: the button's value, see the `value` property
+   * event: the browsers event object
+   * callback: a function that may be called from the action handler to supply a Promise to the button component for automatic state handling
+
+   ```hbs
+   \{{#bs-button type="primary" icon="glyphicon glyphicon-download" action="download"}}
+   Download
+   \{{/bs-button}}
+   ```
+
+   ### States
+
+   Use the `textState` property to change the label of the button. You can bind it to a controller property to set a "loading" state for example.
+   The label of the button will be taken from the `<state>Text` property.
+
+   ```hbs
+   \{{bs-button type="primary" icon="glyphicon glyphicon-download" textState=buttonState defaultText="Download" loadingText="Loading..." action="download"}}
+   ```
+
+   ```js
+   App.ApplicationController = Ember.Controller.extend({
+     buttonState: "default"
+     actions: {
+       download: function() {
+         this.set("buttonState", "loading");
+       }
+     }
+   });
+   ```
+
+   ### Promise support for automatic state change
+
+   When using the callback function of the click action to supply a Promise for any asynchronous operation the button will
+   manage its `textState` property automatically, changing its value according to the state of the promise:
+   "default" > "pending" > "resolved"/"rejected"
+
+   ```hbs
+   \{{bs-button type="primary" icon="glyphicon glyphicon-download" defaultText="Download" pendingText="Loading..." resolvedText="Completed!" rejectedText="Oups!?" action="download"}}
+   ```
+
+   ```js
+   App.ApplicationController = Ember.Controller.extend({
+     actions: {
+       download: function(actionParam, evt, cb) {
+         promise = new Ember.RSVP.Promise(...);
+         cb(promise);
+       }
+     }
+   });
+   ```
+
+   @class Button
+   @namespace Components
+   @extends Ember.Component
+   @uses Mixins.TypeClass
+   @uses Mixins.SizeClass
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend(ComponentChild['default'], TypeClass['default'], SizeClass['default'], {
+    tagName: 'button',
+    classNames: ['btn'],
+    classNameBindings: ['active', 'block:btn-block'],
+
+    /**
+     * @property classTypePrefix
+     * @type String
+     * @default 'btn'
+     * @protected
+     */
+    classTypePrefix: 'btn',
+
+    attributeBindings: ['disabled', 'buttonType:type'],
+
+    /**
+     * Default label of the button. Not need if used as a block component
+     *
+     * @property defaultText
+     * @type string
+     * @public
+     */
+    defaultText: null,
+
+    /**
+     * Property to disable the button
+     *
+     * @property disabled
+     * @type boolean
+     * @default false
+     * @public
+     */
+    disabled: false,
+
+    /**
+     * Set the type of the button, either 'button' or 'submit'
+     *
+     * @property buttonType
+     * @type String
+     * @default 'button'
+     * @public
+     */
+    buttonType: 'button',
+
+    /**
+     * Set the 'active' class to apply active/pressed CSS styling
+     *
+     * @property active
+     * @type boolean
+     * @default false
+     * @public
+     */
+    active: false,
+
+    /**
+     * Property for block level buttons
+     *
+     * See the [Bootstrap docs](http://getbootstrap.com/css/#buttons-sizes)
+     * @property block
+     * @type boolean
+     * @default false
+     * @public
+     */
+    block: false,
+
+    /**
+     * If toggle property is true, clicking the button will toggle the active state
+     *
+     * @property toggle
+     * @type boolean
+     * @default false
+     * @public
+     */
+    toggle: false,
+
+    /**
+     * If button is active and this is set, the icon property will match this property
+     *
+     * @property iconActive
+     * @type String
+     * @public
+     */
+    iconActive: null,
+
+    /**
+     * If button is inactive and this is set, the icon property will match this property
+     *
+     * @property iconInactive
+     * @type String
+     * @public
+     */
+    iconInactive: null,
+
+    /**
+     * Class(es) (e.g. glyphicons or font awesome) to use as a button icon
+     * This will render a <i class="{{icon}}"></i> element in front of the button's label
+     *
+     * @property icon
+     * @type String
+     * @readonly
+     * @protected
+     */
+    icon: computed('active', function () {
+      if (this.get('active')) {
+        return this.get('iconActive');
+      } else {
+        return this.get('iconInactive');
+      }
+    }),
+
+    /**
+     * Supply a value that will be associated with this button. This will be send
+     * as a parameter of the default action triggered when clicking the button
+     *
+     * @property value
+     * @type any
+     * @public
+     */
+    value: null,
+
+    /**
+     * State of the button. The button's label (if not used as a block component) will be set to the
+     * `<state>Text` property.
+     * This property will automatically be set when using a click action that supplies the callback with an promise
+     *
+     * @property textState
+     * @type String
+     * @default 'default'
+     * @protected
+     */
+    textState: 'default',
+
+    /**
+     * Set this to true to reset the state. A typical use case is to bind this attribute with ember-data isDirty flag.
+     *
+     * @property reset
+     * @type boolean
+     * @public
+     */
+    reset: null,
+
+    /**
+     * This will reset the state property to 'default', and with that the button's label to defaultText
+     *
+     * @method resetState
+     * @protected
+     */
+    resetState: function resetState() {
+      this.set('textState', 'default');
+    },
+
+    resetObserver: observer('reset', function () {
+      if (this.get('reset')) {
+        Ember['default'].run.scheduleOnce('actions', this, function () {
+          this.set('textState', 'default');
+        });
+      }
+    }),
+
+    text: computed('textState', 'defaultText', 'pendingText', 'resolvedText', 'rejectedText', function () {
+      return this.getWithDefault(this.get('textState') + 'Text', this.get('defaultText'));
+    }),
+
+    /**
+     * Click handler. This will send the default "action" action, with the following parameters:
+     * * value of the button (that is the value of the "value" property)
+     * * original event object of the click event
+     * * callback: call that with a promise object, and the buttons state will automatically set to "pending", "resolved" and/or "rejected"
+     *
+     * @method click
+     * @protected
+     * @param evt
+     */
+    click: function click(evt) {
+      if (this.get('toggle')) {
+        this.toggleProperty('active');
+      }
+      var that = this;
+      var callback = function callback(promise) {
+        if (promise) {
+          that.set('textState', 'pending');
+          promise.then(function () {
+            if (!that.get('isDestroyed')) {
+              that.set('textState', 'resolved');
+            }
+          }, function () {
+            if (!that.get('isDestroyed')) {
+              that.set('textState', 'rejected');
+            }
+          });
+        }
+      };
+      this.sendAction('action', this.get('value'), evt, callback);
+    },
+
+    init: function init() {
+      this._super();
+      this.get('reset');
+    }
+
+  });
+
+});
+define('ember-bootstrap/components/bs-collapse', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+  var observer = Ember['default'].observer;
+
+  /**
+   An Ember component that mimics the behaviour of Bootstrap's collapse.js plugin, see http://getbootstrap.com/javascript/#collapse
+
+   ```hbs
+   {{#bs-collapse collapsed=collapsed}}
+    <div class="well">
+      <h2>Collapse</h2>
+      <p>This is collapsible content</p>
+    </div>
+   {{/bs-collapse}}
+   ```
+
+   @class Collapse
+   @namespace Components
+   @extends Ember.Component
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend({
+
+    classNameBindings: ['collapse', 'in', 'collapsing'],
+    attributeBindings: ['style'],
+
+    /**
+     * Collapsed/expanded state
+     *
+     * @property collapsed
+     * @type boolean
+     * @default true
+     * @public
+     */
+    collapsed: true,
+
+    /**
+     * True if this item is expanded
+     *
+     * @property active
+     * @protected
+     */
+    active: false,
+
+    collapse: computed.not('transitioning'),
+    collapsing: computed.alias('transitioning'),
+    'in': computed.and('collapse', 'active'),
+
+    /**
+     * true if the component is currently transitioning
+     *
+     * @property transitioning
+     * @type boolean
+     * @protected
+     */
+    transitioning: false,
+
+    /**
+     * @property collapseSize
+     * @type number
+     * @protected
+     */
+    collapseSize: null,
+
+    /**
+     * The size of the element when collapsed. Defaults to 0.
+     *
+     * @property collapsedSize
+     * @type number
+     * @default 0
+     * @public
+     */
+    collapsedSize: 0,
+
+    /**
+     * The size of the element when expanded. When null the value is calculated automatically to fit the containing elements.
+     *
+     * @property expandedSize
+     * @type number
+     * @default null
+     * @public
+     */
+    expandedSize: null,
+
+    /**
+     * Usually the size (height) of the element is only set while transitioning, and reseted afterwards. Set to true to always set a size.
+     *
+     * @property resetSizeWhenNotCollapsing
+     * @type boolean
+     * @default true
+     * @private
+     */
+    resetSizeWhenNotCollapsing: true,
+
+    /**
+     * The direction (height/width) of the collapse animation.
+     * When setting this to 'width' you should also define custom CSS transitions for the width property, as the Bootstrap
+     * CSS does only support collapsible elements for the height direction.
+     *
+     * @property collapseDimension
+     * @type string
+     * @default 'height'
+     * @public
+     */
+    collapseDimension: 'height',
+
+    style: computed('collapseSize', function () {
+      var size = this.get('collapseSize');
+      var dimension = this.get('collapseDimension');
+      if (Ember['default'].isEmpty(size)) {
+        return new Ember['default'].Handlebars.SafeString('');
+      }
+      return new Ember['default'].Handlebars.SafeString(dimension + ': ' + size + 'px');
+    }),
+
+    /**
+     * Triggers the show transition
+     *
+     * @method show
+     * @protected
+     */
+    show: function show() {
+      var complete = function complete() {
+        this.set('transitioning', false);
+        if (this.get('resetSizeWhenNotCollapsing')) {
+          this.set('collapseSize', null);
+        }
+        this.sendAction('didShow');
+      };
+
+      this.sendAction('willShow');
+
+      this.setProperties({
+        transitioning: true,
+        collapseSize: this.get('collapsedSize'),
+        active: true
+      });
+
+      if (!Ember['default'].$.support.transition) {
+        return complete.call(this);
+      }
+
+      this.$().one('bsTransitionEnd', Ember['default'].run.bind(this, complete))
+      // @todo: make duration configurable
+      .emulateTransitionEnd(350);
+
+      Ember['default'].run.next(this, function () {
+        if (!this.get('isDestroyed')) {
+          this.set('collapseSize', this.getExpandedSize('show'));
+        }
+      });
+    },
+
+    /**
+     * Get the size of the element when expanded
+     *
+     * @method getExpandedSize
+     * @param $action
+     * @returns number
+     * @private
+     */
+    getExpandedSize: function getExpandedSize($action) {
+      var expandedSize = this.get('expandedSize');
+      if (Ember['default'].isPresent(expandedSize)) {
+        return expandedSize;
+      }
+
+      var collapseElement = this.$();
+      var prefix = $action === 'show' ? 'scroll' : 'offset';
+      var measureProperty = Ember['default'].String.camelize(prefix + '-' + this.get('collapseDimension'));
+      return collapseElement[0][measureProperty];
+    },
+
+    /**
+     * Triggers the hide transition
+     *
+     * @method hide
+     * @protected
+     */
+    hide: function hide() {
+
+      var complete = function complete() {
+        this.set('transitioning', false);
+        if (this.get('resetSizeWhenNotCollapsing')) {
+          this.set('collapseSize', null);
+        }
+        this.sendAction('didHide');
+      };
+
+      this.sendAction('willHide');
+
+      this.setProperties({
+        transitioning: true,
+        collapseSize: this.getExpandedSize('hide'),
+        active: false
+      });
+
+      if (!Ember['default'].$.support.transition) {
+        return complete.call(this);
+      }
+
+      this.$().one('bsTransitionEnd', Ember['default'].run.bind(this, complete))
+      // @todo: make duration configurable
+      .emulateTransitionEnd(350);
+
+      Ember['default'].run.next(this, function () {
+        if (!this.get('isDestroyed')) {
+          this.set('collapseSize', this.get('collapsedSize'));
+        }
+      });
+    },
+
+    _onCollapsedChange: observer('collapsed', function () {
+      var collapsed = this.get('collapsed');
+      var active = this.get('active');
+      if (collapsed !== active) {
+        return;
+      }
+      if (collapsed === false) {
+        this.show();
+      } else {
+        this.hide();
+      }
+    }),
+
+    _onInit: Ember['default'].on('init', function () {
+      this.set('active', !this.get('collapsed'));
+    }),
+
+    _updateCollapsedSize: observer('collapsedSize', function () {
+      if (!this.get('resetSizeWhenNotCollapsing') && this.get('collapsed') && !this.get('collapsing')) {
+        this.set('collapseSize', this.get('collapsedSize'));
+      }
+    }),
+
+    _updateExpandedSize: observer('expandedSize', function () {
+      if (!this.get('resetSizeWhenNotCollapsing') && !this.get('collapsed') && !this.get('collapsing')) {
+        this.set('collapseSize', this.get('expandedSize'));
+      }
+    })
+  });
+
+});
+define('ember-bootstrap/components/bs-dropdown-button', ['exports', 'ember-bootstrap/components/bs-button', 'ember-bootstrap/mixins/dropdown-toggle'], function (exports, Button, DropdownToggle) {
+
+	'use strict';
+
+	exports['default'] = Button['default'].extend(DropdownToggle['default']);
+
+});
+define('ember-bootstrap/components/bs-dropdown-menu', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+
+  /**
+   Component for the dropdown menu.
+
+   See {{#crossLink "Components.Dropdown"}}{{/crossLink}} for examples.
+
+   @class DropdownMenu
+   @namespace Components
+   @extends Ember.Component
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend({
+
+    /**
+     * Defaults to a `<ul>` tag. Change for other types of dropdown menus.
+     *
+     * @property tagName
+     * @type string
+     * @default ul
+     * @public
+     */
+    tagName: 'ul',
+    classNames: ['dropdown-menu'],
+    classNameBindings: ['alignClass'],
+
+    /**
+     * @property ariaRole
+     * @default menu
+     * @type string
+     * @protected
+     */
+    ariaRole: 'menu',
+
+    /**
+     * Alignment of the menu, either "left" or "right"
+     *
+     * @property align
+     * @type string
+     * @default left
+     * @public
+     */
+    align: 'left',
+
+    alignClass: computed('align', function () {
+      if (this.get('align') !== 'left') {
+        return 'dropdown-menu-' + this.get('align');
+      }
+    })
+  });
+
+});
+define('ember-bootstrap/components/bs-dropdown-toggle', ['exports', 'ember', 'ember-bootstrap/mixins/dropdown-toggle'], function (exports, Ember, DropdownToggle) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+
+  /**
+   Anchor element that triggers the parent dropdown to open.
+   Use {{#crossLink "Components.DropdownButton"}}{{/crossLink}} if you want a button instead of an anchor tag.
+
+   See {{#crossLink "Components.Dropdown"}}{{/crossLink}} for examples.
+
+
+   @class DropdownToggle
+   @namespace Components
+   @extends Ember.Component
+   @uses Mixins.DropdownToggle
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend(DropdownToggle['default'], {
+    /**
+     * Defaults to a `<a>` tag. Change for other types of dropdown toggles.
+     *
+     * @property tagName
+     * @type string
+     * @default a
+     * @public
+     */
+    tagName: 'a',
+
+    attributeBindings: ['href'],
+
+    /**
+     * Computed property to generate a `href="#"` attribute when `tagName` is "a".
+     *
+     * @property href
+     * @type string
+     * @readonly
+     * @protected
+     */
+    href: computed('tagName', function () {
+      if (this.get('tagName').toUpperCase() === 'A') {
+        return '#';
+      }
+    }),
+
+    click: function click(e) {
+      e.preventDefault();
+      this.sendAction();
+    }
+
+  });
+
+});
+define('ember-bootstrap/components/bs-dropdown', ['exports', 'ember', 'ember-bootstrap/components/bs-dropdown-button', 'ember-bootstrap/mixins/component-parent'], function (exports, Ember, toggleButton, ComponentParent) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+  var observer = Ember['default'].observer;
+
+  /**
+   Bootstrap style dropdown menus, consisting of a toggle element, and the dropdown menu itself.
+   See http://getbootstrap.com/components/#dropdowns
+
+   Use this component together with two sub components, a dropdown toggle (`Components.DropdownToggle` or
+   `Components.DropdownButton` component) and a dropdown menu (`Components.DropdownMenu`) component:
+
+   ```hbs
+   <nav class="navbar navbar-default navbar-static">
+   <div class="container-fluid">
+   <ul class="nav navbar-nav">
+   {{#bs-dropdown tagName="li"}}
+   {{#bs-dropdown-toggle}}Dropdown <span class="caret"></span>{{/bs-dropdown-toggle}}
+   {{#bs-dropdown-menu}}
+   <li>{{#link-to "index"}}Something{{/link-to}}</li>
+   <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+   {{/bs-dropdown-menu}}
+   {{/bs-dropdown}}
+   </ul>
+   </div>
+   </nav>
+   ```
+
+   ### Button dropdowns
+
+   To use a button as the dropdown toggle element (see http://getbootstrap.com/components/#btn-dropdowns), use the
+   `Components.DropdownButton` component as the toggle:
+
+   ```hbs
+   {{#bs-dropdown}}
+   {{#bs-dropdown-button}}Dropdown <span class="caret"></span>{{/bs-dropdown-button}}
+   {{#bs-dropdown-menu}}
+   <li>{{#link-to "index"}}Something{{/link-to}}</li>
+   <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+   {{/bs-dropdown-menu}}
+   {{/bs-dropdown}}
+   ```
+
+   It has all the functionality of a `Components.Button` with additional dropdown support.
+
+   ### Split button dropdowns
+
+   To have a regular button with a dropdown button as in http://getbootstrap.com/components/#btn-dropdowns-split, use a
+   `Components.Button` component and a `Components.DropdownButton`:
+
+   ```hbs
+   {{#bs-dropdown}}
+   {{#bs-button}}Dropdown{{/bs-button}}
+   {{#bs-dropdown-button}}Dropdown <span class="caret"></span>{{/bs-dropdown-button}}
+   {{#bs-dropdown-menu}}
+   <li>{{#link-to "index"}}Something{{/link-to}}</li>
+   <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+   {{/bs-dropdown-menu}}
+   {{/bs-dropdown}}
+   ```
+
+   @class Dropdown
+   @namespace Components
+   @extends Ember.Component
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend(ComponentParent['default'], {
+    classNameBindings: ['open', 'containerClass'],
+
+    /**
+     * This property reflects the state of the dropdown, whether it is open or closed.
+     *
+     * @property open
+     * @default false
+     * @type boolean
+     * @public
+     */
+    open: false,
+
+    /**
+     * By default clicking on an open dropdown menu will close it. Set this property to false for the menu to stay open.
+     *
+     * @property closeOnMenuClick
+     * @default true
+     * @type boolean
+     * @public
+     */
+    closeOnMenuClick: true,
+
+    /**
+     * jQuery click event name, namespaced to this component's instance to prevent interference between multiple dropdowns.
+     *
+     * @property clickEventName
+     * @type string
+     * @private
+     */
+    clickEventName: undefined,
+
+    /**
+     * A computed property to generate the suiting class for the dropdown container, either "dropdown" or "btn-group".
+     *
+     * @property containerClass
+     * @type string
+     * @readonly
+     * @protected
+     */
+    containerClass: computed('toggleType', function () {
+      return this.get('toggleType') === 'button' ? 'btn-group' : 'dropdown';
+    }),
+
+    /**
+     * This property is "button" if the toggle element is an instance of {{#crossLink "Components.DropdownButton"}}{{/crossLink}}, otherwise "toggle".
+     *
+     * @property toggleType
+     * @type string
+     * @readonly
+     * @protected
+     */
+    toggleType: computed('children.[]', function () {
+      if (this.get('children').any(function (view) {
+        return view instanceof toggleButton['default'];
+      })) {
+        return 'button';
+      }
+      return 'toggle';
+    }),
+
+    actions: {
+      toggleDropdown: function toggleDropdown() {
+        this.toggleProperty('open');
+      },
+
+      openDropdown: function openDropdown() {
+        this.set('open', true);
+      },
+
+      closeDropdown: function closeDropdown() {
+        this.set('open', false);
+      }
+    },
+
+    handleClickEvents: observer('open', function () {
+      if (this.get('open')) {
+        Ember['default'].$(document).on(this.clickEventName, Ember['default'].run.bind(this, this.closeOnClickHandler));
+      } else {
+        Ember['default'].$(document).off(this.clickEventName);
+      }
+    }),
+
+    willDestroyElement: function willDestroyElement() {
+      this._super();
+      Ember['default'].$(document).off(this.clickEventName);
+    },
+
+    init: function init() {
+      this._super();
+      // click event name that is namespaced to our component instance, so multiple dropdowns do not interfere
+      // with each other
+      this.clickEventName = 'click.' + this.get('elementId');
+    },
+
+    /**
+     * Handler for click events to close the dropdown
+     *
+     * @method closeOnClickHandler
+     * @param e
+     * @protected
+     */
+    closeOnClickHandler: function closeOnClickHandler(e) {
+      var $target = Ember['default'].$(e.target);
+      if (!this.get('isDestroyed') && $target.closest(this.$().find('.dropdown-toggle')).length === 0 && ($target.closest(this.$().find('.dropdown-menu')).length === 0 || this.get('closeOnMenuClick'))) {
+        this.set('open', false);
+      }
+    }
+  });
+
+});
+define('ember-bootstrap/components/bs-form-element', ['exports', 'ember', 'ember-bootstrap/components/bs-form-group', 'ember-bootstrap/components/bs-form'], function (exports, Ember, FormGroup, Form) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+  var defineProperty = Ember['default'].defineProperty;
+
+  var nonTextFieldControlTypes = Ember['default'].A(['checkbox', 'select', 'textarea']);
+
+  /**
+   Sub class of `Components.FormGroup` that adds automatic form layout markup and form validation features.
+
+   ### Form layout
+
+   The appropriate Bootstrap markup for the given `formLayout` and `controlType` is automatically generated to easily
+   create forms without coding the default Bootstrap form markup by hand:
+
+   ```hbs
+   {{#bs-form formLayout="horizontal" action="submit"}}
+     {{bs-form-element controlType="email" label="Email" placeholder="Email" value=email}}
+     {{bs-form-element controlType="password" label="Password" placeholder="Password" value=password}}
+     {{bs-form-element controlType="checkbox" label="Remember me" value=rememberMe}}
+     {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+   {{/bs-form}}
+   ```
+
+   ### Form validation
+
+   In the following example the control elements of the three form elements value will be bound to the properties
+   (given by `property`) of the form's `model`, which in this case is its controller (see `model=this`):
+
+   ```hbs
+   {{#bs-form formLayout="horizontal" model=this action="submit"}}
+     {{bs-form-element controlType="email" label="Email" placeholder="Email" property="email"}}
+     {{bs-form-element controlType="password" label="Password" placeholder="Password" property="password"}}
+     {{bs-form-element controlType="checkbox" label="Remember me" property="rememberMe"}}
+     {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+   {{/bs-form}}
+   ```
+
+   By using this indirection in comparison to directly binding the `value` property, you get the benefit of automatic
+   form validation, given that your `model` is implementing [ember-validations](https://github.com/dockyard/ember-validations).
+
+   In the example above the `model` was our controller itself, so the control elements were bound to the appropriate
+   properties of our controller. A controller implementing validations on those properties could look like this:
+
+   ```js
+   import Ember from 'ember';
+   import EmberValidations from 'ember-validations';
+
+   export default Ember.Controller.extend(EmberValidations,{
+     email: null,
+     password: null,
+     rememberMe: false,
+     validations: {
+       email: {
+         presence: true,
+         format: {
+           with: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+         }
+       },
+       password: {
+         presence: true,
+         length: { minimum: 6, maximum: 10}
+       },
+       comments: {
+         length: { minimum: 5, maximum: 20}
+       }
+     }
+   });
+   ```
+
+   If the `showValidation` property is `true` (which is automatically the case if a `focusOut` event is captured from the
+   control element or the containing `Components.Form` was submitted with its `model` failing validation) and there are
+   validation errors for the `model`'s `property`, the appropriate Bootstrap validation markup (see
+   http://getbootstrap.com/css/#forms-control-validation) is applied:
+
+   * `validation` is set to 'error', which will set the `has-error` CSS class
+   * the `errorIcon` feedback icon is displayed if `controlType` is a text field
+   * the validation messages are displayed as Bootstrap `help-block`s
+
+   As soon as the validation is successful again...
+
+   * `validation` is set to 'success', which will set the `has-success` CSS class
+   * the `successIcon` feedback icon is displayed if `controlType` is a text field
+   * the validation messages are removed
+
+   ### Custom controls
+
+   Apart from the standard built-in browser controls (see the `controlType` property), you can use any custom control simply
+   by invoking the component with a block template. Use whatever control you might want, for example a select-2 component
+   (from the [ember-select-2 addon](https://istefo.github.io/ember-select-2)):
+
+   ```hbs
+   {{#bs-form formLayout="horizontal" model=this action="submit"}}
+     {{#bs-form-element label="Select-2" property="gender" as |value id|}}
+       {{select-2 id=id content=genderChoices optionLabelPath="label" value=value searchEnabled=false}}
+     {{/bs-form-element}}
+   {{/bs-form}}
+   ```
+
+   @class FormElement
+   @namespace Components
+   @extends Components.FormGroup
+   @public
+   */
+  exports['default'] = FormGroup['default'].extend({
+    classNameBindings: ['disabled:is-disabled', 'required:is-required', 'isValidating'],
+
+    /**
+     * Text to display within a `<label>` tag.
+     *
+     * @property label
+     * @type string
+     * @public
+     */
+    label: null,
+
+    /**
+     * The type of the control widget.
+     * Supported types:
+     *
+     * * 'text'
+     * * 'checkbox'
+     * * 'select'
+     * * 'textarea'
+     * * any other type will use an input tag with the `controlType` value as the type attribute (for e.g. HTML5 input
+     * types like 'email'), and the same layout as the 'text' type
+     *
+     * @property controlType
+     * @type string
+     * @public
+     */
+    controlType: 'text',
+
+    /**
+     * The value of the control element is bound to this property. You can bind it to some controller property to
+     * get/set the control element's value:
+     *
+     * ```hbs
+     * {{bs-form-element controlType="email" label="Email" placeholder="Email" value=email}}
+     * ```
+     *
+     * Note: you loose the ability to validate this form element by directly binding to its value. It is recommended
+     * to use the `property` feature instead.
+     *
+     *
+     * @property value
+     * @public
+     */
+    value: null,
+
+    /**
+     The property name of the form element's `model` (by default the `model` of its parent `Components.Form`) that this
+     form element should represent. The control element's value will automatically be bound to the model property's
+     value.
+      Using this property enables form validation on this element.
+      @property property
+     @type string
+     @public
+     */
+    property: null,
+
+    /**
+     * Control element's HTML5 placeholder attribute
+     *
+     * @property placeholder
+     * @type string
+     * @public
+     */
+    placeholder: null,
+
+    /**
+     * Control element's HTML5 disabled attribute
+     *
+     * @property disabled
+     * @type boolean
+     * @public
+     */
+    disabled: false,
+
+    /**
+     * Control element's HTML5 required attribute
+     *
+     * @property required
+     * @type boolean
+     * @public
+     */
+    required: false,
+
+    /**
+     * Control element's HTML5 autofocus attribute
+     *
+     * @property autofocus
+     * @type boolean
+     * @public
+     */
+    autofocus: false,
+
+    /**
+     * Control element's name attribute
+     *
+     * @property name
+     * @type string
+     * @public
+     */
+    name: null,
+
+    /**
+     * An array of objects containing the selection of choices for multiple choice style form controls, e.g. select
+     * boxes.
+     *
+     * ```hbs
+     * {{bs-form-element controlType="select" choices=countries choiceLabelProperty="name" choiceValueProperty="id" label="Country" value=selectedCountry}}
+     * ```
+     *
+     * Be sure to also set the `choiceValueProperty` and `choiceLabelProperty` properties.
+     *
+     * @property choices
+     * @type array
+     * @public
+     */
+    choices: Ember['default'].A(),
+
+    /**
+     * The property of the `choices` array of objects, containing the value of the choice, e.g. the select box option.
+     *
+     * @property choiceValueProperty
+     * @type string
+     * @public
+     */
+    choiceValueProperty: null,
+
+    /**
+     * The property of the `choices` array of objects, containing the label of the choice, e.g. the select box option.
+     *
+     * @property choiceLabelProperty
+     * @type string
+     * @public
+     */
+    choiceLabelProperty: null,
+
+    /**
+     * Textarea's rows attribute (ignored for other `controlType`s)
+     *
+     * @property rows
+     * @type number
+     * @default 5
+     * @public
+     */
+    rows: 5,
+
+    /**
+     * Textarea's cols attribute (ignored for other `controlType`s)
+     *
+     * @property cols
+     * @type number
+     * @public
+     */
+    cols: null,
+
+    /**
+     * The model used for validation. Defaults to the parent `Components.Form`'s `model`
+     *
+     * @property model
+     * @public
+     */
+    model: computed.alias('form.model'),
+
+    /**
+     * The array of error messages from the `model`'s validation.
+     *
+     * @property errors
+     * @type array
+     * @protected
+     */
+    errors: null,
+
+    /**
+     * @property hasErrors
+     * @type boolean
+     * @readonly
+     * @protected
+     */
+    hasErrors: computed.gt('errors.length', 0),
+
+    /**
+     * @property hasValidator
+     * @type boolean
+     * @readonly
+     * @protected
+     */
+    hasValidator: computed.notEmpty('model.validate'),
+
+    /**
+     * Set a validating state for async validations
+     *
+     * @property isValidating
+     * @type boolean
+     * @default false
+     * @public
+     */
+    isValidating: false,
+
+    /**
+     * If `true` form validation markup is rendered (requires a validatable `model`).
+     *
+     * @property showValidation
+     * @type boolean
+     * @default false
+     * @public
+     */
+    showValidation: false,
+
+    /**
+     * @property showErrors
+     * @type boolean
+     * @readonly
+     * @protected
+     */
+    showErrors: computed.and('showValidation', 'hasErrors'),
+
+    /**
+     * The validation ("error" or "success") or null if no validation is to be shown. Automatically computed from the
+     * models validation state.
+     *
+     * @property validation
+     * @readonly
+     * @type string
+     * @protected
+     */
+    validation: computed('hasErrors', 'hasValidator', 'showValidation', 'isValidating', function () {
+      if (!this.get('showValidation') || !this.get('hasValidator') || this.get('isValidating') || this.get('disabled')) {
+        return null;
+      }
+      return this.get('hasErrors') ? 'error' : 'success';
+    }),
+
+    /**
+     * @property hasLabel
+     * @type boolean
+     * @readonly
+     * @protected
+     */
+    hasLabel: computed.notEmpty('label'),
+
+    /**
+     * True for text field `controlType`s
+     *
+     * @property useIcons
+     * @type boolean
+     * @readonly
+     * @public
+     */
+    useIcons: computed('controlType', function () {
+      return !nonTextFieldControlTypes.contains(this.get('controlType'));
+    }),
+
+    /**
+     * The form layout used for the markup generation (see http://getbootstrap.com/css/#forms):
+     *
+     * * 'horizontal'
+     * * 'vertical'
+     * * 'inline'
+     *
+     * Defaults to the parent `form`'s `formLayout` property.
+     *
+     * @property formLayout
+     * @type string
+     * @public
+     */
+    formLayout: computed.alias('form.formLayout'),
+
+    /**
+     * @property isVertical
+     * @type boolean
+     * @readonly
+     * @protected
+     */
+    isVertical: computed.equal('formLayout', 'vertical'),
+
+    /**
+     * @property isHorizontal
+     * @type boolean
+     * @readonly
+     * @protected
+     */
+    isHorizontal: computed.equal('formLayout', 'horizontal'),
+
+    /**
+     * @property isInline
+     * @type boolean
+     * @readonly
+     * @protected
+     */
+    isInline: computed.equal('formLayout', 'inline'),
+
+    /**
+     * The Bootstrap grid class for form labels within a horizontal layout form. Defaults to the value of the same
+     * property of the parent form. The corresponding grid class for form controls is automatically computed.
+     *
+     * @property horizontalLabelGridClass
+     * @type string
+     * @default 'col-md-4'
+     * @public
+     */
+    horizontalLabelGridClass: computed.oneWay('form.horizontalLabelGridClass'),
+
+    /**
+     * Computed property that specifies the Bootstrap grid class for form controls within a horizontal layout form.
+     *
+     * @property horizontalInputGridClass
+     * @type string
+     * @readonly
+     * @protected
+     */
+    horizontalInputGridClass: computed('horizontalLabelGridClass', function () {
+      var parts = this.get('horizontalLabelGridClass').split('-');
+      Ember['default'].assert('horizontalInputGridClass must match format bootstrap grid column class', parts.length === 3);
+      parts[2] = 12 - parts[2];
+      return parts.join('-');
+    }),
+
+    /**
+     * Computed property that specifies the Bootstrap offset grid class for form controls within a horizontal layout
+     * form, that have no label.
+     *
+     * @property horizontalInputOffsetGridClass
+     * @type string
+     * @readonly
+     * @protected
+     */
+    horizontalInputOffsetGridClass: computed('horizontalLabelGridClass', function () {
+      var parts = this.get('horizontalLabelGridClass').split('-');
+      parts.splice(2, 0, 'offset');
+      return parts.join('-');
+    }),
+
+    /**
+     * ID for input field and the corresponding label's "for" attribute
+     *
+     * @property formElementId
+     * @type string
+     * @private
+     */
+    formElementId: computed('elementId', function () {
+      var elementId = this.get('elementId');
+      return elementId + '-field';
+    }),
+
+    /**
+     * Reference to the parent `Components.Form` class.
+     *
+     * @property form
+     * @protected
+     */
+    form: computed(function () {
+      return this.nearestOfType(Form['default']);
+    }),
+
+    formElementTemplate: computed('formLayout', 'controlType', function () {
+      var formLayout = this.getWithDefault('formLayout', 'vertical');
+      var inputLayout = undefined;
+      var controlType = this.get('controlType');
+
+      switch (true) {
+        case nonTextFieldControlTypes.contains(controlType):
+          inputLayout = controlType;
+          break;
+        default:
+          inputLayout = 'default';
+      }
+
+      return 'components/form-element/' + formLayout + '/' + inputLayout;
+    }),
+
+    /**
+     * Setup validation properties. This method acts as a hook for external validation
+     * libraries to overwrite. In case of failed validations the `errors` property should contain an array of error messages.
+     *
+     * @method setupValidations
+     * @protected
+     */
+    setupValidations: Ember['default'].K,
+
+    /**
+     * Listen for focusOut events from the control element to automatically set `showValidation` to true to enable
+     * form validation markup rendering.
+     *
+     * @event focusOut
+     * @private
+     */
+    focusOut: function focusOut() {
+      this.set('showValidation', true);
+    },
+
+    init: function init() {
+      this._super();
+      if (!Ember['default'].isBlank(this.get('property'))) {
+        defineProperty(this, 'value', computed.alias('model.' + this.get('property')));
+        this.setupValidations();
+      }
+    }
+  });
+
+});
+define('ember-bootstrap/components/bs-form-group', ['exports', 'ember', 'ember-bootstrap/config'], function (exports, Ember, Config) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+
+  /**
+   This component renders a `<div class="form-group">` element, with support for validation states and feedback icons.
+   Use as a block level component:
+
+   ```hbs
+   {{#bs-form-group validation=firstNameValidation}}
+   <label class="control-label">First name</label>
+   {{bs-input type="text" value=firstname}}
+   {{/bs-form-group}}
+   ```
+
+   If the `validation` property is set to some state (usually Bootstrap's predefined states "success",
+   "warning" or "error"), the appropriate styles will be added, together with a feedback icon.
+   See http://getbootstrap.com/css/#forms-control-validation
+
+   @class FormGroup
+   @namespace Components
+   @extends Ember.Component
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend({
+
+    classNames: ['form-group'],
+    classNameBindings: ['validationClass', 'hasFeedback'],
+
+    /**
+     * Whether to show validation state icons.
+     * See http://getbootstrap.com/css/#forms-control-validation
+     *
+     * @property useIcons
+     * @type boolean
+     * @default true
+     * @public
+     */
+    useIcons: true,
+
+    /**
+     * Computed property which is true if the form group is in a validation state
+     *
+     * @property hasValidation
+     * @type boolean
+     * @public
+     * @readonly
+     */
+    hasValidation: computed.notEmpty('validation'),
+
+    /**
+     * Computed property which is true if the form group is showing a validation icon
+     *
+     * @property hasFeedback
+     * @type boolean
+     * @public
+     * @readonly
+     */
+    hasFeedback: computed.and('hasValidation', 'useIcons', 'hasIconForValidationState'),
+
+    /**
+     * The icon classes to be used for a feedback icon in a "success" validation state.
+     * Defaults to the usual glyphicon classes. This is ignored, and no feedback icon is
+     * rendered if `useIcons` is false.
+     *
+     * You can change this globally by setting the `formValidationSuccessIcon` property of
+     * the ember-bootstrap configuration in your config/environment.js file. If your are
+     * using FontAwesome for example:
+     *
+     * ```js
+     * ENV['ember-bootstrap'] = {
+       *   formValidationSuccessIcon: 'fa fa-check'
+       * }
+     * ```
+     *
+     * @property successIcon
+     * @type string
+     * @default 'glyphicon glyphicon-ok'
+     * @public
+     */
+    successIcon: Config['default'].formValidationSuccessIcon,
+
+    /**
+     * The icon classes to be used for a feedback icon in a "error" validation state.
+     * Defaults to the usual glyphicon classes. This is ignored, and no feedback icon is
+     * rendered if `useIcons` is false.
+     *
+     * You can change this globally by setting the `formValidationErrorIcon` property of
+     * the ember-bootstrap configuration in your config/environment.js file. If your are
+     * using FontAwesome for example:
+     *
+     * ```js
+     * ENV['ember-bootstrap'] = {
+       *   formValidationErrorIcon: 'fa fa-times'
+       * }
+     * ```
+     *
+     * @property errorIcon
+     * @type string
+     * @public
+     */
+    errorIcon: Config['default'].formValidationErrorIcon,
+
+    /**
+     * The icon classes to be used for a feedback icon in a "warning" validation state.
+     * Defaults to the usual glyphicon classes. This is ignored, and no feedback icon is
+     * rendered if `useIcons` is false.
+     *
+     * You can change this globally by setting the `formValidationWarningIcon` property of
+     * the ember-bootstrap configuration in your config/environment.js file. If your are
+     * using FontAwesome for example:
+     *
+     * ```js
+     * ENV['ember-bootstrap'] = {
+       *   formValidationWarningIcon: 'fa fa-warning'
+       * }
+     * ```
+     *
+     * @property warningIcon
+     * @type string
+     * @public
+     */
+    warningIcon: Config['default'].formValidationWarningIcon,
+
+    /**
+     * The icon classes to be used for a feedback icon in a "info" validation state.
+     * Defaults to the usual glyphicon classes. This is ignored, and no feedback icon is
+     * rendered if `useIcons` is false.
+     *
+     * You can change this globally by setting the `formValidationInfoIcon` property of
+     * the ember-bootstrap configuration in your config/environment.js file. If your are
+     * using FontAwesome for example:
+     *
+     * ```js
+     * ENV['ember-bootstrap'] = {
+       *   formValidationInfoIcon: 'fa fa-info-circle
+       * }
+     * ```
+     *
+     * The "info" validation state is not supported in Bootstrap CSS, but can be easily added
+     * using the following LESS style:
+     * ```less
+     * .has-info {
+       *   .form-control-validation(@state-info-text; @state-info-text; @state-info-bg);
+       * }
+     * ```
+     *
+     * @property infoIcon
+     * @type string
+     * @public
+     */
+    infoIcon: Config['default'].formValidationInfoIcon,
+
+    iconName: computed('validation', function () {
+      var validation = this.get('validation') || 'success';
+      return this.get(validation + 'Icon');
+    }),
+
+    hasIconForValidationState: computed.notEmpty('iconName'),
+
+    /**
+     * Set to a validation state to render the form-group with a validation style.
+     * See http://getbootstrap.com/css/#forms-control-validation
+     *
+     * The default states of "success", "warning" and "error" are supported by Bootstrap out-of-the-box.
+     * But you can use custom states as well. This will set a has-<state> class, and (if `useIcons`is true)
+     * a feedback whose class is taken from the <state>Icon property
+     *
+     * @property validation
+     * @type string
+     * @public
+     */
+    validation: null,
+
+    validationClass: computed('validation', function () {
+      var validation = this.get('validation');
+      if (!Ember['default'].isBlank(validation)) {
+        return 'has-' + this.get('validation');
+      }
+    })
+  });
+
+});
+define('ember-bootstrap/components/bs-form', ['exports', 'ember', 'ember-bootstrap/components/bs-form-element'], function (exports, Ember, FormElement) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+
+  /**
+   Render a form with the appropriate Bootstrap layout class (see `formLayout`).
+   Allows setting a `model` that nested `Components.FormElement`s can access, and that can provide form validation through
+   [ember-validations](https://github.com/dockyard/ember-validations)
+
+   You can use whatever markup you like within the form:
+
+   ```hbs
+   {{#bs-form action="submit"}}
+   {{#bs-form-group validation=firstNameValidation}}
+   <label class="control-label">First name</label>
+   {{bs-input type="text" value=firstname}}
+   {{/bs-form-group}}
+   {{/bs-form}}
+   ```
+
+   However to benefit from features such as automatic form markup, validations and validation markup, use `Components.FormElement`
+   as nested components. See below for an example.
+
+   ### Submitting the form
+
+   When the form is submitted (e.g. by clicking a submit button), the event will be intercepted and the default action
+   will be sent to the controller.
+   In case the form supports validation (see "Form validation" below), the "before" action is called (which allows you to
+   do e.g. model data normalization), then the available  validation rules are evaluated, and if those fail, the "invalid"
+   action is sent instead of the default "action".
+
+   ### Use with Components.FormElement
+
+   When using `Components.FormElement`s with their `property` set to property names of the form's validation enabled
+   `model`, you gain some additional powerful features:
+   * the appropriate Bootstrap markup for the given `formLayout` and the form element's `controlType` is automatically generated
+   * markup for validation states and error messages is generated based on the model's validation (if available), when submitting the form
+   with an invalid validation, or when focusing out of invalid inputs
+
+   ```hbs
+   {{#bs-form formLayout="horizontal" model=this action="submit"}}
+   {{bs-form-element controlType="email" label="Email" placeholder="Email" property="email"}}
+   {{bs-form-element controlType="password" label="Password" placeholder="Password" property="password"}}
+   {{bs-form-element controlType="checkbox" label="Remember me" property="rememberMe"}}
+   {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+   {{/bs-form}}
+   ```
+
+   See the {{#crossLink "Components.FormElement"}}{{/crossLink}} API docs for further information.
+
+   ### Form validation
+
+   All version of ember-bootstrap beginning from 0.7.0 do not come with built-in support for validation engines anymore.
+   Instead support is added usually by addition Ember addons, for example:
+
+   * [ember-bootstrap-validations](https://github.com/kaliber5/ember-bootstrap-validations): adds support for [ember-validations](https://github.com/DockYard/ember-validations)
+   * [ember-bootstrap-cp-validations](https://github.com/offirgolan/ember-bootstrap-cp-validations): adds support for [ember-cp-validations](https://github.com/offirgolan/ember-cp-validations)
+
+   To add your own validation support, you have to:
+
+   * extend this component, setting `hasValidator` to true if validations are available (by means of a computed property for example), and implementing the `validate` method
+   * extend the {{#crossLink "Components.FormElement"}}{{/crossLink}} component and implement the `setupValidations` hook or simply override the `errors` property to add the validation error messages to be displayed
+
+   See the above mentioned addons for examples.
+
+
+   @class Form
+   @namespace Components
+   @extends Ember.Component
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend({
+    tagName: 'form',
+    classNameBindings: ['layoutClass'],
+    ariaRole: 'form',
+
+    /**
+     * Bootstrap form class name (computed)
+     *
+     * @property layoutClass
+     * @type string
+     * @readonly
+     * @protected
+     *
+     */
+    layoutClass: computed('formLayout', function () {
+      var layout = this.get('formLayout');
+      return layout === 'vertical' ? 'form' : 'form-' + layout;
+    }),
+
+    /**
+     * Set a model that this form should represent. This serves several purposes:
+     *
+     * * child `Components.FormElement`s can access and bind to this model by their `property`
+     * * when the model supports validation by using the [ember-validations](https://github.com/dockyard/ember-validations) mixin,
+     * child `Components.FormElement`s will look at the validation information of their `property` and render their form group accordingly.
+     * Moreover the form's `submit` event handler will validate the model and deny submitting if the model is not validated successfully.
+     *
+     * @property model
+     * @type Ember.Object
+     * @public
+     */
+    model: null,
+
+    /**
+     * Set the layout of the form to either "vertical", "horizontal" or "inline". See http://getbootstrap.com/css/#forms-inline and http://getbootstrap.com/css/#forms-horizontal
+     *
+     * @property formLayout
+     * @type string
+     * @public
+     */
+    formLayout: 'vertical',
+
+    /**
+     * Check if validating the model is supported. This needs to be implemented by another addon.
+     *
+     * @property hasValidator
+     * @type boolean
+     * @readonly
+     * @protected
+     */
+    hasValidator: false,
+
+    /**
+     * The Bootstrap grid class for form labels. This is used by the `Components.FormElement` class as a default for the
+     * whole form.
+     *
+     * @property horizontalLabelGridClass
+     * @type string
+     * @default 'col-md-4'
+     * @public
+     */
+    horizontalLabelGridClass: 'col-md-4',
+
+    /**
+     * If set to true pressing enter will submit the form, even if no submit button is present
+     *
+     * @property submitOnEnter
+     * @type boolean
+     * @default false
+     * @public
+     */
+    submitOnEnter: false,
+
+    /**
+     * An array of `Components.FormElement`s that are children of this form.
+     *
+     * @property childFormElements
+     * @type Array
+     * @readonly
+     * @protected
+     */
+    childFormElements: computed.filter('childViews', function (view) {
+      return view instanceof FormElement['default'];
+    }),
+
+    /**
+     * Validate hook which will return a promise that will either resolve if the model is valid
+     * or reject if it's not. This should be overridden to add validation support.
+     *
+     * @param Object model
+     * @return Promise
+     * @public
+     */
+    validate: function validate() /* model */{
+      Ember['default'].deprecate('[ember-bootstrap] Validation support has been moved to 3rd party addons.\n' + 'ember-validations: https://github.com/kaliber5/ember-bootstrap-validations\n' + 'ember-cp-validations: https://github.com/offirgolan/ember-bootstrap-cp-validations\n', false, {
+        id: 'ember-bootstrap.form.validate',
+        url: 'http://kaliber5.github.io/ember-bootstrap/api/classes/Components.Form.html'
+      });
+    },
+
+    /**
+     * A handler called before the form is validated (if possible) and submitted.
+     *
+     * @event before
+     * @public
+     */
+
+    /**
+     * A handler called when submit has been triggered and the model has passed all validations (if present).
+     *
+     * @event action
+     * @param Object result The returned result from the validate method
+     * @public
+     */
+
+    /**
+     * A handler called when validation of the model has failed.
+     *
+     * @event invalid
+     * @param Object error
+     * @public
+     */
+
+    /**
+     * Submit handler that will send the default action ("action") to the controller when submitting the form.
+     *
+     * If there is a supplied `model` that supports validation (`hasValidator`) the model will be validated before, and
+     * only if validation is successful the default action will be sent. Otherwise an "invalid" action will be sent, and
+     * all the `showValidation` property of all child `Components.FormElement`s will be set to true, so error state and
+     * messages will be shown automatically.
+     *
+     * @method submit
+     * @private
+     */
+    submit: function submit(e) {
+      var _this = this;
+
+      if (e) {
+        e.preventDefault();
+      }
+
+      this.sendAction('before');
+
+      if (!this.get('hasValidator')) {
+        return this.sendAction();
+      } else {
+        var validationPromise = this.validate(this.get('model'));
+        if (validationPromise && validationPromise instanceof Ember['default'].RSVP.Promise) {
+          validationPromise.then(function (r) {
+            return _this.sendAction('action', r);
+          }, function (err) {
+            _this.get('childFormElements').setEach('showValidation', true);
+            return _this.sendAction('invalid', err);
+          });
+        }
+      }
+    },
+
+    keyPress: function keyPress(e) {
+      var code = e.keyCode || e.which;
+      if (code === 13 && this.get('submitOnEnter')) {
+        this.$().submit();
+      }
+    }
+  });
+
+});
+define('ember-bootstrap/components/bs-input', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].TextField.extend({
+    classNames: ['form-control']
+  });
+
+});
+define('ember-bootstrap/components/bs-modal-body', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Component.extend({
+    classNames: ['modal-body']
+  });
+
+});
+define('ember-bootstrap/components/bs-modal-dialog', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+
+  /**
+    Internal component for modal's markup and event handling. Should not be used directly.
+
+    @class ModalDialog
+    @namespace Components
+    @extends Ember.Component
+    @private
+   */
+  exports['default'] = Ember['default'].Component.extend({
+    classNames: ['modal'],
+    classNameBindings: ['fade', 'in'],
+    attributeBindings: ['tabindex'],
+    ariaRole: 'dialog',
+    tabindex: '-1',
+
+    /**
+     * The title of the modal, visible in the modal header. Is ignored if `header` is false.
+     *
+     * @property title
+     * @type string
+     * @public
+     */
+    title: null,
+
+    /**
+     * Display a close button (x icon) in the corner of the modal header.
+     *
+     * @property closeButton
+     * @type boolean
+     * @default true
+     * @public
+     */
+    closeButton: true,
+
+    /**
+     * Set to false to disable fade animations.
+     *
+     * @property fade
+     * @type boolean
+     * @default true
+     * @public
+     */
+    fade: true,
+
+    /**
+     * Used to apply Bootstrap's "in" class
+     *
+     * @property in
+     * @type boolean
+     * @default false
+     * @private
+     */
+    'in': false,
+
+    /**
+     * Closes the modal when escape key is pressed.
+     *
+     * @property keyboard
+     * @type boolean
+     * @default true
+     * @public
+     */
+    keyboard: true,
+
+    /**
+     * Generate a modal header component automatically. Set to false to disable. In this case you would want to include an
+     * instance of {{#crossLink "Components.ModalHeader"}}{{/crossLink}} in the components block template
+     *
+     * @property header
+     * @type boolean
+     * @default true
+     * @public
+     */
+    header: true,
+
+    /**
+     * Generate a modal body component automatically. Set to false to disable. In this case you would want to include an
+     * instance of {{#crossLink "Components.ModalBody"}}{{/crossLink}} in the components block template.
+     *
+     * Always set this to false if `header` and/or `footer` is false!
+     *
+     * @property body
+     * @type boolean
+     * @default true
+     * @public
+     */
+    body: true,
+
+    /**
+     * Generate a modal footer component automatically. Set to false to disable. In this case you would want to include an
+     * instance of {{#crossLink "Components.ModalFooter"}}{{/crossLink}} in the components block template
+     *
+     * @property footer
+     * @type boolean
+     * @default true
+     * @public
+     */
+    footer: true,
+
+    /**
+     * Property for size styling, set to null (default), 'lg' or 'sm'
+     *
+     * Also see the [Bootstrap docs](http://getbootstrap.com/javascript/#modals-sizes)
+     *
+     * @property size
+     * @type String
+     * @public
+     */
+    size: null,
+
+    /**
+     * If true clicking on the backdrop will close the modal.
+     *
+     * @property backdropClose
+     * @type boolean
+     * @default true
+     * @public
+     */
+    backdropClose: true,
+
+    /**
+     * Name of the size class
+     *
+     * @property sizeClass
+     * @type string
+     * @private
+     */
+    sizeClass: computed('size', function () {
+      var size = this.get('size');
+      return Ember['default'].isBlank(size) ? null : 'modal-' + size;
+    }),
+
+    keyDown: function keyDown(e) {
+      var code = e.keyCode || e.which;
+      if (code === 27 && this.get('keyboard')) {
+        this.sendAction('close');
+      }
+    },
+
+    click: function click(e) {
+      if (e.target !== e.currentTarget || !this.get('backdropClose')) {
+        return;
+      }
+      this.sendAction('close');
+    }
+
+  });
+
+});
+define('ember-bootstrap/components/bs-modal-footer', ['exports', 'ember', 'ember-bootstrap/mixins/modal-closer'], function (exports, Ember, ModalCloser) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+
+  /**
+
+   Modal footer element used within {{#crossLink "Components.Modal"}}{{/crossLink}} components. See there for examples.
+
+   @class ModalFooter
+   @namespace Components
+   @extends Ember.Component
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend(ModalCloser['default'], {
+    tagName: 'form',
+    classNames: ['modal-footer'],
+
+    /**
+     * The title of the default close button. Will be ignored (i.e. no close button) if you provide your own block
+     * template.
+     *
+     * @property closeTitle
+     * @type string
+     * @default 'Ok'
+     * @public
+     */
+    closeTitle: 'Ok',
+
+    /**
+     * The title of the submit button (primary button). Will be ignored (i.e. no button) if set to null or if you provide
+     * your own block template.
+     *
+     * @property submitTitle
+     * @type string
+     * @default null
+     * @public
+     */
+    submitTitle: null,
+
+    hasSubmitButton: computed.notEmpty('submitTitle'),
+
+    /**
+     * Set to true to disable the submit button. If you bind this to some property that indicates if submitting is allowed
+     * (form validation for example) this can be used to prevent the user from pressing the submit button.
+     *
+     * @property submitDisabled
+     * @type boolean
+     * @default false
+     * @public
+     */
+    submitDisabled: false,
+
+    /**
+     * The action to send to the parent modal component when the modal footer's form is submitted
+     *
+     * @property submitAction
+     * @type string
+     * @default 'submit'
+     * @private
+     */
+    submitAction: 'submit',
+
+    submit: function submit(e) {
+      e.preventDefault();
+      // send to parent bs-modal component
+      this.sendAction('submitAction');
+    }
+
+  });
+
+});
+define('ember-bootstrap/components/bs-modal-header', ['exports', 'ember', 'ember-bootstrap/mixins/modal-closer'], function (exports, Ember, ModalCloser) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Component.extend(ModalCloser['default'], {
+    classNames: ['modal-header'],
+
+    /**
+     * Show a close button (x icon)
+     *
+     * @property closeButton
+     * @type boolean
+     * @default true
+     * @public
+     */
+    closeButton: true,
+
+    /**
+     * The title to display in the modal header
+     *
+     * @property title
+     * @type string
+     * @default null
+     * @public
+     */
+    title: null
+
+  });
+
+});
+define('ember-bootstrap/components/bs-modal', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+  var observer = Ember['default'].observer;
+
+  var Modal = {};
+
+  Modal.TRANSITION_DURATION = 300;
+  Modal.BACKDROP_TRANSITION_DURATION = 150;
+
+  var observeOpen = function observeOpen() {
+    if (this.get('open')) {
+      this.show();
+    } else {
+      this.hide();
+    }
+  };
+
+  /**
+
+   Component for creating [Bootstrap modals](http://getbootstrap.com/javascript/#modals). Creating a simple modal is easy:
+
+   ```hbs
+   {{#bs-modal title="Simple Dialog"}}
+   Hello world!
+   {{/bs-modal}}
+   ```
+
+   This will automatically create the appropriate markup, with a modal header containing the title, and a footer containing
+   a default "Ok" button, that will close the modal automatically (unless you set `autoClose` to false).
+
+   A modal created this way will be visible at once. You can use the `{{#if ...}}` helper to hide all modal elements form
+   the DOM until needed. Or you can bind the `open` property to trigger showing and hiding the modal:
+
+   ```hbs
+   {{#bs-modal open=openModal title="Simple Dialog"}}
+   Hello world!
+   {{/bs-modal}}
+   ```
+
+   ### Custom Markup
+
+   To customize your modal markup you can use the following sub components:
+
+   {{#crossLink "Components.ModalBody"}}{{/crossLink}}
+   {{#crossLink "Components.ModalHeader"}}{{/crossLink}}
+   {{#crossLink "Components.ModalFooter"}}{{/crossLink}}
+
+   In the example above, these are generated for you automatically. Whenever you use one of these by yourself you should
+   set the appropriate property (`body`, `footer`, `header`) to false to prevent their automatic generation. Note that
+   in any case where you use a custom sub component, you must also use a custom {{#crossLink "Components.ModalBody"}}{{/crossLink}}!
+
+   A common use case is to customize the buttons in the footer. Most often you will have a cancel button that closes the
+   model without action, and a submit button that triggers some action. The footer component supports this case by letting
+   you customize the button titles, the rest (triggering close or submit actions) automatically set up:
+
+   ```hbs
+   {{#bs-modal body=false footer=false title="Attention" submitAction=(action "submit")}}
+   {{#bs-modal-body}}Are you sure?{{/bs-modal-body}}
+   {{bs-modal-footer closeTitle="Cancel" submitTitle="Ok"}}
+   {{/bs-modal}}
+   ```
+
+   If you further want to customize your modal elements, you can supply custom templates for your footer and header, as in
+   the following example:
+
+   ```hbs
+   {{#bs-modal body=false footer=false header=false submitAction=(action "submit")}}
+   {{#bs-modal-header}}
+   <h4 class="modal-title"><i class="glyphicon glyphicon-alert"></i> Alert</h4>
+   {{/bs-modal-header}}
+   {{#bs-modal-body}}Are you absolutely sure you want to do that???{{/bs-modal-body}}
+   {{#bs-modal-footer as |footer|}}
+   {{#bs-button action=(action "close" target=footer) type="danger"}}Oh no, forget it!{{/bs-button}}
+   {{#bs-button buttonType="submit" type="success"}}Yeah!{{/bs-button}}
+   {{/bs-modal-footer}}
+   {{/bs-modal}}
+   ```
+
+   Note the use of the action helper of the close button that triggers the close action on the modal footer component
+   instead of on the controller, which will bubble up to the modal component and close the modal.
+
+   ### Modals with forms
+
+   There is a special case when you have a form inside your modals body: you probably do not want to have a submit button
+   within your form but instead in your modal footer. Hover pressing the submit button outside of your form would not
+   trigger the form data to be submitted. In the example below this would not trigger the submit action of the form, an
+   thus bypass the form validation feature of the form component.
+
+   ```hbs
+   {{#bs-modal title="Form Example" body=false footer=false}}
+   {{#bs-modal-body}}
+   {{#bs-form action=(action "submit") model=this}}
+   {{bs-form-element controlType="text" label="first name" property="firstname"}}
+   {{bs-form-element controlType="text" label="last name" property="lastname"}}
+   {{/bs-form}}
+   {{/bs-modal-body}}
+   {{bs-modal-footer closeTitle=(t "contact.label.cancel") submitTitle=(t "contact.label.ok")}}
+   {{/bs-modal}}
+   ```
+
+   The modal component supports this common case by triggering the submit event programmatically on the body's form if
+   present whenever the footer's submit button is pressed, so the example above will work as expected.
+
+   ### Auto-focus
+
+   In order to allow key handling to function, the modal's root element is given focus once the modal is shown. If your
+   modal contains an element such as a text input and you would like it to be given focus rather than the modal element,
+   then give it the HTML5 autofocus attribute:
+
+   ```hbs
+   {{#bs-modal title="Form Example" body=false footer=false}}
+   {{#bs-modal-body}}
+   {{#bs-form action=(action "submit") model=this}}
+   {{bs-form-element controlType="text" label="first name" property="firstname" autofocus=true}}
+   {{bs-form-element controlType="text" label="last name" property="lastname"}}
+   {{/bs-form}}
+   {{/bs-modal-body}}
+   {{bs-modal-footer closeTitle=(t "contact.label.cancel") submitTitle=(t "contact.label.ok")}}
+   {{/bs-modal}}
+   ```
+
+
+   ### Modals inside wormhole
+
+   Modals make use of the [ember-wormhole](https://github.com/yapplabs/ember-wormhole) addon, which will be installed
+   automatically alongside ember-bootstrap. This is used to allow the modal to be placed in deeply nested
+   components/templates where it belongs to logically, but to have the actual DOM elements within a special container
+   element, which is a child of ember's root element. This will make sure that modals always overlay the whole app, and
+   are not effected by parent elements with `overflow: hidden` for example.
+
+   If you want the modal to render in place, rather than being wormholed, you can set renderInPlace=true.
+
+   @class Modal
+   @namespace Components
+   @extends Ember.Component
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend({
+
+    /**
+     * Visibility of the modal. Toggle to to show/hide with CSS transitions.
+     *
+     * @property open
+     * @type boolean
+     * @default true
+     * @public
+     */
+    open: true,
+
+    /**
+     * The title of the modal, visible in the modal header. Is ignored if `header` is false.
+     *
+     * @property title
+     * @type string
+     * @public
+     */
+    title: null,
+
+    /**
+     * Display a close button (x icon) in the corner of the modal header.
+     *
+     * @property closeButton
+     * @type boolean
+     * @default true
+     * @public
+     */
+    closeButton: true,
+
+    /**
+     * Set to false to disable fade animations.
+     *
+     * @property fade
+     * @type boolean
+     * @default true
+     * @public
+     */
+    fade: true,
+
+    /**
+     * Used to apply Bootstrap's "in" class
+     *
+     * @property in
+     * @type boolean
+     * @default false
+     * @private
+     */
+    'in': false,
+
+    /**
+     * Use a semi-transparent modal background to hide the rest of the page.
+     *
+     * @property backdrop
+     * @type boolean
+     * @default true
+     * @public
+     */
+    backdrop: true,
+
+    /**
+     * @property showBackdrop
+     * @type boolean
+     * @default false
+     * @private
+     */
+    showBackdrop: false,
+
+    /**
+     * Closes the modal when escape key is pressed.
+     *
+     * @property keyboard
+     * @type boolean
+     * @default true
+     * @public
+     */
+    keyboard: true,
+
+    /**
+     * If true clicking a close button will hide the modal automatically.
+     * If you want to handle hiding the modal by yourself, you can set this to false and use the closeAction to
+     * implement your custom logic.
+     *
+     * @property autoClose
+     * @type boolean
+     * @default true
+     * @public
+     */
+    autoClose: true,
+
+    /**
+     * Generate a modal header component automatically. Set to false to disable. In this case you would want to include an
+     * instance of {{#crossLink "Components.ModalHeader"}}{{/crossLink}} in the components block template
+     *
+     * @property header
+     * @type boolean
+     * @default true
+     * @public
+     */
+    header: true,
+
+    /**
+     * Generate a modal body component automatically. Set to false to disable. In this case you would want to include an
+     * instance of {{#crossLink "Components.ModalBody"}}{{/crossLink}} in the components block template.
+     *
+     * Always set this to false if `header` and/or `footer` is false!
+     *
+     * @property body
+     * @type boolean
+     * @default true
+     * @public
+     */
+    body: true,
+
+    /**
+     * Generate a modal footer component automatically. Set to false to disable. In this case you would want to include an
+     * instance of {{#crossLink "Components.ModalFooter"}}{{/crossLink}} in the components block template
+     *
+     * @property footer
+     * @type boolean
+     * @default true
+     * @public
+     */
+    footer: true,
+
+    /**
+     * The id of the `.modal` element.
+     *
+     * @property modalId
+     * @type string
+     * @readonly
+     * @private
+     */
+    modalId: computed('elementId', function () {
+      return this.get('elementId') + '-modal';
+    }),
+
+    /**
+     * The jQuery object of the `.modal` element.
+     *
+     * @property modalElement
+     * @type object
+     * @readonly
+     * @private
+     */
+    modalElement: computed('modalId', function () {
+      return Ember['default'].$('#' + this.get('modalId'));
+    }).volatile(),
+
+    /**
+     * The id of the backdrop element.
+     *
+     * @property backdropId
+     * @type string
+     * @readonly
+     * @private
+     */
+    backdropId: computed('elementId', function () {
+      return this.get('elementId') + '-backdrop';
+    }),
+
+    /**
+     * The jQuery object of the backdrop element.
+     *
+     * @property backdropElement
+     * @type object
+     * @readonly
+     * @private
+     */
+    backdropElement: computed('backdropId', function () {
+      return Ember['default'].$('#' + this.get('backdropId'));
+    }).volatile(),
+
+    /**
+     * Use CSS transitions when showing/hiding the modal?
+     *
+     * @property usesTransition
+     * @type boolean
+     * @readonly
+     * @private
+     */
+    usesTransition: computed('fade', function () {
+      return Ember['default'].$.support.transition && this.get('fade');
+    }),
+
+    /**
+     * Property for size styling, set to null (default), 'lg' or 'sm'
+     *
+     * Also see the [Bootstrap docs](http://getbootstrap.com/javascript/#modals-sizes)
+     *
+     * @property size
+     * @type String
+     * @public
+     */
+    size: null,
+
+    /**
+     * If true clicking on the backdrop will close the modal.
+     *
+     * @property backdropClose
+     * @type boolean
+     * @default true
+     * @public
+     */
+    backdropClose: true,
+
+    /**
+     * If true component will render in place, rather than be wormholed.
+     *
+     * @property renderInPlace
+     * @type boolean
+     * @default false
+     * @public
+     */
+    renderInPlace: false,
+
+    /**
+     * The action to be sent when the modal footer's submit button (if present) is pressed.
+     * Note that if your modal body contains a form (e.g. {{#crossLink "Components.Form"}}{{/crossLink}}) this action will
+     * not be triggered. Instead a submit event will be triggered on the form itself. See the class description for an
+     * example.
+     *
+     * @property submitAction
+     * @type string
+     * @default null
+     * @public
+     */
+    submitAction: null,
+
+    /**
+     * The action to be sent when the modal is closing.
+     * This will be triggered by pressing the modal header's close button (x button) or the modal footer's close button.
+     * Note that this will happen before the modal is hidden from the DOM, as the fade transitions will still need some
+     * time to finish. Use the `closedAction` if you need the modal to be hidden when the action triggers.
+     *
+     * You can set `autoClose` to false to prevent closing the modal automatically, and do that in your closeAction by
+     * setting `open` to false.
+     *
+     * @property closeAction
+     * @type string
+     * @default null
+     * @public
+     */
+    closeAction: null,
+
+    /**
+     * The action to be sent after the modal has been completely hidden (including the CSS transition).
+     *
+     * @property closedAction
+     * @type string
+     * @default null
+     * @public
+     */
+    closedAction: null,
+
+    /**
+     * The action to be sent when the modal is opening.
+     * This will be triggered immediately after the modal is shown (so it's safe to access the DOM for
+     * size calculations and the like). This means that if fade=true, it will be shown in between the
+     * backdrop animation and the fade animation.
+     *
+     * @property openAction
+     * @type string
+     * @default null
+     * @public
+     */
+    openAction: null,
+
+    /**
+     * The action to be sent after the modal has been completely shown (including the CSS transition).
+     *
+     * @property openedAction
+     * @type string
+     * @default null
+     * @public
+     */
+    openedAction: null,
+
+    actions: {
+      close: function close() {
+        if (this.get('autoClose')) {
+          this.set('open', false);
+        }
+        this.sendAction('closeAction');
+      },
+      submit: function submit() {
+        var form = this.get('modalElement').find('.modal-body form');
+        if (form.length > 0) {
+          // trigger submit event on body form
+          form.trigger('submit');
+        } else {
+          // if we have no form, we send a submit action
+          this.sendAction('submitAction');
+        }
+      }
+    },
+
+    _observeOpen: observer('open', observeOpen),
+
+    /**
+     * Give the modal (or its autofocus element) focus
+     *
+     * @method takeFocus
+     * @private
+     */
+    takeFocus: function takeFocus() {
+      var focusElement = this.get('modalElement').find('[autofocus]').first();
+      if (focusElement.length === 0) {
+        focusElement = this.get('modalElement');
+      }
+      if (focusElement.length > 0) {
+        focusElement.focus();
+      }
+    },
+
+    /**
+     * Show the modal
+     *
+     * @method show
+     * @private
+     */
+    show: function show() {
+
+      this.checkScrollbar();
+      this.setScrollbar();
+
+      Ember['default'].$('body').addClass('modal-open');
+
+      this.resize();
+
+      var callback = function callback() {
+        if (this.get('isDestroyed')) {
+          return;
+        }
+
+        this.get('modalElement').show().scrollTop(0);
+
+        this.handleUpdate();
+        this.set('in', true);
+        this.sendAction('openAction');
+
+        if (this.get('usesTransition')) {
+          this.get('modalElement').one('bsTransitionEnd', Ember['default'].run.bind(this, function () {
+            this.takeFocus();
+            this.sendAction('openedAction');
+          })).emulateTransitionEnd(Modal.TRANSITION_DURATION);
+        } else {
+          this.takeFocus();
+          this.sendAction('openedAction');
+        }
+      };
+      Ember['default'].run.scheduleOnce('afterRender', this, this.handleBackdrop, callback);
+    },
+
+    /**
+     * Hide the modal
+     *
+     * @method hide
+     * @private
+     */
+    hide: function hide() {
+      this.resize();
+      this.set('in', false);
+
+      if (this.get('usesTransition')) {
+        this.get('modalElement').one('bsTransitionEnd', Ember['default'].run.bind(this, this.hideModal)).emulateTransitionEnd(Modal.TRANSITION_DURATION);
+      } else {
+        this.hideModal();
+      }
+    },
+
+    /**
+     * Clean up after modal is hidden and call closedAction
+     *
+     * @method hideModal
+     * @private
+     */
+    hideModal: function hideModal() {
+      var _this = this;
+
+      if (this.get('isDestroyed')) {
+        return;
+      }
+
+      this.get('modalElement').hide();
+      this.handleBackdrop(function () {
+        Ember['default'].$('body').removeClass('modal-open');
+        _this.resetAdjustments();
+        _this.resetScrollbar();
+        _this.sendAction('closedAction');
+      });
+    },
+
+    /**
+     * SHow/hide the backdrop
+     *
+     * @method handleBackdrop
+     * @param callback
+     * @private
+     */
+    handleBackdrop: function handleBackdrop(callback) {
+      var doAnimate = this.get('usesTransition');
+
+      if (this.get('open') && this.get('backdrop')) {
+        this.set('showBackdrop', true);
+
+        if (!callback) {
+          return;
+        }
+
+        var waitForFade = function waitForFade() {
+          var $backdrop = this.get('backdropElement');
+          Ember['default'].assert('Backdrop element should be in DOM', $backdrop && $backdrop.length > 0);
+
+          if (doAnimate) {
+            $backdrop.one('bsTransitionEnd', Ember['default'].run.bind(this, callback)).emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION);
+          } else {
+            callback.call(this);
+          }
+        };
+
+        Ember['default'].run.scheduleOnce('afterRender', this, waitForFade);
+      } else if (!this.get('open') && this.get('backdrop')) {
+        var $backdrop = this.get('backdropElement');
+        Ember['default'].assert('Backdrop element should be in DOM', $backdrop && $backdrop.length > 0);
+
+        var callbackRemove = function callbackRemove() {
+          this.set('showBackdrop', false);
+          if (callback) {
+            callback.call(this);
+          }
+        };
+        if (doAnimate) {
+          $backdrop.one('bsTransitionEnd', Ember['default'].run.bind(this, callbackRemove)).emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION);
+        } else {
+          callbackRemove.call(this);
+        }
+      } else if (callback) {
+        callback.call(this);
+      }
+    },
+
+    /**
+     * Attach/Detach resize event listeners
+     *
+     * @method resize
+     * @private
+     */
+    resize: function resize() {
+      if (this.get('open')) {
+        Ember['default'].$(window).on('resize.bs.modal', Ember['default'].run.bind(this, this.handleUpdate));
+      } else {
+        Ember['default'].$(window).off('resize.bs.modal');
+      }
+    },
+
+    /**
+     * @method handleUpdate
+     * @private
+     */
+    handleUpdate: function handleUpdate() {
+      this.adjustDialog();
+    },
+
+    /**
+     * @method adjustDialog
+     * @private
+     */
+    adjustDialog: function adjustDialog() {
+      var modalIsOverflowing = this.get('modalElement')[0].scrollHeight > document.documentElement.clientHeight;
+      this.get('modalElement').css({
+        paddingLeft: !this.bodyIsOverflowing && modalIsOverflowing ? this.get('scrollbarWidth') : '',
+        paddingRight: this.bodyIsOverflowing && !modalIsOverflowing ? this.get('scrollbarWidth') : ''
+      });
+    },
+
+    /**
+     * @method resetAdjustments
+     * @private
+     */
+    resetAdjustments: function resetAdjustments() {
+      this.get('modalElement').css({
+        paddingLeft: '',
+        paddingRight: ''
+      });
+    },
+
+    /**
+     * @method checkScrollbar
+     * @private
+     */
+    checkScrollbar: function checkScrollbar() {
+      var fullWindowWidth = window.innerWidth;
+      if (!fullWindowWidth) {
+        // workaround for missing window.innerWidth in IE8
+        var documentElementRect = document.documentElement.getBoundingClientRect();
+        fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left);
+      }
+
+      this.bodyIsOverflowing = document.body.clientWidth < fullWindowWidth;
+    },
+
+    /**
+     * @method setScrollbar
+     * @private
+     */
+    setScrollbar: function setScrollbar() {
+      var bodyPad = parseInt(Ember['default'].$('body').css('padding-right') || 0, 10);
+      this.originalBodyPad = document.body.style.paddingRight || '';
+      if (this.bodyIsOverflowing) {
+        Ember['default'].$('body').css('padding-right', bodyPad + this.get('scrollbarWidth'));
+      }
+    },
+
+    /**
+     * @method resetScrollbar
+     * @private
+     */
+    resetScrollbar: function resetScrollbar() {
+      Ember['default'].$('body').css('padding-right', this.originalBodyPad);
+    },
+
+    /**
+     * @property scrollbarWidth
+     * @type number
+     * @readonly
+     * @private
+     */
+    scrollbarWidth: computed(function () {
+      var scrollDiv = document.createElement('div');
+      scrollDiv.className = 'modal-scrollbar-measure';
+      this.get('modalElement').after(scrollDiv);
+      var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+      Ember['default'].$(scrollDiv).remove();
+      return scrollbarWidth;
+    }),
+
+    didInsertElement: function didInsertElement() {
+      if (this.get('open')) {
+        this.show();
+      }
+    },
+
+    willDestroyElement: function willDestroyElement() {
+      Ember['default'].$(window).off('resize.bs.modal');
+      Ember['default'].$('body').removeClass('modal-open');
+    }
+
+  });
+
+});
+define('ember-bootstrap/components/bs-progress-bar', ['exports', 'ember', 'ember-bootstrap/mixins/type-class'], function (exports, Ember, TypeClass) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+
+  /**
+
+   Component to display a Bootstrap progress bar, see http://getbootstrap.com/components/#progress.
+
+   ### Usage
+
+   Always wrap the progress bar in a {{#crossLink "Components.Progress"}}{{/crossLink}} component. Use the `value`
+   property to control the progress bar's width. To apply the different styling options supplied by Bootstrap, use the
+   appropriate properties like `type`, `showLabel`, `striped` or `animate`.
+
+   ```hbs
+   \{{#bs-progress}}
+     \{{bs-progress-bar value=progressValue minValue=0 maxValue=10 showLabel=true type="danger"}}
+   \{{/bs-progress}}
+   ```
+
+   ### Stacked
+
+   You can place multiple progress bar components in a single {{#crossLink "Components.Progress"}}{{/crossLink}} to
+   create a stack of progress bars as seen in http://getbootstrap.com/components/#progress-stacked.
+
+   ```hbs
+   \{{#bs-progress}}
+     \{{bs-progress-bar value=progressValue1 type="success"}}
+     \{{bs-progress-bar value=progressValue2 type="warning"}}
+     \{{bs-progress-bar value=progressValue3 type="danger"}}
+   \{{/bs-progress}}
+   ```
+
+   @class ProgressBar
+   @namespace Components
+   @extends Ember.Component
+   @uses Mixins.TypeClass
+   @public
+   */
+  exports['default'] = Ember['default'].Component.extend(TypeClass['default'], {
+    classNames: ['progress-bar'],
+    classNameBindings: ['progressBarStriped', 'active'],
+
+    attributeBindings: ['style', 'ariaValuenow', 'ariaValuemin', 'ariaValuemax'],
+
+    /**
+     * @property classTypePrefix
+     * @type String
+     * @default 'progress-bar'
+     * @protected
+     */
+    classTypePrefix: 'progress-bar',
+
+    /**
+     * The lower limit of the value range
+     *
+     * @property minValue
+     * @type number
+     * @default 0
+     * @public
+     */
+    minValue: 0,
+
+    /**
+     * The upper limit of the value range
+     *
+     * @property maxValue
+     * @type number
+     * @default 100
+     * @public
+     */
+    maxValue: 100,
+
+    /**
+     * The value the progress bar should represent
+     *
+     * @property value
+     * @type number
+     * @default 0
+     * @public
+     */
+    value: 0,
+
+    /**
+     If true a label will be shown inside the progress bar.
+      By default it will be the percentage corresponding to the `value` property, rounded to `roundDigits` digits.
+     You can customize it by using the component with a block template, which the component yields the percentage
+     value to:
+      ```hbs
+     {{#bs-progress}}
+       {{#bs-progress-bar value=progressValue as |percent|}}{{progressValue}} ({{percent}}%){{/bs-progress-bar}}
+     {{/bs-progress}}
+     ```
+      @property showLabel
+     @type boolean
+     @default false
+     @public
+     */
+    showLabel: false,
+
+    /**
+     * Create a striped effect, see http://getbootstrap.com/components/#progress-striped
+     *
+     * @property striped
+     * @type boolean
+     * @default false
+     * @public
+     */
+    striped: false,
+
+    /**
+     * Animate the stripes, see http://getbootstrap.com/components/#progress-animated
+     *
+     * @property animate
+     * @type boolean
+     * @default false
+     * @public
+     */
+    animate: false,
+
+    /**
+     * Specify to how many digits the progress bar label should be rounded.
+     *
+     * @property roundDigits
+     * @type number
+     * @default 0
+     * @public
+     */
+    roundDigits: 0,
+
+    progressBarStriped: computed.alias('striped'),
+    active: computed.alias('animate'),
+
+    ariaValuenow: computed.alias('value'),
+    ariaValuemin: computed.alias('minValue'),
+    ariaValuemax: computed.alias('maxValue'),
+
+    /**
+     * The percentage of `value`
+     *
+     * @property percent
+     * @type number
+     * @protected
+     * @readonly
+     */
+    percent: computed('value', 'minValue', 'maxValue', function () {
+      var value = parseFloat(this.get('value'));
+      var minValue = parseFloat(this.get('minValue'));
+      var maxValue = parseFloat(this.get('maxValue'));
+
+      return Math.min(Math.max((value - minValue) / (maxValue - minValue), 0), 1) * 100;
+    }),
+
+    /**
+     * The percentage of `value`, rounded to `roundDigits` digits
+     *
+     * @property percentRounded
+     * @type number
+     * @protected
+     * @readonly
+     */
+    percentRounded: computed('percent', 'roundDigits', function () {
+      var roundFactor = Math.pow(10, this.get('roundDigits'));
+      return Math.round(this.get('percent') * roundFactor) / roundFactor;
+    }),
+
+    /**
+     * @property style
+     * @type string
+     * @private
+     * @readonly
+     */
+    style: computed('percent', function () {
+      var percent = this.get('percent');
+      return new Ember['default'].Handlebars.SafeString('width: ' + percent + '%');
+    })
+
+  });
+
+});
+define('ember-bootstrap/components/bs-progress', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Component.extend({
+    classNames: ['progress']
+  });
+
+});
+define('ember-bootstrap/components/bs-select', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Component.extend({
+    tagName: 'select',
+    classNames: ['form-control'],
+
+    attributeBindings: ['disabled', 'required'],
+    disabled: false,
+    required: false,
+
+    content: null,
+    prompt: null,
+    optionValuePath: 'id',
+    optionLabelPath: 'title',
+    action: Ember['default'].K, // action to fire on change
+
+    value: null,
+
+    init: function init() {
+      this._super.apply(this, arguments);
+      if (!this.get('content')) {
+        this.set('content', []);
+      }
+    },
+
+    change: function change() {
+      var selectEl = this.$().get(0);
+      var selectedIndex = selectEl.selectedIndex;
+
+      var content = this.get('content');
+
+      // decrement index by 1 if we have a prompt
+      var hasPrompt = !!this.get('prompt');
+      var contentIndex = hasPrompt ? selectedIndex - 1 : selectedIndex;
+
+      var selection = content[contentIndex];
+
+      // set the local, shadowed selection to avoid leaking
+      // changes to `selection` out via 2-way binding
+      this.set('value', selection);
+
+      var changeCallback = this.get('action');
+      changeCallback(selection);
+    }
+  });
+
+});
+define('ember-bootstrap/components/bs-textarea', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].TextArea.extend({
+    classNames: ['form-control']
+  });
+
+});
+define('ember-bootstrap/config', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  var Config = Ember['default'].Object.extend();
+
+  Config.reopenClass({
+    formValidationSuccessIcon: 'glyphicon glyphicon-ok',
+    formValidationErrorIcon: 'glyphicon glyphicon-remove',
+    formValidationWarningIcon: 'glyphicon glyphicon-warning-sign',
+    formValidationInfoIcon: 'glyphicon glyphicon-info-sign',
+    insertEmberWormholeElementToDom: true,
+
+    load: function load() {
+      var config = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+      for (var property in config) {
+        if (this.hasOwnProperty(property) && typeof this[property] !== 'function') {
+          this[property] = config[property];
+        }
+      }
+    }
+  });
+
+  exports['default'] = Config;
+
+});
+define('ember-bootstrap/helpers/is-equal', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports.isEqual = isEqual;
+
+  function isEqual(params) {
+    return params[0] === params[1];
+  }
+
+  exports['default'] = Ember['default'].Helper.helper(isEqual);
+
+});
+define('ember-bootstrap/helpers/is-not', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports.isNot = isNot;
+
+  function isNot(params /*, hash*/) {
+    return !params[0];
+  }
+
+  exports['default'] = Ember['default'].Helper.helper(isNot);
+
+});
+define('ember-bootstrap/helpers/read-path', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports.readPath = readPath;
+
+  function readPath(params /*, hash*/) {
+    return Ember['default'].get(params[0], params[1]);
+  }
+
+  exports['default'] = Ember['default'].Helper.helper(readPath);
+
+});
+define('ember-bootstrap/initializers/modals-container', ['exports', 'ember-bootstrap/config'], function (exports, Config) {
+
+  'use strict';
+
+  var hasDOM = typeof document !== 'undefined';
+
+  function appendContainerElement(rootElementId, id) {
+    if (!hasDOM) {
+      return;
+    }
+
+    var rootEl = document.querySelector(rootElementId);
+    var modalContainerEl = document.createElement('div');
+    modalContainerEl.id = id;
+    rootEl.appendChild(modalContainerEl);
+  }
+
+  function initialize() {
+    if (!Config['default'].insertEmberWormholeElementToDom) {
+      return;
+    }
+    var application = arguments[1] || arguments[0];
+    var modalContainerElId = 'ember-bootstrap-modal-container';
+    appendContainerElement(application.rootElement, modalContainerElId);
+  }
+
+  exports['default'] = {
+    name: 'modals-container',
+    initialize: initialize
+  };
+
+});
+define('ember-bootstrap/mixins/component-child', ['exports', 'ember', 'ember-bootstrap/mixins/component-parent'], function (exports, Ember, ComponentParentMixin) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Mixin.create({
+
+    _didInsertElement: Ember['default'].on('didInsertElement', function () {
+      var parent = this.nearestOfType(ComponentParentMixin['default']);
+      if (parent) {
+        parent.registerChild(this);
+      }
+    }),
+
+    _willDestroyElement: Ember['default'].on('willDestroyElement', function () {
+      var parent = this.nearestOfType(ComponentParentMixin['default']);
+      if (parent) {
+        parent.removeChild(this);
+      }
+    })
+  });
+
+});
+define('ember-bootstrap/mixins/component-parent', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Mixin.create({
+
+    /**
+     * Array of registered child components
+     *
+     * @property children
+     * @type array
+     * @protected
+     */
+    children: null,
+
+    _onInit: Ember['default'].on('init', function () {
+      this.set('children', Ember['default'].A());
+    }),
+
+    /**
+     * Register a component as a child of this parent
+     *
+     * @method registerChild
+     * @param child
+     * @public
+     */
+    registerChild: function registerChild(child) {
+      Ember['default'].run.schedule('sync', this, function () {
+        this.get('children').addObject(child);
+      });
+    },
+
+    /**
+     * Remove the child component from this parent component
+     *
+     * @method removeChild
+     * @param child
+     * @public
+     */
+    removeChild: function removeChild(child) {
+      this.get('children').removeObject(child);
+    }
+  });
+
+});
+define('ember-bootstrap/mixins/dropdown-toggle', ['exports', 'ember', 'ember-bootstrap/mixins/component-child'], function (exports, Ember, componentChild) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Mixin.create(componentChild['default'], {
+    classNames: ['dropdown-toggle'],
+    attributeBindings: ['data-toggle'],
+    /**
+     * @property ariaRole
+     * @default button
+     * @type string
+     * @protected
+     */
+    ariaRole: 'button',
+
+    'data-toggle': 'dropdown',
+
+    targetObject: Ember['default'].computed.alias('parentView'),
+
+    /**
+     * The default action is set to "toggleDropdown" on the parent {{#crossLink "Components.Dropdown"}}{{/crossLink}}
+     *
+     * @property action
+     * @default toggleDropdown
+     * @type string
+     * @protected
+     */
+    action: 'toggleDropdown'
+  });
+
+});
+define('ember-bootstrap/mixins/modal-closer', ['exports', 'ember', 'ember-bootstrap/components/bs-modal'], function (exports, Ember, ModalComponent) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Mixin.create({
+    targetObject: Ember['default'].computed(function () {
+      return this.nearestOfType(ModalComponent['default']);
+    }).volatile(),
+
+    action: 'close',
+
+    actions: {
+      close: function close() {
+        this.sendAction();
+      }
+    }
+  });
+
+});
+define('ember-bootstrap/mixins/size-class', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Mixin.create({
+    /**
+     * Prefix for the size class, e.g. "btn" for button size classes ("btn-lg", "btn-sm" etc.)
+     *
+     * @property classTypePrefix
+     * @type string
+     * @required
+     * @protected
+     */
+    classTypePrefix: null,
+
+    classNameBindings: ['sizeClass'],
+
+    sizeClass: Ember['default'].computed('size', function () {
+      var prefix = this.get('classTypePrefix');
+      var size = this.get('size');
+      return Ember['default'].isBlank(size) ? null : prefix + '-' + size;
+    }),
+
+    /**
+     * Property for size styling, set to 'lg', 'sm' or 'xs'
+     *
+     * Also see the [Bootstrap docs](http://getbootstrap.com/css/#buttons-sizes)
+     *
+     * @property size
+     * @type String
+     * @public
+     */
+    size: null
+  });
+
+});
+define('ember-bootstrap/mixins/sub-component', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Mixin.create({
+    targetObject: Ember['default'].computed.alias('parentView')
+  });
+
+});
+define('ember-bootstrap/mixins/type-class', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Mixin.create({
+    /**
+     * Prefix for the type class, e.g. "btn" for button type classes ("btn-primary2 etc.)
+     *
+     * @property classTypePrefix
+     * @type string
+     * @required
+     * @protected
+     */
+    classTypePrefix: null,
+
+    classNameBindings: ['typeClass'],
+
+    typeClass: Ember['default'].computed('type', function () {
+      var prefix = this.get('classTypePrefix');
+      var type = this.get('type') || 'default';
+      return prefix + '-' + type;
+    }),
+
+    /**
+     * Property for type styling
+     *
+     * For the available types see the [Bootstrap docs](http://getbootstrap.com/css/#buttons-options) (use without "btn-" prefix)
+     *
+     * @property type
+     * @type String
+     * @default 'default'
+     * @public
+     */
+    type: 'default'
+  });
+
+});
+define('ember-bootstrap', ['ember-bootstrap/index', 'ember', 'exports'], function(__index__, __Ember__, __exports__) {
+  'use strict';
+  var keys = Object.keys || __Ember__['default'].keys;
+  var forEach = Array.prototype.forEach && function(array, cb) {
+    array.forEach(cb);
+  } || __Ember__['default'].EnumerableUtils.forEach;
+
+  forEach(keys(__index__), (function(key) {
+    __exports__[key] = __index__[key];
+  }));
+});
+
+define('ember-cli-app-version/components/app-version', ['exports', 'ember', 'ember-cli-app-version/templates/app-version'], function (exports, Ember, layout) {
 
   'use strict';
 
@@ -86743,6 +91207,100 @@ define('ember-cli-app-version', ['ember-cli-app-version/index', 'ember', 'export
 });
 
 define('ember-cli-content-security-policy', ['ember-cli-content-security-policy/index', 'ember', 'exports'], function(__index__, __Ember__, __exports__) {
+  'use strict';
+  var keys = Object.keys || __Ember__['default'].keys;
+  var forEach = Array.prototype.forEach && function(array, cb) {
+    array.forEach(cb);
+  } || __Ember__['default'].EnumerableUtils.forEach;
+
+  forEach(keys(__index__), (function(key) {
+    __exports__[key] = __index__[key];
+  }));
+});
+
+define('ember-wormhole/components/ember-wormhole', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  var computed = Ember['default'].computed;
+  var observer = Ember['default'].observer;
+  var run = Ember['default'].run;
+
+  exports['default'] = Ember['default'].Component.extend({
+    to: computed.alias('destinationElementId'),
+    destinationElementId: null,
+    destinationElement: computed('destinationElementId', 'renderInPlace', function () {
+      return this.get('renderInPlace') ? this.element : document.getElementById(this.get('destinationElementId'));
+    }),
+    renderInPlace: false,
+
+    didInsertElement: function didInsertElement() {
+      this._super.apply(this, arguments);
+      this._firstNode = this.element.firstChild;
+      this._lastNode = this.element.lastChild;
+      this.appendToDestination();
+    },
+
+    willDestroyElement: function willDestroyElement() {
+      var _this = this;
+
+      this._super.apply(this, arguments);
+      var firstNode = this._firstNode;
+      var lastNode = this._lastNode;
+      run.schedule('render', function () {
+        _this.removeRange(firstNode, lastNode);
+      });
+    },
+
+    destinationDidChange: observer('destinationElement', function () {
+      var destinationElement = this.get('destinationElement');
+      if (destinationElement !== this._firstNode.parentNode) {
+        run.schedule('render', this, 'appendToDestination');
+      }
+    }),
+
+    appendToDestination: function appendToDestination() {
+      var destinationElement = this.get('destinationElement');
+      var currentActiveElement = document.activeElement;
+      if (!destinationElement) {
+        var destinationElementId = this.get('destinationElementId');
+        if (destinationElementId) {
+          throw new Error('ember-wormhole failed to render into \'#' + this.get('destinationElementId') + '\' because the element is not in the DOM');
+        }
+        throw new Error('ember-wormhole failed to render content because the destinationElementId was set to an undefined or falsy value.');
+      }
+
+      this.appendRange(destinationElement, this._firstNode, this._lastNode);
+      if (document.activeElement !== currentActiveElement) {
+        currentActiveElement.focus();
+      }
+    },
+
+    appendRange: function appendRange(destinationElement, firstNode, lastNode) {
+      while (firstNode) {
+        destinationElement.insertBefore(firstNode, null);
+        firstNode = firstNode !== lastNode ? lastNode.parentNode.firstChild : null;
+      }
+    },
+
+    removeRange: function removeRange(firstNode, lastNode) {
+      var node = lastNode;
+      do {
+        var next = node.previousSibling;
+        if (node.parentNode) {
+          node.parentNode.removeChild(node);
+          if (node === firstNode) {
+            break;
+          }
+        }
+        node = next;
+      } while (node);
+    }
+
+  });
+
+});
+define('ember-wormhole', ['ember-wormhole/index', 'ember', 'exports'], function(__index__, __Ember__, __exports__) {
   'use strict';
   var keys = Object.keys || __Ember__['default'].keys;
   var forEach = Array.prototype.forEach && function(array, cb) {
