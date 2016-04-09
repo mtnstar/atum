@@ -1,11 +1,28 @@
+# == Schema Information
+#
+# Table name: locations
+#
+#  id       :integer          not null, primary key
+#  name     :string           not null
+#  country  :string           not null
+#  region   :string           not null
+#  lat      :integer          not null
+#  lon      :integer          not null
+#  asl      :integer          not null
+#  timezone :string           not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined. If you add columns to the
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  name: one
+  country: Switzerland
+  region: Bern
+  lat: 12
+  lon: 43
+  asl: 26
+  timezone: 'UTC'
