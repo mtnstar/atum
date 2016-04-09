@@ -21,7 +21,6 @@ class WeatherDataSyncJobTest < ActiveJob::TestCase
     WeatherDataSyncJob.perform_now
 
     assert_equal 'test1', SunshineTime.find_by(date: '2016-12-12'.to_date).minutes_per_hour
-    assert_equal 1, SunshineTime.where(date: sunshine_time_date).count
     assert_equal 'test2', SunshineTime.find_by(date: sunshine_time_date).minutes_per_hour
     assert_equal 2, SunshineTime.count
   end
