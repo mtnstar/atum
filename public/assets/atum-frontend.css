@@ -1,0 +1,1069 @@
+.logo {
+  padding-left: 20px;
+  margin-bottom: 30px;
+}
+.panel-body {
+  padding: 0;
+}
+.panel-body .list-group {
+  margin-bottom: 0;
+}
+.panel-body .list-group .list-group-item {
+  border: 0;
+}
+.panel-body a {
+  text-decoration: none;
+  color: inherit;
+}
+.panel-body a:hover ul li,
+.panel-body a:hover div.large-button-container {
+  background-color: #eee;
+}
+.large-button-container {
+  width: 100%;
+  height: 100px;
+}
+.large-button-container div {
+  display: block;
+  text-align: center;
+}
+.large-button-container div.glyphicon {
+  height: 50px;
+  padding: 20px;
+}
+.large {
+  font-weight: bold;
+  font-size: 150%;
+}
+.main-content table.preview-table {
+  width: 100%;
+}
+.main-content table.preview-table tr td,
+.main-content table.preview-table tr th {
+  text-align: center;
+  border-right: 2px solid #eee;
+  vertical-align: top;
+  padding: 2px;
+}
+.main-content table.preview-table tr.day-names td,
+.main-content table.preview-table tr.day-names th {
+  border-right: 0;
+  font-weight: bold;
+  font-size: 150%;
+}
+.main-content table.preview-table tr.percentage div {
+  margin: 0 auto;
+}
+.main-content table.preview-table tr.total {
+  font-weight: bold;
+  font-size: 150%;
+}
+.main-content table.preview-table tr.total .small {
+  font-weight: normal;
+  font-size: 80%;
+}
+.main-content table.preview-table tbody tr td,
+.main-content table.preview-table tbody tr th {
+  border-top: 2px solid #eee;
+}
+div.percentage-empty-100 {
+  width: 40px;
+  height: 100px;
+  background-color: inherit;
+}
+div.percentage-full-100 {
+  width: 40px;
+  height: 100px;
+  background-color: #0f0;
+}
+div.percentage-empty-99 {
+  width: 40px;
+  height: 99px;
+  background-color: inherit;
+}
+div.percentage-full-99 {
+  width: 40px;
+  height: 99px;
+  background-color: #0f0;
+}
+div.percentage-empty-98 {
+  width: 40px;
+  height: 98px;
+  background-color: inherit;
+}
+div.percentage-full-98 {
+  width: 40px;
+  height: 98px;
+  background-color: #0f0;
+}
+div.percentage-empty-97 {
+  width: 40px;
+  height: 97px;
+  background-color: inherit;
+}
+div.percentage-full-97 {
+  width: 40px;
+  height: 97px;
+  background-color: #0f0;
+}
+div.percentage-empty-96 {
+  width: 40px;
+  height: 96px;
+  background-color: inherit;
+}
+div.percentage-full-96 {
+  width: 40px;
+  height: 96px;
+  background-color: #0f0;
+}
+div.percentage-empty-95 {
+  width: 40px;
+  height: 95px;
+  background-color: inherit;
+}
+div.percentage-full-95 {
+  width: 40px;
+  height: 95px;
+  background-color: #0f0;
+}
+div.percentage-empty-94 {
+  width: 40px;
+  height: 94px;
+  background-color: inherit;
+}
+div.percentage-full-94 {
+  width: 40px;
+  height: 94px;
+  background-color: #0f0;
+}
+div.percentage-empty-93 {
+  width: 40px;
+  height: 93px;
+  background-color: inherit;
+}
+div.percentage-full-93 {
+  width: 40px;
+  height: 93px;
+  background-color: #0f0;
+}
+div.percentage-empty-92 {
+  width: 40px;
+  height: 92px;
+  background-color: inherit;
+}
+div.percentage-full-92 {
+  width: 40px;
+  height: 92px;
+  background-color: #0f0;
+}
+div.percentage-empty-91 {
+  width: 40px;
+  height: 91px;
+  background-color: inherit;
+}
+div.percentage-full-91 {
+  width: 40px;
+  height: 91px;
+  background-color: #0f0;
+}
+div.percentage-empty-90 {
+  width: 40px;
+  height: 90px;
+  background-color: inherit;
+}
+div.percentage-full-90 {
+  width: 40px;
+  height: 90px;
+  background-color: #0f0;
+}
+div.percentage-empty-89 {
+  width: 40px;
+  height: 89px;
+  background-color: inherit;
+}
+div.percentage-full-89 {
+  width: 40px;
+  height: 89px;
+  background-color: #0f0;
+}
+div.percentage-empty-88 {
+  width: 40px;
+  height: 88px;
+  background-color: inherit;
+}
+div.percentage-full-88 {
+  width: 40px;
+  height: 88px;
+  background-color: #0f0;
+}
+div.percentage-empty-87 {
+  width: 40px;
+  height: 87px;
+  background-color: inherit;
+}
+div.percentage-full-87 {
+  width: 40px;
+  height: 87px;
+  background-color: #0f0;
+}
+div.percentage-empty-86 {
+  width: 40px;
+  height: 86px;
+  background-color: inherit;
+}
+div.percentage-full-86 {
+  width: 40px;
+  height: 86px;
+  background-color: #0f0;
+}
+div.percentage-empty-85 {
+  width: 40px;
+  height: 85px;
+  background-color: inherit;
+}
+div.percentage-full-85 {
+  width: 40px;
+  height: 85px;
+  background-color: #0f0;
+}
+div.percentage-empty-84 {
+  width: 40px;
+  height: 84px;
+  background-color: inherit;
+}
+div.percentage-full-84 {
+  width: 40px;
+  height: 84px;
+  background-color: #0f0;
+}
+div.percentage-empty-83 {
+  width: 40px;
+  height: 83px;
+  background-color: inherit;
+}
+div.percentage-full-83 {
+  width: 40px;
+  height: 83px;
+  background-color: #0f0;
+}
+div.percentage-empty-82 {
+  width: 40px;
+  height: 82px;
+  background-color: inherit;
+}
+div.percentage-full-82 {
+  width: 40px;
+  height: 82px;
+  background-color: #0f0;
+}
+div.percentage-empty-81 {
+  width: 40px;
+  height: 81px;
+  background-color: inherit;
+}
+div.percentage-full-81 {
+  width: 40px;
+  height: 81px;
+  background-color: #0f0;
+}
+div.percentage-empty-80 {
+  width: 40px;
+  height: 80px;
+  background-color: inherit;
+}
+div.percentage-full-80 {
+  width: 40px;
+  height: 80px;
+  background-color: #0f0;
+}
+div.percentage-empty-79 {
+  width: 40px;
+  height: 79px;
+  background-color: inherit;
+}
+div.percentage-full-79 {
+  width: 40px;
+  height: 79px;
+  background-color: #0f0;
+}
+div.percentage-empty-78 {
+  width: 40px;
+  height: 78px;
+  background-color: inherit;
+}
+div.percentage-full-78 {
+  width: 40px;
+  height: 78px;
+  background-color: #0f0;
+}
+div.percentage-empty-77 {
+  width: 40px;
+  height: 77px;
+  background-color: inherit;
+}
+div.percentage-full-77 {
+  width: 40px;
+  height: 77px;
+  background-color: #0f0;
+}
+div.percentage-empty-76 {
+  width: 40px;
+  height: 76px;
+  background-color: inherit;
+}
+div.percentage-full-76 {
+  width: 40px;
+  height: 76px;
+  background-color: #0f0;
+}
+div.percentage-empty-75 {
+  width: 40px;
+  height: 75px;
+  background-color: inherit;
+}
+div.percentage-full-75 {
+  width: 40px;
+  height: 75px;
+  background-color: #0f0;
+}
+div.percentage-empty-74 {
+  width: 40px;
+  height: 74px;
+  background-color: inherit;
+}
+div.percentage-full-74 {
+  width: 40px;
+  height: 74px;
+  background-color: #0f0;
+}
+div.percentage-empty-73 {
+  width: 40px;
+  height: 73px;
+  background-color: inherit;
+}
+div.percentage-full-73 {
+  width: 40px;
+  height: 73px;
+  background-color: #0f0;
+}
+div.percentage-empty-72 {
+  width: 40px;
+  height: 72px;
+  background-color: inherit;
+}
+div.percentage-full-72 {
+  width: 40px;
+  height: 72px;
+  background-color: #0f0;
+}
+div.percentage-empty-71 {
+  width: 40px;
+  height: 71px;
+  background-color: inherit;
+}
+div.percentage-full-71 {
+  width: 40px;
+  height: 71px;
+  background-color: #0f0;
+}
+div.percentage-empty-70 {
+  width: 40px;
+  height: 70px;
+  background-color: inherit;
+}
+div.percentage-full-70 {
+  width: 40px;
+  height: 70px;
+  background-color: #0f0;
+}
+div.percentage-empty-69 {
+  width: 40px;
+  height: 69px;
+  background-color: inherit;
+}
+div.percentage-full-69 {
+  width: 40px;
+  height: 69px;
+  background-color: #0f0;
+}
+div.percentage-empty-68 {
+  width: 40px;
+  height: 68px;
+  background-color: inherit;
+}
+div.percentage-full-68 {
+  width: 40px;
+  height: 68px;
+  background-color: #0f0;
+}
+div.percentage-empty-67 {
+  width: 40px;
+  height: 67px;
+  background-color: inherit;
+}
+div.percentage-full-67 {
+  width: 40px;
+  height: 67px;
+  background-color: #0f0;
+}
+div.percentage-empty-66 {
+  width: 40px;
+  height: 66px;
+  background-color: inherit;
+}
+div.percentage-full-66 {
+  width: 40px;
+  height: 66px;
+  background-color: #0f0;
+}
+div.percentage-empty-65 {
+  width: 40px;
+  height: 65px;
+  background-color: inherit;
+}
+div.percentage-full-65 {
+  width: 40px;
+  height: 65px;
+  background-color: #0f0;
+}
+div.percentage-empty-64 {
+  width: 40px;
+  height: 64px;
+  background-color: inherit;
+}
+div.percentage-full-64 {
+  width: 40px;
+  height: 64px;
+  background-color: #0f0;
+}
+div.percentage-empty-63 {
+  width: 40px;
+  height: 63px;
+  background-color: inherit;
+}
+div.percentage-full-63 {
+  width: 40px;
+  height: 63px;
+  background-color: #0f0;
+}
+div.percentage-empty-62 {
+  width: 40px;
+  height: 62px;
+  background-color: inherit;
+}
+div.percentage-full-62 {
+  width: 40px;
+  height: 62px;
+  background-color: #0f0;
+}
+div.percentage-empty-61 {
+  width: 40px;
+  height: 61px;
+  background-color: inherit;
+}
+div.percentage-full-61 {
+  width: 40px;
+  height: 61px;
+  background-color: #0f0;
+}
+div.percentage-empty-60 {
+  width: 40px;
+  height: 60px;
+  background-color: inherit;
+}
+div.percentage-full-60 {
+  width: 40px;
+  height: 60px;
+  background-color: #0f0;
+}
+div.percentage-empty-59 {
+  width: 40px;
+  height: 59px;
+  background-color: inherit;
+}
+div.percentage-full-59 {
+  width: 40px;
+  height: 59px;
+  background-color: #0f0;
+}
+div.percentage-empty-58 {
+  width: 40px;
+  height: 58px;
+  background-color: inherit;
+}
+div.percentage-full-58 {
+  width: 40px;
+  height: 58px;
+  background-color: #0f0;
+}
+div.percentage-empty-57 {
+  width: 40px;
+  height: 57px;
+  background-color: inherit;
+}
+div.percentage-full-57 {
+  width: 40px;
+  height: 57px;
+  background-color: #0f0;
+}
+div.percentage-empty-56 {
+  width: 40px;
+  height: 56px;
+  background-color: inherit;
+}
+div.percentage-full-56 {
+  width: 40px;
+  height: 56px;
+  background-color: #0f0;
+}
+div.percentage-empty-55 {
+  width: 40px;
+  height: 55px;
+  background-color: inherit;
+}
+div.percentage-full-55 {
+  width: 40px;
+  height: 55px;
+  background-color: #0f0;
+}
+div.percentage-empty-54 {
+  width: 40px;
+  height: 54px;
+  background-color: inherit;
+}
+div.percentage-full-54 {
+  width: 40px;
+  height: 54px;
+  background-color: #0f0;
+}
+div.percentage-empty-53 {
+  width: 40px;
+  height: 53px;
+  background-color: inherit;
+}
+div.percentage-full-53 {
+  width: 40px;
+  height: 53px;
+  background-color: #0f0;
+}
+div.percentage-empty-52 {
+  width: 40px;
+  height: 52px;
+  background-color: inherit;
+}
+div.percentage-full-52 {
+  width: 40px;
+  height: 52px;
+  background-color: #0f0;
+}
+div.percentage-empty-51 {
+  width: 40px;
+  height: 51px;
+  background-color: inherit;
+}
+div.percentage-full-51 {
+  width: 40px;
+  height: 51px;
+  background-color: #0f0;
+}
+div.percentage-empty-50 {
+  width: 40px;
+  height: 50px;
+  background-color: inherit;
+}
+div.percentage-full-50 {
+  width: 40px;
+  height: 50px;
+  background-color: #0f0;
+}
+div.percentage-empty-49 {
+  width: 40px;
+  height: 49px;
+  background-color: inherit;
+}
+div.percentage-full-49 {
+  width: 40px;
+  height: 49px;
+  background-color: #0f0;
+}
+div.percentage-empty-48 {
+  width: 40px;
+  height: 48px;
+  background-color: inherit;
+}
+div.percentage-full-48 {
+  width: 40px;
+  height: 48px;
+  background-color: #0f0;
+}
+div.percentage-empty-47 {
+  width: 40px;
+  height: 47px;
+  background-color: inherit;
+}
+div.percentage-full-47 {
+  width: 40px;
+  height: 47px;
+  background-color: #0f0;
+}
+div.percentage-empty-46 {
+  width: 40px;
+  height: 46px;
+  background-color: inherit;
+}
+div.percentage-full-46 {
+  width: 40px;
+  height: 46px;
+  background-color: #0f0;
+}
+div.percentage-empty-45 {
+  width: 40px;
+  height: 45px;
+  background-color: inherit;
+}
+div.percentage-full-45 {
+  width: 40px;
+  height: 45px;
+  background-color: #0f0;
+}
+div.percentage-empty-44 {
+  width: 40px;
+  height: 44px;
+  background-color: inherit;
+}
+div.percentage-full-44 {
+  width: 40px;
+  height: 44px;
+  background-color: #0f0;
+}
+div.percentage-empty-43 {
+  width: 40px;
+  height: 43px;
+  background-color: inherit;
+}
+div.percentage-full-43 {
+  width: 40px;
+  height: 43px;
+  background-color: #0f0;
+}
+div.percentage-empty-42 {
+  width: 40px;
+  height: 42px;
+  background-color: inherit;
+}
+div.percentage-full-42 {
+  width: 40px;
+  height: 42px;
+  background-color: #0f0;
+}
+div.percentage-empty-41 {
+  width: 40px;
+  height: 41px;
+  background-color: inherit;
+}
+div.percentage-full-41 {
+  width: 40px;
+  height: 41px;
+  background-color: #0f0;
+}
+div.percentage-empty-40 {
+  width: 40px;
+  height: 40px;
+  background-color: inherit;
+}
+div.percentage-full-40 {
+  width: 40px;
+  height: 40px;
+  background-color: #0f0;
+}
+div.percentage-empty-39 {
+  width: 40px;
+  height: 39px;
+  background-color: inherit;
+}
+div.percentage-full-39 {
+  width: 40px;
+  height: 39px;
+  background-color: #0f0;
+}
+div.percentage-empty-38 {
+  width: 40px;
+  height: 38px;
+  background-color: inherit;
+}
+div.percentage-full-38 {
+  width: 40px;
+  height: 38px;
+  background-color: #0f0;
+}
+div.percentage-empty-37 {
+  width: 40px;
+  height: 37px;
+  background-color: inherit;
+}
+div.percentage-full-37 {
+  width: 40px;
+  height: 37px;
+  background-color: #0f0;
+}
+div.percentage-empty-36 {
+  width: 40px;
+  height: 36px;
+  background-color: inherit;
+}
+div.percentage-full-36 {
+  width: 40px;
+  height: 36px;
+  background-color: #0f0;
+}
+div.percentage-empty-35 {
+  width: 40px;
+  height: 35px;
+  background-color: inherit;
+}
+div.percentage-full-35 {
+  width: 40px;
+  height: 35px;
+  background-color: #0f0;
+}
+div.percentage-empty-34 {
+  width: 40px;
+  height: 34px;
+  background-color: inherit;
+}
+div.percentage-full-34 {
+  width: 40px;
+  height: 34px;
+  background-color: #0f0;
+}
+div.percentage-empty-33 {
+  width: 40px;
+  height: 33px;
+  background-color: inherit;
+}
+div.percentage-full-33 {
+  width: 40px;
+  height: 33px;
+  background-color: #0f0;
+}
+div.percentage-empty-32 {
+  width: 40px;
+  height: 32px;
+  background-color: inherit;
+}
+div.percentage-full-32 {
+  width: 40px;
+  height: 32px;
+  background-color: #0f0;
+}
+div.percentage-empty-31 {
+  width: 40px;
+  height: 31px;
+  background-color: inherit;
+}
+div.percentage-full-31 {
+  width: 40px;
+  height: 31px;
+  background-color: #0f0;
+}
+div.percentage-empty-30 {
+  width: 40px;
+  height: 30px;
+  background-color: inherit;
+}
+div.percentage-full-30 {
+  width: 40px;
+  height: 30px;
+  background-color: #0f0;
+}
+div.percentage-empty-29 {
+  width: 40px;
+  height: 29px;
+  background-color: inherit;
+}
+div.percentage-full-29 {
+  width: 40px;
+  height: 29px;
+  background-color: #0f0;
+}
+div.percentage-empty-28 {
+  width: 40px;
+  height: 28px;
+  background-color: inherit;
+}
+div.percentage-full-28 {
+  width: 40px;
+  height: 28px;
+  background-color: #0f0;
+}
+div.percentage-empty-27 {
+  width: 40px;
+  height: 27px;
+  background-color: inherit;
+}
+div.percentage-full-27 {
+  width: 40px;
+  height: 27px;
+  background-color: #0f0;
+}
+div.percentage-empty-26 {
+  width: 40px;
+  height: 26px;
+  background-color: inherit;
+}
+div.percentage-full-26 {
+  width: 40px;
+  height: 26px;
+  background-color: #0f0;
+}
+div.percentage-empty-25 {
+  width: 40px;
+  height: 25px;
+  background-color: inherit;
+}
+div.percentage-full-25 {
+  width: 40px;
+  height: 25px;
+  background-color: #0f0;
+}
+div.percentage-empty-24 {
+  width: 40px;
+  height: 24px;
+  background-color: inherit;
+}
+div.percentage-full-24 {
+  width: 40px;
+  height: 24px;
+  background-color: #0f0;
+}
+div.percentage-empty-23 {
+  width: 40px;
+  height: 23px;
+  background-color: inherit;
+}
+div.percentage-full-23 {
+  width: 40px;
+  height: 23px;
+  background-color: #0f0;
+}
+div.percentage-empty-22 {
+  width: 40px;
+  height: 22px;
+  background-color: inherit;
+}
+div.percentage-full-22 {
+  width: 40px;
+  height: 22px;
+  background-color: #0f0;
+}
+div.percentage-empty-21 {
+  width: 40px;
+  height: 21px;
+  background-color: inherit;
+}
+div.percentage-full-21 {
+  width: 40px;
+  height: 21px;
+  background-color: #0f0;
+}
+div.percentage-empty-20 {
+  width: 40px;
+  height: 20px;
+  background-color: inherit;
+}
+div.percentage-full-20 {
+  width: 40px;
+  height: 20px;
+  background-color: #0f0;
+}
+div.percentage-empty-19 {
+  width: 40px;
+  height: 19px;
+  background-color: inherit;
+}
+div.percentage-full-19 {
+  width: 40px;
+  height: 19px;
+  background-color: #0f0;
+}
+div.percentage-empty-18 {
+  width: 40px;
+  height: 18px;
+  background-color: inherit;
+}
+div.percentage-full-18 {
+  width: 40px;
+  height: 18px;
+  background-color: #0f0;
+}
+div.percentage-empty-17 {
+  width: 40px;
+  height: 17px;
+  background-color: inherit;
+}
+div.percentage-full-17 {
+  width: 40px;
+  height: 17px;
+  background-color: #0f0;
+}
+div.percentage-empty-16 {
+  width: 40px;
+  height: 16px;
+  background-color: inherit;
+}
+div.percentage-full-16 {
+  width: 40px;
+  height: 16px;
+  background-color: #0f0;
+}
+div.percentage-empty-15 {
+  width: 40px;
+  height: 15px;
+  background-color: inherit;
+}
+div.percentage-full-15 {
+  width: 40px;
+  height: 15px;
+  background-color: #0f0;
+}
+div.percentage-empty-14 {
+  width: 40px;
+  height: 14px;
+  background-color: inherit;
+}
+div.percentage-full-14 {
+  width: 40px;
+  height: 14px;
+  background-color: #0f0;
+}
+div.percentage-empty-13 {
+  width: 40px;
+  height: 13px;
+  background-color: inherit;
+}
+div.percentage-full-13 {
+  width: 40px;
+  height: 13px;
+  background-color: #0f0;
+}
+div.percentage-empty-12 {
+  width: 40px;
+  height: 12px;
+  background-color: inherit;
+}
+div.percentage-full-12 {
+  width: 40px;
+  height: 12px;
+  background-color: #0f0;
+}
+div.percentage-empty-11 {
+  width: 40px;
+  height: 11px;
+  background-color: inherit;
+}
+div.percentage-full-11 {
+  width: 40px;
+  height: 11px;
+  background-color: #0f0;
+}
+div.percentage-empty-10 {
+  width: 40px;
+  height: 10px;
+  background-color: inherit;
+}
+div.percentage-full-10 {
+  width: 40px;
+  height: 10px;
+  background-color: #0f0;
+}
+div.percentage-empty-9 {
+  width: 40px;
+  height: 9px;
+  background-color: inherit;
+}
+div.percentage-full-9 {
+  width: 40px;
+  height: 9px;
+  background-color: #0f0;
+}
+div.percentage-empty-8 {
+  width: 40px;
+  height: 8px;
+  background-color: inherit;
+}
+div.percentage-full-8 {
+  width: 40px;
+  height: 8px;
+  background-color: #0f0;
+}
+div.percentage-empty-7 {
+  width: 40px;
+  height: 7px;
+  background-color: inherit;
+}
+div.percentage-full-7 {
+  width: 40px;
+  height: 7px;
+  background-color: #0f0;
+}
+div.percentage-empty-6 {
+  width: 40px;
+  height: 6px;
+  background-color: inherit;
+}
+div.percentage-full-6 {
+  width: 40px;
+  height: 6px;
+  background-color: #0f0;
+}
+div.percentage-empty-5 {
+  width: 40px;
+  height: 5px;
+  background-color: inherit;
+}
+div.percentage-full-5 {
+  width: 40px;
+  height: 5px;
+  background-color: #0f0;
+}
+div.percentage-empty-4 {
+  width: 40px;
+  height: 4px;
+  background-color: inherit;
+}
+div.percentage-full-4 {
+  width: 40px;
+  height: 4px;
+  background-color: #0f0;
+}
+div.percentage-empty-3 {
+  width: 40px;
+  height: 3px;
+  background-color: inherit;
+}
+div.percentage-full-3 {
+  width: 40px;
+  height: 3px;
+  background-color: #0f0;
+}
+div.percentage-empty-2 {
+  width: 40px;
+  height: 2px;
+  background-color: inherit;
+}
+div.percentage-full-2 {
+  width: 40px;
+  height: 2px;
+  background-color: #0f0;
+}
+div.percentage-empty-1 {
+  width: 40px;
+  height: 1px;
+  background-color: inherit;
+}
+div.percentage-full-1 {
+  width: 40px;
+  height: 1px;
+  background-color: #0f0;
+}
+/*# sourceMappingURL=/assets/atum-frontend.css.map */
