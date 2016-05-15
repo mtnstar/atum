@@ -5,7 +5,7 @@
 #  id       :integer          not null, primary key
 #  name     :string           not null
 #  country  :string           not null
-#  region   :string           not null
+#  region   :string
 #  lat      :integer          not null
 #  lon      :integer          not null
 #  asl      :integer          not null
