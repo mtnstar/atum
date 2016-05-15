@@ -7,7 +7,7 @@ class Api::LocationsController < Api::ApiController
     return unless query
 
     locations = meteo_client.locations(query)
-    render json: {data: locations}
+    render json: {locations: locations}
   end
 
   # POST /api/locations
