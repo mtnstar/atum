@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'rails', '>= 5.0.0.beta3', '< 5.1'
+gem 'rails', '>= 5.0.0.rc1'
 gem 'active_model_serializers', '~> 0.9.4'
 gem 'sqlite3'
 gem 'mysql2'
