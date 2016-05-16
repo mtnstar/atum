@@ -16,12 +16,10 @@
 
 one:
   label: MyString
-  location: MyString
   max_production: 1
   direction: 1
 
 two:
   label: MyString
-  location: MyString
   max_production: 1
   direction: 1

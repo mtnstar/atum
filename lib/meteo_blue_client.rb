@@ -9,8 +9,8 @@ class MeteoBlueClient
   def locations(query)
     response = meteo_blue_locations(query)
     entries = JSON.parse(response)['results']
-    entries.collect do |l|
-      to_location(l)
+    entries.collect do |e|
+      to_location(e)
     end
   end
 
@@ -25,13 +25,19 @@ class MeteoBlueClient
   end
 
   def sunshine_times(location)
-    path = ''
-    params = {}
-    restricted_http_request(path, params)
+    path = '/packages/clouds-1h'
+    params = { lat: location.lat.to_s,
+               lon: location.lon.to_s,
+               asl: location.asl.to_s
+    }
+
+    response_data = restricted_http_request(path, params)
+    data_1h = JSON.parse(response_data)['data_1h']
+    date_time_values = collect_date_time_values(data_1h['time'], data_1h['sunshinetime'])
+    to_sunshine_times(date_time_values, location)
   end
 
   private
-
   def to_pv_site(entry)
     location_id = Location.find_by(lat: pv['lat'], lon: pv['lon']).id
     PvSite.new(
@@ -54,7 +60,28 @@ class MeteoBlueClient
     )
   end
 
-  def collect_date_times(dates)
+  def collect_date_time_values(date_times, values)
+    date_time_values = {}
+    date_times.each_with_index do |dt, i|
+      date, time = dt.split(' ')
+      unless date_time_values[date].present?
+        date_time_values[date] = Array.new(24,0)
+      end
+      value = values[i]
+      value_index = time.split(':').first.to_i
+      date_time_values[date][value_index] = value
+    end
+    date_time_values
+  end
+
+  def to_sunshine_times(date_time_values, location)
+    date_time_values.collect do |k,v|
+      SunshineTime.new(
+        location: location,
+        date: Date.parse(k),
+        minutes_per_hour: v
+      )
+    end
   end
 
   def meteo_blue_locations(query)

@@ -1,36 +1,43 @@
-# required, otherwise it's not possible to mock on MeteoBlueClient
-require 'mocha/mini_test'
+require 'test_helper'
 
 class MeteoBlueClientTest < ActiveSupport::TestCase
 
-  #test 'collects dates' do
-    #dates =  ["2016-04-09 22:00",
-              #"2016-04-09 23:00",
-              #"2016-04-10 00:00",
-              #"2016-04-10 01:00",
-              #"2016-04-10 02:00"]
-    #results = client.send(:collect_dates, dates)
-    #assert_includes results, "2016-04-09"
-    #assert_includes results, "2016-04-10"
-    #assert_equal 2, results.size
-  #end
+  test 'returns sunshine times by location' do
+    basel = locations(:basel)
 
-  #test 'init dates value sets' do
-    #dates = ["2016-03-09", "2016-03-10"]
-    #results = client.send(:init_date_time_sets, dates)
-    #assert_equal 2, results.size
-    #assert_equal 24, results["2016-03-09"].size
-    #assert_equal 24, results["2016-03-10"].size
-  #end
+    client.expects(:restricted_http_request).
+      with('/packages/clouds-1h', {lat: '47.5584', lon: '7.57327', asl: '279'}).
+      returns(cloud_1h_response)
+
+    sunshine_times = client.sunshine_times(basel)
+    assert_equal 8, sunshine_times.size
+
+    st1 = sunshine_times.first
+    assert_equal Date.parse('15.05.2016'), st1.date
+    assert_equal [0,0,0,0,0,0,0,0,0,13,17,13,36,36,38,12,12,37,37,22,10,0,0,0], st1.minutes_per_hour
+
+    st6 = sunshine_times[5]
+    assert_equal Date.parse('20.05.2016'), st6.date
+    assert_equal [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], st6.minutes_per_hour
+
+    st7 = sunshine_times[6]
+    assert_equal Date.parse('21.05.2016'), st7.date
+    assert_equal [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,10,0,0,0,0], st7.minutes_per_hour
+
+    st8 = sunshine_times.last
+    assert_equal Date.parse('22.05.2016'), st8.date
+    assert_equal [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], st8.minutes_per_hour
+
+  end
 
   test 'searchs for locations at meteo blue and returns entries as Location' do
     client.expects(:public_http_request).
       with('/en/server/search/query3', {query: 'Bern'}).
       returns(locations_response)
 
-    locations = client.locations('Bern')
+    location_results = client.locations('Bern')
 
-    assert_equal 'Bern', locations.first.name
+    assert_equal 'Bern', location_results.first.name
   end
 
   private
