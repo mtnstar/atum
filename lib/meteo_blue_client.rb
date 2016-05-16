@@ -19,11 +19,6 @@ class MeteoBlueClient
     location.save
   end
 
-  def create_pv_site(entry)
-    pv_site = to_pv_site(entry)
-    pv_site.save
-  end
-
   def sunshine_times(location)
     path = '/packages/clouds-1h'
     params = { lat: location.lat.to_s,
