@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 
-gem 'rails', '>= 5.0.0.rc1'
-gem 'active_model_serializers', '~> 0.9.4'
+gem 'rails', '5.0.0.1'
+gem 'active_model_serializers'
 gem 'sqlite3'
 gem 'mysql2'
 gem 'puma'
