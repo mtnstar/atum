@@ -1,0 +1,104 @@
+.logo {
+  padding-left: 20px;
+  margin-bottom: 30px;
+}
+
+.panel-body {
+  padding: 0;
+
+  .list-group {
+    margin-bottom: 0;
+
+    .list-group-item {
+      border: 0;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a:hover {
+    ul li, div.large-button-container {
+      background-color: #eee;
+    }
+  }
+}
+
+.large-button-container {
+  width: 100%;
+  height: 100px;
+
+  div {
+    display: block;
+    text-align: center;
+
+    &.glyphicon {
+      height: 50px;
+      padding: 20px;
+    }
+  }
+}
+
+.large {
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.main-content {
+  table.preview-table {
+    width: 100%;
+
+    tr td, tr th {
+      text-align: center;
+      border-right: 2px solid #eee;
+      vertical-align: top;
+      padding: 2px;
+    }
+
+    tr.day-names {
+      td, th {
+        border-right: 0;
+        .large;
+      }
+    }
+
+    tr.percentage {
+      div {
+        margin: 0 auto;
+      }
+    }
+
+    tr.total {
+      .large;
+
+      .small {
+        font-weight: normal;
+        font-size: 80%;
+      }
+    }
+
+    tbody tr td, tbody tr th {
+      border-top: 2px solid #eee;
+    }
+  }
+}
+
+@onePixel: 1px;
+
+.mixin-loop (@i, @colorEmpty, @colorFull) when (@i > 0) {
+  div.percentage-empty-@{i} {
+    width: 40px;
+    height: @i * @onePixel;
+    background-color: @colorEmpty;
+  }
+  div.percentage-full-@{i} {
+    width: 40px;
+    height: @i * @onePixel;
+    background-color: @colorFull;
+  }
+  .mixin-loop(@i - 1, @colorEmpty, @colorFull);
+}
+
+.mixin-loop(100, inherit, #0f0);

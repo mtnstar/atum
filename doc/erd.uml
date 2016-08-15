@@ -1,0 +1,37 @@
+@startuml
+
+object location
+location : name = string
+location : lat = double
+location : lon = double
+location : asl = int
+location : tz = string
+
+object sunshinetime
+sunshinetime : location_id = id
+sunshinetime : start = DateTime
+sunshinetime : minutes_per_hour = string
+
+object pv
+pv : label = string
+pv : location_id = int
+pv : user_id = int
+pv : max_power = double
+pv : orientation
+
+object user
+user : uid = string
+user : access_token = string
+user : email = string
+user : admin = boolean
+user : provider = string
+user : password_digest = string
+user : created_at = datetime
+user : updated_at = datetime
+
+user --* pv
+pv --o location
+location --* sunshinetime
+
+
+@enduml
