@@ -1,24 +1,63 @@
-## README
+# Atum
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## setup development environment
 
-Things you may want to cover:
+get sources
 
-* Ruby version
+```
+git clone https://github.com/psunix/atum.git
+cd atum
+```
 
-* System dependencies
+### backend
 
-* Configuration
+install rvm https://rvm.io
 
-* Database creation
+```
+rvm install 2.2.4
+rvm use 2.2.4
+```
 
-* Database initialization
+install dependencies
 
-* How to run the test suite
+```
+bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+setup database
 
-* Deployment instructions
+```
+rails db:setup
+```
 
-* ...
+start backend server
+```
+rails s
+```
+
+### frontend
+
+install nvm https://github.com/creationix/nvm
+
+```
+nvm install v0.12.13
+nvm use v.0.12.13
+```
+change to frontend dir
+```
+cd frontend
+```
+
+install dependencies
+
+```
+npm install
+bower install
+```
+
+start frontend application server
+```
+ember s --proxy http://localhost:3000
+```
+
+access application at http://localhost:4200
