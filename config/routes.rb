@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  namespace :api do
+  scope '/api' do
     resources :pv_sites
     resources :locations, only: [:index, :create]
   end

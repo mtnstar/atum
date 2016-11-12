@@ -1,4 +1,4 @@
-class Api::LocationsController < Api::ApiController
+class LocationsController < ApplicationController
 
   # GET /api/locations
   def index
@@ -7,7 +7,7 @@ class Api::LocationsController < Api::ApiController
     return unless query
 
     locations = meteo_client.locations(query)
-    render json: {locations: locations}
+    render json: locations
   end
 
   # POST /api/locations

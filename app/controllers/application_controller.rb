@@ -3,15 +3,15 @@ require "#{Rails.root}/lib/meteo_blue_client"
 
 class ApplicationController < ActionController::API
 
-  before_filter :current_user, :cors_options_headers
+  #before_filter :cors_options_headers
   after_filter :cors_headers
 
-  def cors_options_headers
-    if request.method == :options
-      cors_headers
-      render :text => '', :content_type => 'text/plain'
-    end
-  end
+  #def cors_options_headers
+    #if request.method == :options
+      #cors_headers
+      #render :text => '', :content_type => 'text/plain'
+    #end
+  #end
 
   def cors_headers
     headers['Access-Control-Allow-Origin'] = '*'
