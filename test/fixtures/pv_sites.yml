@@ -3,11 +3,10 @@
 # Table name: pv_sites
 #
 #  id             :integer          not null, primary key
+#  location_id    :integer
 #  label          :string
-#  location       :string
 #  max_production :integer
 #  direction      :integer
-#  user_id        :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #

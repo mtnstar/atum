@@ -8,6 +8,7 @@ gem 'mysql2'
 gem 'puma'
 gem 'bcrypt', '~> 3.1.7'
 gem 'seed-fu'
+gem 'ruby-sun-times'
 
 group :development, :test do
   gem 'byebug'

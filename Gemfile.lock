@@ -120,6 +120,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    ruby-sun-times (0.1.5)
     seed-fu (2.3.6)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
@@ -160,6 +161,7 @@ DEPENDENCIES
   pry-doc
   puma
   rails (= 5.0.0.1)
+  ruby-sun-times
   seed-fu
   spring
   spring-watcher-listen (~> 2.0.0)
@@ -167,4 +169,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
