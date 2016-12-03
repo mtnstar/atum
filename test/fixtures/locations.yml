@@ -18,4 +18,12 @@ basel:
   lat: 47.5584
   lon: 7.57327
   asl: 279
-  timezone: GMT
+  timezone: Europe/Zurich
+
+bern:
+  name: Bern
+  country: Switzerland
+  lat: 46.948101
+  lon: 7.44744
+  asl: 549
+  timezone: Europe/Zurich

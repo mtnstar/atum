@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20161112144023) do
   create_table "sun_data_days", force: :cascade do |t|
     t.integer "location_id",      null: false
     t.date    "date",             null: false
-    t.string  "minutes_per_hour", null: false
+    t.string  "minutes_per_hour"
   end
 
   create_table "users", force: :cascade do |t|

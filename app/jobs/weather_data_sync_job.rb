@@ -15,8 +15,8 @@ class WeatherDataSyncJob < ApplicationJob
   private
 
   def update_sunshine_time(location_id, date, times)
-    st = SunshineTime.find_or_create_by(location_id: location_id, date: date)
-    st.update_attributes!(minutes_per_hour: times)
+    SunDataDay.create_with(minutes_per_hour: times).
+      find_or_create_by(location_id: location_id, date: date)
   end
 
   def meteo_client

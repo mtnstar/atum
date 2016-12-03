@@ -29,20 +29,10 @@ class MeteoBlueClient
     response_data = restricted_http_request(path, params)
     data_1h = JSON.parse(response_data)['data_1h']
     date_time_values = collect_date_time_values(data_1h['time'], data_1h['sunshinetime'])
-    to_sunshine_times(date_time_values, location)
+    to_sun_data_days(date_time_values, location)
   end
 
   private
-  def to_pv_site(entry)
-    location_id = Location.find_by(lat: pv['lat'], lon: pv['lon']).id
-    PvSite.new(
-      location_id: location_id,
-      label: pv['label'],
-      max_production: pv['max_production'],
-      direction: pv['direction']
-    )
-  end
-
   def to_location(entry)
     Location.new(
       name: entry['name'],
@@ -69,9 +59,9 @@ class MeteoBlueClient
     date_time_values
   end
 
-  def to_sunshine_times(date_time_values, location)
+  def to_sun_data_days(date_time_values, location)
     date_time_values.collect do |k,v|
-      SunshineTime.new(
+      SunDataDay.new(
         location: location,
         date: Date.parse(k),
         minutes_per_hour: v
